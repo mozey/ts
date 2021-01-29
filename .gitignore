@@ -1,3 +1,5 @@
+.idea
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -13,3 +15,10 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+/_excluded
+
+/http/build
+/http/build.index.html
+/http/node_modules
+/http/package-lock.json
