@@ -56,7 +56,13 @@ Reset to remove build artifacts
 
     ./reset.sh
    
-**TODO** Make a pull request to
-[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)
-for `ts/template/pure.d.ts`
+   
+### datepicker
+
+Simple datepicker using `<select>` tags.
+Works great on mobile browsers
+
+Build, run and reset works the same as the previous examples
+
+
 

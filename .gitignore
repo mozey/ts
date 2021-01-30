@@ -29,3 +29,11 @@
 /template/node_modules
 /template/package-lock.json
 /template/src
+
+/datepicker/build
+/datepicker/build.index.html
+/datepicker/lib
+/datepicker/node_modules
+/datepicker/package-lock.json
+/datepicker/src
+/datepicker/pure.d.ts
