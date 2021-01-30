@@ -26,8 +26,7 @@ around the browsers native XMLHttpRequest object, and
 
 Build
 
-    cd http
-    npm install
+    cd ts/http
     ./build.sh
     
 Open the index file in your default browser to run the example.
@@ -38,3 +37,22 @@ and display the results
 
 Make some change, run `build.sh` again, 
 and click the browser refresh button to see the results
+
+
+### template
+
+Basic template loader and cache, makes use of the `http` lib described above
+
+Build
+
+    cd ts/template
+    ./build.sh
+ 
+Run
+
+    open build.index.html
+    
+Reset to remove build artifacts
+
+    ./reset.sh
+   

@@ -7,6 +7,17 @@ if [[ ! -d node_modules ]]; then
   npm install
 fi
 
+if [[ ! -e lib ]]; then
+  echo "Creating lib symlink..."
+  ln -s ../http/lib lib
+fi
+
+if [[ ! -e src ]]; then
+  echo "Creating src dir..."
+  mkdir src
+  cp ../http/http.ts src
+fi
+
 echo "Compiling typescript..."
 tsc
 

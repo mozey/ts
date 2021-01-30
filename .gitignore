@@ -22,3 +22,10 @@
 /http/build.index.html
 /http/node_modules
 /http/package-lock.json
+
+/template/build
+/template/build.index.html
+/template/lib
+/template/node_modules
+/template/package-lock.json
+/template/src
