@@ -56,3 +56,7 @@ Reset to remove build artifacts
 
     ./reset.sh
    
+**TODO** Make a pull request to
+[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)
+for `ts/template/pure.d.ts`
+
