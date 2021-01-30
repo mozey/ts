@@ -37,3 +37,12 @@
 /datepicker/package-lock.json
 /datepicker/src
 /datepicker/pure.d.ts
+
+/loader/build
+/loader/build.index.html
+/loader/lib
+/loader/node_modules
+/loader/package-lock.json
+/loader/src
+/loader/pure.d.ts
+
