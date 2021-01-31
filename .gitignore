@@ -51,5 +51,8 @@
 /webcomponent/lib
 /webcomponent/node_modules
 /webcomponent/package-lock.json
-/webcomponent/src
+/webcomponent/http.ts
+/webcomponent/pure.d.ts
+/webcomponent/template.ts
+
 

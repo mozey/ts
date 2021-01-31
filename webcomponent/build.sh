@@ -12,13 +12,11 @@ if [[ ! -e lib ]]; then
   ln -s ../http/lib lib
 fi
 
-if [[ ! -e src ]]; then
-  echo "Creating src dir..."
-  mkdir src
-  cp ../http/http.ts src
-#  cp ../template/template.ts src
-  echo "Types def for PureJS..."
-  cp ../template/pure.d.ts src
+if [[ ! -e pure.d.ts ]]; then
+  echo "Copying src..."
+  cp ../http/http.ts ./
+  cp ../template/template.ts ./
+  cp ../template/pure.d.ts ./
 fi
 
 echo "Compiling typescript..."
