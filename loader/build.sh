@@ -16,6 +16,8 @@ if [[ ! -e src ]]; then
   echo "Creating src dir..."
   mkdir src
   cp ../http/http.ts src
+  mkdir src/model
+  cp ../http/model/httpbin.ts src/model
 fi
 
 echo "Compiling typescript..."
