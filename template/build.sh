@@ -12,10 +12,9 @@ if [[ ! -e lib ]]; then
   ln -s ../http/lib lib
 fi
 
-if [[ ! -e src ]]; then
-  echo "Creating src dir..."
-  mkdir src
-  cp ../http/http.ts src
+if [[ ! -e http.ts ]]; then
+  echo "Copying src..."
+  cp ../http/http.ts ./
 fi
 
 echo "Compiling typescript..."

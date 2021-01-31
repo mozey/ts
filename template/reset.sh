@@ -8,5 +8,5 @@ rm -f ./build.index.html
 rm -f ./lib
 rm -rf ./node_modules
 rm -f ./package-lock.json
-rm -rf ./src
+rm -f ./http.ts
 

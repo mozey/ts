@@ -28,21 +28,23 @@
 /template/lib
 /template/node_modules
 /template/package-lock.json
-/template/src
+/template/http.ts
 
 /datepicker/build
 /datepicker/build.index.html
 /datepicker/lib
 /datepicker/node_modules
 /datepicker/package-lock.json
-/datepicker/src
+/datepicker/http.ts
+/datepicker/pure.d.ts
 
 /loader/build
 /loader/build.index.html
 /loader/lib
 /loader/node_modules
 /loader/package-lock.json
-/loader/src
+/loader/http.ts
+/loader/model
 
 /webcomponent/build
 /webcomponent/build.index.html

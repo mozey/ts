@@ -1,6 +1,6 @@
 import ClickEvent = JQuery.ClickEvent;
-import {Http, HttpArg, HttpDone} from "./src/http";
-import {ResponseGET} from "./src/model/httpbin";
+import {Http, HttpArg, HttpDone} from "./http";
+import {ResponseGET} from "./model/httpbin";
 import {sprintf} from "sprintf-js";
 
 // app is a singleton
