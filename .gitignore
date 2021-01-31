@@ -36,7 +36,6 @@
 /datepicker/node_modules
 /datepicker/package-lock.json
 /datepicker/src
-/datepicker/pure.d.ts
 
 /loader/build
 /loader/build.index.html
@@ -44,5 +43,11 @@
 /loader/node_modules
 /loader/package-lock.json
 /loader/src
-/loader/pure.d.ts
+
+/webcomponent/build
+/webcomponent/build.index.html
+/webcomponent/lib
+/webcomponent/node_modules
+/webcomponent/package-lock.json
+/webcomponent/src
 

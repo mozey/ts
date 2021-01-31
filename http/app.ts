@@ -49,5 +49,7 @@ export namespace app {
 
             $("#root pre").text(JSON.stringify(r, null, "  "))
         })
+
+        // TODO Example with multiple requests in queue that succeed or fail
     }
 }

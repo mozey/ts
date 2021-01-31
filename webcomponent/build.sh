@@ -16,6 +16,7 @@ if [[ ! -e src ]]; then
   echo "Creating src dir..."
   mkdir src
   cp ../http/http.ts src
+#  cp ../template/template.ts src
   echo "Types def for PureJS..."
   cp ../template/pure.d.ts src
 fi
