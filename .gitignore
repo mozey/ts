@@ -48,6 +48,7 @@
 
 /webcomponent/build
 /webcomponent/build.index.html
+/webcomponent/build.port
 /webcomponent/lib
 /webcomponent/node_modules
 /webcomponent/package-lock.json

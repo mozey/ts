@@ -91,14 +91,32 @@ Build, run and reset works the same as the previous examples
 
 ### webcomponent
 
-Web components use [Shadow DOM](https://www.html5rocks.com/en/tutorials/webcomponents/shadowdom)
-to encapsulate a widget's DOM tree from the rest of the page. Not to be confused 
-with Virtual DOM, a performance optimization technique where a copy of the UI is 
-kept in memory and occasionally synced with what the user sees 
+Web components use [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
+to encapsulate a widget's DOM tree from the rest of the page.
+This is useful to prevent issues like
+- Duplicate DOM element IDs
+- JS namespace clashes
+- CSS leaking
+- etc?
 
-More info on [using the shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+Shadow DOM is not to be confused with Virtual DOM, a performance optimization 
+technique where a copy of the UI is kept in memory and occasionally synced 
+with what the user sees. 
 
-Older browsers version not supporting Shadow DOM can use the
+More info on 
+[using custom elements](https://developers.google.com/web/fundamentals/web-components/customelements),
+and here is a tutorial on 
+[understanding the Shadow DOM](https://blog.logrocket.com/understanding-shadow-dom-v1-fa9b81ebe3ac)
+
+Older browser versions not supporting Shadow DOM can use the
 [webcomponentsjs polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)
+
+Build
+
+    ./build.sh
+    
+Run 
+
+    APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
 
 
