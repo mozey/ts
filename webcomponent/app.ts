@@ -36,9 +36,7 @@ export namespace app {
             }
         }
 
-        // Example 1............................................................
         // Template is loaded into div element with shadow DOM, and rendered
-
         let o = new TemplateOptions()
         o.selector = "#animals"
         o.shadowDOM = true
@@ -61,12 +59,6 @@ export namespace app {
                 // Notice the "Default heading" text is replaced by the slot val
                 console.info("Render results", component.shadowRoot.innerHTML)
             })
-
-
-        // Example 2............................................................
-        // Template is loaded into custom element with shadow DOM, and rendered
-
-        // TODO Create webcomponent.ts to load static/animals.vue into custom element <ts-animals>
     }
 }
 
