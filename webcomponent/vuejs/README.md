@@ -61,8 +61,19 @@ would be a waste of resources."*, update `package.json` to `--target wc` then
 npm run build
 ```
 
-Edit `disc/demo.html` to set title, e.g. 
-`<vuejs-weather msg="In bocca al lupo!"></vuejs-weather>` then 
+Version dist files for `webcomponent/index2.html`
+```
+cp dist/vuejs-weather.js dist-vuejs-weather.js
+cp dist/vuejs-weather.js.map dist-vuejs-weather.js.map
+```
+
+Edit `disc/demo.html` to set props, e.g.
+```
+<vuejs-weather msg="VueJS Weather Widget"
+               lat="-33.947032" lon="18.377848"></vuejs-weather>
+``` 
+
+View the demo 
 ```
 open dist/demo.html
 ```
