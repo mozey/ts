@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h3>VueJS Weather</h3>
     <div>{{ msg }}</div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
-  props: ['msg']
-}
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'Weather',
+  props: {
+    msg: String,
+  },
+});
 </script>
 

@@ -39,6 +39,9 @@ const VueWeatherWidget = wrap(Vue, Weather);
 window.customElements.define("vuejs-weather", VueWeatherWidget);
 ```
 
+Similar to the "get started" link above,
+edit `public/index.html` to use the custom component `<vuejs-weather>`,
+
 Preview widget with **dev** server
 ```
 npm run serve
