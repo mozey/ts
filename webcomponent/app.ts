@@ -46,7 +46,7 @@ export namespace app {
         let templateWithShadowDOM = new Template(o)
 
         templateWithShadowDOM.load(
-            sprintf("%s/static/animals.html", app.Host), (root: ShadowRoot) => {
+            sprintf("%s/animals.html", app.Host), (root: ShadowRoot) => {
                 // This callback runs after the template is loaded into the DOM
 
                 // The component DOM element has a "#shadow-root open"
