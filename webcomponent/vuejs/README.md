@@ -1,7 +1,9 @@
 VueJS weather widget,
 see [Get started with Vue web components](https://archive.is/OKA7l)
 
-Uses [this locationforecast API](https://api.met.no/weatherapi/locationforecast/2.0), for example
+Uses the yr.no 
+[locationforecast API](https://api.met.no/weatherapi/locationforecast/2.0), 
+for example
 ```
 http "https://api.met.no/weatherapi/locationforecast/2.0/compact.json?lat=-33.947032&lon=18.377848"
 ```
@@ -32,12 +34,7 @@ The weather
 [single file vue component](https://vuejs.org/v2/guide/single-file-components.html), 
 is at `ts/webcomponent/vuejs/weather/src/components/Weather.vue`
 Wrap the vue component to make it a web component, 
-this is done in `src/main.ts` e.g. 
-```
-import Weather from './components/Weather';
-const VueWeatherWidget = wrap(Vue, Weather);
-window.customElements.define("vuejs-weather", VueWeatherWidget);
-```
+see `src/main.ts`
 
 Similar to the "get started" link above,
 edit `public/index.html` to use the custom component `<vuejs-weather>`,
@@ -52,10 +49,14 @@ For **prod**,
 *"...create a build that is optimized for deployment and does not include 
 the core vue library. The rationale is that there can typically be multiple 
 web components on a website and packaging the Vue library with every instance 
-would be a waste of resources."*,
-update `package.json` to use `vue-cli-service build --target wc` and then
+would be a waste of resources."*, update `package.json` to `--target wc` then
 ```
 npm run build
+```
+
+Edit `disc/demo.html` to set title, e.g. 
+`<vuejs-weather msg="In bocca al lupo!"></vuejs-weather>` then 
+```
 open dist/demo.html
 ```
 

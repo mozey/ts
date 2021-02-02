@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "Xbuild": "vue-cli-service build",
+    "build": "vue-cli-service build --target wc --name vuejs-weather ./src/components/Weather.vue"
   },
   "dependencies": {
     "@vue/web-component-wrapper": "^1.2.0",

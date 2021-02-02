@@ -115,8 +115,21 @@ Build
 
     ./build.sh
     
-Run 
+#### Web Component Example 1
+
+Load and render template into a div (with shadow DOM), set heading using a 
+[slot](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots)
 
     APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
 
+#### Web Component Example 2
+
+VueJS single file component wrapped as a custom element.
+
+This example uses the pre-built `vuejs/weather/dist-vuejs-weather.js` widget,
+To make sense of the source code in `vuejs/weather` see the
+[README](https://github.com/mozey/ts/tree/main/webcomponent/vuejs)
+
+    open index2.html
+    
 
