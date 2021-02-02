@@ -1,3 +1,5 @@
+### weather
+
 VueJS weather widget,
 see [Get started with Vue web components](https://archive.is/OKA7l)
 
@@ -28,6 +30,11 @@ Install [web component wrapper](https://github.com/vuejs/vue-web-component-wrapp
 ```
 cd weather
 npm install --save @vue/web-component-wrapper
+```
+
+Install [axios](https://github.com/axios/axios) HTTP request library
+```
+npm install --save axios
 ```
 
 The weather
