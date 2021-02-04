@@ -29,8 +29,10 @@ This is 77.4% of all websites."*
 
 ## Examples
 
-**TODO** Create a list of examples for TypeScript 
+**TODO** Inside `ts/examples` create a list of examples for TypeScript 
 similar to [Go by Example](https://gobyexample.com/)
+
+Examples might also have a corresponding TS lib for re-use in other projects.
 
 
 ## Libs
@@ -132,4 +134,9 @@ To make sense of the source code in `vuejs/weather` see the
 
     open index2.html
     
+
+### [store](https://github.com/mozey/ts/tree/main/store) 
+
+State sharing using a simple store pattern 
+
 

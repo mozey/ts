@@ -56,4 +56,6 @@
 /webcomponent/pure.d.ts
 /webcomponent/template.ts
 
+/store/lib
+/store/vuex
 
