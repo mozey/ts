@@ -3,7 +3,7 @@ import {Cart} from "./cart";
 
 // agns (application global name space) is a singleton
 // https://stackoverflow.com/a/30174360/639133
-export namespace app {
+export namespace agns {
     export let Version: string
 
     export let store: Store
@@ -13,5 +13,6 @@ export namespace app {
     // https://github.com/axios/axios#installing
     // https://unpkg.com/axios/dist/axios.min.js
     export function main() {
+        console.info("here")
     }
 }

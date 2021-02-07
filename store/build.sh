@@ -23,8 +23,14 @@ tsc
 echo "Bundling module loader with build..."
 rm -f build/agns.js
 cat lib/require-2.3.6.min.js > build/agns.js
-echo "" >> build/agns.js
+echo "
+
+// build/agns.js" >> build/agns.js
 cat build/agns.module.js >> build/agns.js
+echo "
+
+// agns.init.js" >> build/agns.js
+cat agns.init.js >> build/agns.js
 
 echo "Building index..."
 APP_NAME="mozey-ts-store"

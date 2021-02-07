@@ -16,18 +16,19 @@
 <script src="lib/vue-2.6.12.js"></script>
 <script src="build/agns.js?v={{.Version}}"></script>
 <script type="text/javascript">
-    new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue.js!'
-        },
-        // Run a method at page load with VueJS
-        // https://stackoverflow.com/a/40867310/639133
-        mounted: function() {
-            // Make build variables available on app global namespace
-            app.Host = "http://localhost:{{.Port}}"
-            app.Version = "{{.Version}}"
-        }
+    AGNSInit(function() {
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            mounted: function() {
+                // Run a method at page load with VueJS
+                // https://stackoverflow.com/a/40867310/639133
+                // Initializing the AGNS before the Vue app is more convenient,
+                // because it might work the same for other frameworks
+            }
+        })
     })
 </script>
 
