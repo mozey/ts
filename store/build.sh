@@ -2,36 +2,32 @@
 set -eu # exit on error or undefined variable
 bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 
-if [[ ! -d node_modules ]]; then
-  echo "Installing node modules..."
-  npm install
-fi
-
 if [[ ! -e lib ]]; then
   echo "Creating lib symlink..."
   ln -s ../http/lib lib
 fi
 
-if [[ ! -e http.ts ]]; then
+if [[ ! -e openport.sh ]]; then
   echo "Copying src..."
-  cp ../http/http.ts ./
-fi
-
-if [[ ! -e template.ts ]]; then
-  echo "Copying src..."
-  cp ../template/template.ts ./
-fi
-
-if [[ ! -e pure.d.ts ]]; then
-  echo "Copying src..."
-  cp ../template/pure.d.ts ./
+  cp ../webcomponent/openport.sh ./
 fi
 
 echo "Compiling typescript..."
 tsc
 
+# NOTE It is possible to build everything as a VueJS app with webpack.
+# However, this example attempts to build a generic store
+# that might be used with other JS frameworks too, e.g. React, Angular.
+# Therefore the end result of this build can be included as a separate script,
+# at the cost of 18KB extra for the minified module loader
+echo "Bundling module loader with build..."
+rm -f build/agns.js
+cat lib/require-2.3.6.min.js > build/agns.js
+echo "" >> build/agns.js
+cat build/agns.module.js >> build/agns.js
+
 echo "Building index..."
-APP_NAME="mozey-ts-webcomponent"
+APP_NAME="mozey-ts-store"
 APP_DIR=$(pwd)
 if [[ ! -e build.port ]]; then
   # Choose random open port
@@ -49,7 +45,6 @@ echo ${APP_PORT} > build.port
 echo "(Re)starting server on localhost:${APP_PORT}..."
 if tmux has-session -t ${APP_NAME} 2>/dev/null; then
   ./down.sh
-  # TODO "duplicate session: mozey-ts-webcomponent" but only sometimes, why?
   sleep 1
 fi
 tmux new -d -s ${APP_NAME}

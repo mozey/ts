@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "product": "1",
+            "currency": "usd",
+            "unit_amount": 500.01
+        },
+        {
+            "product": "2",
+            "currency": "usd",
+            "unit_amount": 10.99
+        },
+        {
+            "product": "3",
+            "currency": "usd",
+            "unit_amount": 19.99
+        }
+    ]
+}

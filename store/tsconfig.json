@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "AMD",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "outDir": "build",
+        "outFile": "build/agns.module.js",
+        "sourceMap": true,
+        "incremental": true
+    },
+    "include": [
+        "**/*"
+    ],
+    "exclude": [
+        "vuex"
+    ]
+}

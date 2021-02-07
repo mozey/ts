@@ -1,4 +1,5 @@
 .idea
+.DS_Store
 
 # Binaries for programs and plugins
 *.exe
@@ -56,6 +57,10 @@
 /webcomponent/pure.d.ts
 /webcomponent/template.ts
 
+/store/build
+/store/build.index.html
+/store/build.port
 /store/lib
+/store/openport.sh
 /store/vuex
 

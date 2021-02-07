@@ -1,5 +1,5 @@
 import {app} from "app"
-import {Http, HttpArg, HttpDone} from "./http";
+import {Http, HttpArg, HttpDone} from "http";
 import {sprintf} from "sprintf-js";
 
 export enum ShadowMode {
