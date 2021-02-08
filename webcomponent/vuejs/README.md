@@ -1,7 +1,7 @@
 ### weather
 
 VueJS weather widget,
-see [Get started with Vue web components](https://archive.is/OKA7l)
+see [get started with Vue web components](https://archive.is/OKA7l)
 
 Uses the yr.no 
 [locationforecast API](https://api.met.no/weatherapi/locationforecast/2.0), 
@@ -30,6 +30,13 @@ Install [web component wrapper](https://github.com/vuejs/vue-web-component-wrapp
 ```
 cd weather
 npm install --save @vue/web-component-wrapper
+```
+
+NOTE A type definition file, see `src/web-component-wrapper.d.ts`, 
+is required otherwise the npm build will fail with
+```
+Could not find a declaration file for module '@vue/web-component-wrapper'...
+@vue/web-component-wrapper/dist/vue-wc-wrapper.js' implicitly has an 'any' type.
 ```
 
 Install [axios](https://github.com/axios/axios) HTTP request library

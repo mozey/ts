@@ -1,0 +1,27 @@
+{
+  "name": "vuecart",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-sass": "sass ./src/app-vuecart.scss ./src/assets/vuecart.css",
+    "build-product-list": "vue-cli-service build --target wc --name product-list ./src/components/ProductList.vue",
+    "build-shopping-cart": "vue-cli-service build --target wc --name shopping-cart ./src/components/ShoppingCart.vue"
+  },
+  "dependencies": {
+    "@vue/web-component-wrapper": "^1.2.0",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "typescript": "~3.9.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
