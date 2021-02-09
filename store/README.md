@@ -58,9 +58,13 @@ cd ts/store/vuecart
 vue create vuecart
 # ? Please pick a preset
 # > Manually select features
-# o TypeScript (unselect others and only select this feature)
+# (unselect others and only select the features below)
+# o TypeScript 
+# o CSS Pre-processors 
 # ? Use class-style component syntax? (Y/n) n
 # ? Use Babel alongside TypeScript (required for modern mode, auto-detected polyfills, transpiling JSX)? (y/N) n
+# ? Pick a CSS pre-processor
+# > Sass/SCSS (with node-sass)
 # ? Where do you prefer placing config...
 # > In package.json
 # ? Save this as a preset for future projects? (y/N) n 
@@ -95,7 +99,7 @@ npm run build
 ```
 
 **TODO** 
+- Why is component styling applied for `App.vue`,
+but not for `HelloWorld.`, `ShoppingCart.vue`, etc?  
 - Complete AGNS SDK
 - Make vuecart components use AGNS
-- Extract component styling to a global stylesheet, 
-see TODO in`app-vuecart.scss` 

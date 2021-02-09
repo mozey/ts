@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-// Component styles
-import './assets/vuecart.css'
-
 // Components
 import wrap from '@vue/web-component-wrapper';
 import ProductList from './components/ProductList.vue';

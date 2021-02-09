@@ -16,15 +16,14 @@ export default Vue.extend({
 });
 </script>
 
-<!--
-NOTE Do not use scoped CSS, and do not use component styles
-https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles
-The idea is that developer using these component can override default styles
-by including a single .css file on the index page similar to `vuecart.js`.
-For example, see `public/index.html` and `assets/logo.png`.
-
--->
-<style></style>
-
-<!-- Include styles like this instead -->
-<link rel="stylesheet" href="vuecart.css">
+<style scoped lang="scss">
+// Default styles are scoped
+// https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles
+// CSS Files can also be imported like this
+// https://stackoverflow.com/a/43862129/639133
+#app {
+  p {
+    color: #C0392B;
+  }
+}
+</style>

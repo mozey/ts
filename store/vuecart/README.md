@@ -1,5 +1,7 @@
 # vuecart
 
+Project configuration and more info in `store/README.md`
+
 ## Project setup
 ```
 npm install
