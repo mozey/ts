@@ -7,12 +7,14 @@
         "outDir": "build",
         "outFile": "build/agns.module.js",
         "sourceMap": true,
-        "incremental": true
+        "incremental": true,
+        "moduleResolution": "node"
     },
     "include": [
         "**/*"
     ],
     "exclude": [
+        "vuecart",
         "vuex"
     ]
 }

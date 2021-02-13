@@ -29,8 +29,8 @@ echo "
 cat build/agns.module.js >> build/agns.js
 echo "
 
-// agns.init.js" >> build/agns.js
-cat agns.init.js >> build/agns.js
+// agns-main.js" >> build/agns.js
+cat agns-main.js >> build/agns.js
 
 echo "Building index..."
 APP_NAME="mozey-ts-store"

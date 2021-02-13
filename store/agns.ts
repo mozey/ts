@@ -1,7 +1,7 @@
-import {Store} from "./store";
+import {Source, Store} from "./store";
 import {Cart} from "./cart";
 
-// agns (application global name space) is a singleton
+// agns (application global name space)
 // https://stackoverflow.com/a/30174360/639133
 export namespace agns {
     export let Version: string
@@ -14,5 +14,7 @@ export namespace agns {
     // https://unpkg.com/axios/dist/axios.min.js
     export function main() {
         console.info("here")
+        agns.store = new Store()
+        agns.store.refresh(Source.API)
     }
 }

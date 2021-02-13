@@ -61,6 +61,8 @@
 /store/build.index.html
 /store/build.port
 /store/lib
+/store/node_modules
+/store/package-lock.json
 /store/openport.sh
 /store/vuex
 

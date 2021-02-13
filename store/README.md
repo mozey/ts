@@ -25,9 +25,25 @@ This example uses a stub server, structured similar to the
 
 Run the TypeScript store example, and click the `build.index.html` link
 ```
-./buid.sh
+./build.sh
 APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
 ```
+
+### Mock server for Stripe API
+
+Run the `build.sh` command as per the instruction above to start the server.
+For this simple example only the three endpoints listed below are implemented.
+Note that products and prices share a common "product" ID 
+
+```
+APP_PORT=$(cat ./build.port)
+
+http http://localhost:${APP_PORT}/v1/products
+http http://localhost:${APP_PORT}/v1/prices
+
+echo '{"a": 1}' | http POST http://localhost:${APP_PORT}/v1/orders
+```
+
 
 ### Shopping cart web component
 
