@@ -62,6 +62,11 @@ export class Http {
         }
     }
 
+    // TODO Request should be an async func that returns a promise, e.g.
+    //  let resp = await new Http(<HttpArg>{}).request()
+    // That also mean the caller could use Promise.all?
+    // https://blog.logrocket.com/async-await-in-typescript
+
     /**
      * request makes one or more http requests,
      * then executes either the done or optional fail callback,
@@ -155,4 +160,3 @@ export class Http {
             })
     }
 }
-

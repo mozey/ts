@@ -6,7 +6,7 @@ import {sprintf} from "sprintf-js";
 // app is a singleton
 // https://stackoverflow.com/a/30174360/639133
 export namespace app {
-    export function main() {
+    export function http() {
         // GET request
         new Http(<HttpArg>{
             url: "https://httpbin.org/get",
