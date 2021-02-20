@@ -62,9 +62,8 @@ export class Http {
         }
     }
 
-    // TODO Request should be an async func that returns a promise, e.g.
-    //  let resp = await new Http(<HttpArg>{}).request()
-    // That also mean the caller could use Promise.all?
+    // TODO Make this lib conform to the same syntax as example in request.html
+    // Also see below post on using async await with TypeScript
     // https://blog.logrocket.com/async-await-in-typescript
 
     /**
