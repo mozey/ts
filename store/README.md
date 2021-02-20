@@ -32,15 +32,7 @@ open hello_vue.html
 ```
 
 
-## stripecart (with VueJS web components)
-
-This example demonstrates how a minimal 
-shopping cart might be build using 
-[VueJS components](https://vuejs.org/v2/guide/single-file-components.html),
-and the [Stripe API](https://stripe.com/docs/api)
-
-See [webcomponent](https://github.com/mozey/ts/tree/main/webcomponent)
-for discussion and examples on how to use web components.
+## stripecart
 
 Usually an e-commerce website will have the following components
 - Web (and or app) user interface
@@ -48,9 +40,14 @@ Usually an e-commerce website will have the following components
 - Payment processing
 - Fulfillment
 
-Inventory management is done directly on the payment processor.
+For this example,
+inventory management is done directly on the payment processor.
 The example products are downloads and subscriptions,
-therefore fulfillment is not applicable
+therefore fulfillment is also not applicable.
+
+With minor modification you could use this example as a base to build a 
+user registration page with subscription and recurring invoices,
+i.e. [billing](https://stripe.com/billing)
 
 Run the TypeScript store example, and click the `build.index.html` link
 ```
@@ -146,8 +143,9 @@ Could not find a declaration file for module '@vue/web-component-wrapper'...
 @vue/web-component-wrapper/dist/vue-wc-wrapper.js' implicitly has an 'any' type.
 ```
 
-Preview widget with **dev** server
+Preview web components with **dev** server
 ```
+cd vuecart
 npm run serve
 open http://localhost:8080
 ```
@@ -158,6 +156,7 @@ the core vue library. The rationale is that there can typically be multiple
 web components on a website and packaging the Vue library with every instance 
 would be a waste of resources."*, update `package.json` to `--target wc` then
 ```
+cd vuecart
 npm run build
 ```
 

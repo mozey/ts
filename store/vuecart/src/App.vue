@@ -18,7 +18,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-// Keeping in recent rules on breaking encapsulation
+// Keeping in mind recent rules on breaking encapsulation,
 // "::shadow and /deep/ were removed for breaking encapsulation",
 // means it's not possible to include a global `app.css` to style components
 // https://stackoverflow.com/a/35833779/639133
