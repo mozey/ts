@@ -1,27 +1,56 @@
-State sharing like the [Vuex](https://vuex.vuejs.org/) 
+# Simple Store Pattern
+
+The *"stripecart"* example below demonstrates state sharing like the 
+[Vuex](https://vuex.vuejs.org/) 
 [shopping-cart example](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart),
-but using the [simple store pattern](https://vuejs.org/v2/guide/state-management.html#Simple-State-Management-from-Scratch),
-inspired by the [snipcart SDK](https://docs.snipcart.com/v3/sdk/basics),
+but using the [simple store pattern](https://vuejs.org/v2/guide/state-management.html#Simple-State-Management-from-Scratch)
+and webcomponents.
+Inspired by the [snipcart SDK](https://docs.snipcart.com/v3/sdk/basics),
 implemented in TypeScript
 
-Run the original vuex example
+
+## Vuex examples
+
+Run the vuex examples as below, and click the "Shopping Cart" link  
 ```
 cd ts/store
 git clone https://github.com/vuejs/vuex
 cd vuex
 npm install
 npm run dev
+open http://localhost:8080
 ```
 
-Also consider the most minimal VueJS v2 example, 
+
+## VueJS v2 Hello World
+
+Also consider a minimal VueJS v2 example, 
 [Hello World](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world?file=/index.html).
 Here is an offline equivalent of the codesandbox link
 ```
 open hello_vue.html
 ```
 
-This example uses a stub server, structured similar to the  
-[Stripe Products API](https://stripe.com/docs/api/products)
+
+## stripecart (with VueJS web components)
+
+This example demonstrates how a minimal 
+shopping cart might be build using 
+[VueJS components](https://vuejs.org/v2/guide/single-file-components.html),
+and the [Stripe API](https://stripe.com/docs/api)
+
+See [webcomponent](https://github.com/mozey/ts/tree/main/webcomponent)
+for discussion and examples on how to use web components.
+
+Usually an e-commerce website will have the following components
+- Web (and or app) user interface
+- Inventory management
+- Payment processing
+- Fulfillment
+
+Inventory management is done directly on the payment processor.
+The example products are downloads and subscriptions,
+therefore fulfillment is not applicable
 
 Run the TypeScript store example, and click the `build.index.html` link
 ```
@@ -29,7 +58,12 @@ Run the TypeScript store example, and click the `build.index.html` link
 APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
 ```
 
-### Mock server for Stripe API
+
+### Stub server for Stripe API
+
+A [stub server](https://martinfowler.com/articles/mocksArentStubs.html#TheDifferenceBetweenMocksAndStubs), 
+structured similar to the  
+[Stripe Products API](https://stripe.com/docs/api/products), is used
 
 Run the `build.sh` command as per the instruction above to start the server.
 For this simple example only the three endpoints listed below are implemented.
@@ -41,25 +75,38 @@ APP_PORT=$(cat ./build.port)
 http http://localhost:${APP_PORT}/v1/products
 http http://localhost:${APP_PORT}/v1/prices
 
+# POST orders endpoint doesn't do anyting, 
 echo '{"a": 1}' | http POST http://localhost:${APP_PORT}/v1/orders
 ```
 
+View server logs in tmux
 
-### Shopping cart web component
+    tmux ls
+    tmux a -t mozey-ts-store
+
+To stop the server run `./down.sh`
+
+
+### Watcher
+
+Run a watcher to rebuild when source files are changed
+
+    ./watch.sh
+
+
+### Shopping cart web components
 
 #### Product List
 
 Aims to be similar to this 
-[vuex example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/components/ProductList.vue)
-
-See `vuecart/src/components/ProductList.vue`
+[vuex example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/components/ProductList.vue),
+see `vuecart/src/components/ProductList.vue`
 
 #### Shopping Cart
 
 Aims to be similar to this 
-[vuex example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/components/ShoppingCart.vue)
-
-See `vuecart/src/components/ShoppingCart.vue`
+[vuex example](https://github.com/vuejs/vuex/blob/dev/examples/shopping-cart/components/ShoppingCart.vue),
+see `vuecart/src/components/ShoppingCart.vue`
 
 #### Setup
 
@@ -117,5 +164,7 @@ npm run build
 **TODO** 
 - Why is component styling applied for `App.vue`,
 but not for `HelloWorld.`, `ShoppingCart.vue`, etc?  
-- Complete AGNS SDK
+- AGNS (pronounced Agnes?), is the App Global Name Space. 
+It must make it easy to swap out components built in other frameworks 
+(e.g. Angular or React). Revise `window.AGNSInit`
 - Make vuecart components use AGNS

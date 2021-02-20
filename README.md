@@ -63,7 +63,7 @@ and click the browser refresh button to see the results
 Watch and rebuild when files are changed,
 you still have to refresh the browser window
 
-    APP_DIR=$(pwd) ./watch.sh
+    ./watch.sh
 
 
 ### template
