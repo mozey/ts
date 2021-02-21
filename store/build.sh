@@ -15,6 +15,7 @@ fi
 echo "Compiling typescript..."
 tsc
 
+# ..............................................................................
 # NOTE It is possible to build everything as a VueJS app with webpack.
 # However, this example attempts to build a generic store
 # that might be used with other JS frameworks too, e.g. React, Angular.
@@ -26,12 +27,13 @@ cat lib/require-2.3.6.min.js > build/agns.js
 echo "
 
 // build/agns.js" >> build/agns.js
-cat build/agns.module.js >> build/agns.js
+cat build/agns.amd.js >> build/agns.js
 echo "
 
 // agns-main.js" >> build/agns.js
-cat agns-main.js >> build/agns.js
+cat agns.init.js >> build/agns.js
 
+# ..............................................................................
 echo "Building index..."
 APP_NAME="mozey-ts-store"
 APP_DIR=$(pwd)
@@ -48,6 +50,7 @@ sed "s/{{.Port}}/${APP_PORT}/g" index.html |
 sed "s/{{.Version}}/${APP_VERSION}/g" > build.index.html
 echo ${APP_PORT} > build.port
 
+# ..............................................................................
 echo "(Re)starting server on localhost:${APP_PORT}..."
 if tmux has-session -t ${APP_NAME} 2>/dev/null; then
   ./down.sh

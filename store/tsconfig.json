@@ -5,7 +5,7 @@
         "removeComments": false,
         "preserveConstEnums": true,
         "outDir": "build",
-        "outFile": "build/agns.module.js",
+        "outFile": "build/agns.amd.js",
         "sourceMap": true,
         "incremental": true,
         "moduleResolution": "node"

@@ -2,7 +2,6 @@
 set -eu                   # exit on error or undefined variable
 bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 
-./down.sh
 ./build.sh
 APP_PORT=$(cat ./build.port)
 echo "Waiting for server to start..."
@@ -13,6 +12,7 @@ open http://localhost:${APP_PORT}/build.index.html
 # NOTE you still have to refresh the browser window
 # NOTE code inside /vuecart and /vuex is built separately
 APP_DEBUG=true ${GOPATH}/bin/watcher -d 1500 -r -dir "" \
+  --include ".*/index.html$" \
   --include ".*.go$" \
   --include ".*.ts$" \
   --excludeDir ".*/build.*" \

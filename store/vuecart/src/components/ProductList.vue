@@ -18,7 +18,9 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 // TODO Style below is not applied to public/index.html with `npm run serve`,
-// it does apply to dist/demo.html when doing `npm run build-product-list`, why?
+// it does apply to dist/demo.html when doing `npm run build-product-list`.
+// See discussion and try solution as per this link
+// https://github.com/vuejs/vue-web-component-wrapper/issues/12#issuecomment-385141573
 
 // Default styles are scoped
 // https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles

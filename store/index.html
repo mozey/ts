@@ -13,22 +13,47 @@
     {{ message }}
 </div>
 
+<!--Libs-->
 <script src="lib/axios-0.21.1.min.js"></script>
+<script src="lib/sprintf-1.1.2.min.js"></script>
 <script src="lib/vue-2.6.12.js"></script>
-<script src="build/agns.js?v={{.Version}}"></script>
+
+<!--Application global namespace-->
 <script type="text/javascript">
-    AGNSInit(function() {
+    // Default config is set from env vars, see build.sh.
+    // For prod this will be inlined in build/agns.js
+    window.agnsConfig = {
+        baseUrl: "http://localhost:{{.Port}}",
+        dataUrl: "",
+        port: "{{.Port}}",
+        source: "api",
+        version: "{{.Version}}"
+    }
+</script>
+<script src="build/agns.js?v={{.Version}}"></script>
+
+<!--Main-->
+<script type="text/javascript">
+    // Initialize the app global namespace before creating the Vue app.
+    // Devs might build apps in other frameworks (React, Angular, etc)
+    AGNS({
+        // TODO Data file example
+        // Pre-loading data can be a simple solution for a small catalogue,
+        // where inventory data is versioned in the repo.
+        dataUrl: "stripe/data.csv",
+        // source: "csv",
+
+        // TODO Component data example
+        // source: "props",
+
+    }, function (data) {
         new Vue({
             el: '#app',
-            data: {
-                message: 'stripecart'
-            },
-            mounted: function() {
-                // Run a method at page load with VueJS
+            data: data,
+            mounted: function () {
+                // It's possible to run a method
+                // at page load with VueJS like this
                 // https://stackoverflow.com/a/40867310/639133
-                // However,
-                // initializing AGNS before the Vue app is more convenient,
-                // it might work the same for other frameworks
             }
         })
     })
