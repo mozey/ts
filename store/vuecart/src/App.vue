@@ -1,5 +1,5 @@
 <template>
-  <!-- NOTE This div replace the #app div in public/index.html -->
+  <!-- NOTE This div replaces the #app div in public/index.html -->
   <div id="app">
     <HelloWorld msg="Shopping Cart Example 🛒"/>
   </div>

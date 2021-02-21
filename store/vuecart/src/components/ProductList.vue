@@ -1,6 +1,6 @@
 <template>
   <div id="product-list">
-    <p>Product List</p>
+    <p>Product List {{ group }}</p>
   </div>
 </template>
 
@@ -17,11 +17,14 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
+// TODO Style below is not applied to public/index.html with `npm run serve`,
+// it does apply to dist/demo.html when doing `npm run build-product-list`, why?
+
 // Default styles are scoped
 // https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles
 // CSS Files can also be imported like this
 // https://stackoverflow.com/a/43862129/639133
-#app {
+#product-list {
   p {
     color: #C0392B;
   }

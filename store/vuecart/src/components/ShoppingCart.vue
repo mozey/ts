@@ -14,7 +14,5 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-p {
-  color: #6666cc;
-}
+// TODO See comments in ProductList.vue
 </style>

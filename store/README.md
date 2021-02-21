@@ -34,7 +34,7 @@ open hello_vue.html
 
 ## stripecart
 
-Usually an e-commerce website will have the following components
+Usually an e-commerce website consists of the following
 - Web (and or app) user interface
 - Inventory management
 - Payment processing
@@ -91,7 +91,25 @@ Run a watcher to rebuild when source files are changed
     ./watch.sh
 
 
-### Shopping cart web components
+### vuecart
+
+VueJS web components
+
+Preview web components with **dev** server
+```
+cd vuecart
+npm run serve
+open http://localhost:8080
+```
+
+For **prod**,
+*"...create a build that is optimized for deployment and does not include
+the core vue library. The rationale is that there can typically be multiple
+web components on a website and packaging the Vue library with every instance
+would be a waste of resources."*, update `package.json` to `--target wc` then
+```
+npm run build
+```
 
 #### Product List
 
@@ -141,23 +159,6 @@ is required otherwise the npm build will fail with
 ```
 Could not find a declaration file for module '@vue/web-component-wrapper'...
 @vue/web-component-wrapper/dist/vue-wc-wrapper.js' implicitly has an 'any' type.
-```
-
-Preview web components with **dev** server
-```
-cd vuecart
-npm run serve
-open http://localhost:8080
-```
-
-For **prod**,
-*"...create a build that is optimized for deployment and does not include 
-the core vue library. The rationale is that there can typically be multiple 
-web components on a website and packaging the Vue library with every instance 
-would be a waste of resources."*, update `package.json` to `--target wc` then
-```
-cd vuecart
-npm run build
 ```
 
 **TODO** 
