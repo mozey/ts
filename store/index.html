@@ -21,8 +21,8 @@
 <!--Application global namespace-->
 <script type="text/javascript">
     // Default config is set from env vars, see build.sh.
-    // For prod this will be inlined in build/agns.js
-    window.agnsConfig = {
+    // For prod this will be inlined in build/ns.js
+    window.nsConfig = {
         baseUrl: "http://localhost:{{.Port}}",
         dataUrl: "",
         port: "{{.Port}}",
@@ -30,13 +30,13 @@
         version: "{{.Version}}"
     }
 </script>
-<script src="build/agns.js?v={{.Version}}"></script>
+<script src="build/ns.js?v={{.Version}}"></script>
 
 <!--Main-->
 <script type="text/javascript">
     // Initialize the app global namespace before creating the Vue app.
     // Devs might build apps in other frameworks (React, Angular, etc)
-    AGNS({
+    ns({
         // TODO Data file example
         // Pre-loading data can be a simple solution for a small catalogue,
         // where inventory data is versioned in the repo.

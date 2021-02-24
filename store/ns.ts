@@ -10,9 +10,9 @@ export interface Config {
     version: string
 }
 
-// agns (application global name space)
+// Global namespace
 // https://stackoverflow.com/a/30174360/639133
-export namespace agns {
+export namespace ns {
     export let config: Config
     export let data: any
 
@@ -25,31 +25,31 @@ export namespace agns {
     export function main(config?: any) {
         // Config
         // @ts-ignore
-        window.agnsConfig = window.agnsConfig || {}
+        window.nsConfig = window.nsConfig || {}
         if (config) {
             // Override config keys if set
             // @ts-ignore
-            for (let k of Object.keys(window.agnsConfig)) {
+            for (let k of Object.keys(window.nsConfig)) {
                 console.info("k", k)
                 if (config[k] && config[k].trim() != "") {
                     // @ts-ignore
-                    window.agnsConfig[k] = config[k]
+                    window.nsConfig[k] = config[k]
                 }
             }
         }
         // @ts-ignore
-        agns.config = window.agnsConfig
-        console.info("agns.config", agns.config)
+        ns.config = window.nsConfig
+        console.info("ns.config", ns.config)
 
         // Init shared data
-        agns.data = {
+        ns.data = {
             message: "Init"
         }
 
-        // agns.cart = new Cart()
+        // ns.cart = new Cart()
 
         // let s = Source.API
         // let sUrl = sprintf("http://localhost:%s",)
-        agns.store = new Store()
+        ns.store = new Store()
     }
 }

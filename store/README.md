@@ -1,17 +1,23 @@
 # Simple Store Pattern
 
-The *"stripecart"* example below demonstrates state sharing like the 
-[Vuex](https://vuex.vuejs.org/) 
-[shopping-cart example](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart),
-but using the [simple store pattern](https://vuejs.org/v2/guide/state-management.html#Simple-State-Management-from-Scratch)
-and webcomponents.
-Inspired by the [snipcart SDK](https://docs.snipcart.com/v3/sdk/basics),
-implemented in TypeScript
+The *"stripecart"* example below demonstrates a "static e-commerce" site.
+Webcomponents are used to encapsulate re-usable components. 
+The [simple store pattern](https://vuejs.org/v2/guide/state-management.html#Simple-State-Management-from-Scratch)
+is used to share state between components and a global namespace
+
+Inspired by the
+Vuex [shopping-cart example](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart),
+the [snipcart SDK](https://docs.snipcart.com/v3/sdk/basics),
+
+Implemented with VueJS and TypeScript
 
 
 ## Vuex examples
 
-Run the vuex examples as below, and click the "Shopping Cart" link  
+Consider these examples for reference,
+run the commands below, 
+then click the "Shopping Cart" link
+
 ```
 cd ts/store
 git clone https://github.com/vuejs/vuex
@@ -24,7 +30,7 @@ open http://localhost:8080
 
 ## VueJS v2 Hello World
 
-Also consider a minimal VueJS v2 example, 
+Consider a minimal VueJS v2 example, 
 [Hello World](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world?file=/index.html).
 Here is an offline equivalent of the codesandbox link
 ```
@@ -49,7 +55,7 @@ With minor modification you could use this example as a base to build a
 user registration page with subscription and recurring invoices,
 i.e. [billing](https://stripe.com/billing)
 
-Run the TypeScript store example, and click the `build.index.html` link
+Build and open the example
 ```
 ./build.sh
 APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
@@ -58,12 +64,12 @@ APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.ht
 
 ### Stub server for Stripe API
 
-A [stub server](https://martinfowler.com/articles/mocksArentStubs.html#TheDifferenceBetweenMocksAndStubs), 
-structured similar to the  
-[Stripe Products API](https://stripe.com/docs/api/products), is used
+A [stub server](https://martinfowler.com/articles/mocksArentStubs.html#TheDifferenceBetweenMocksAndStubs),
+modelled on [Stripe Products API](https://stripe.com/docs/api/products),
+is used to read stub files from `stripe/v1`
 
-Run the `build.sh` command as per the instruction above to start the server.
-For this simple example only the three endpoints listed below are implemented.
+Run `build.sh` as per the instruction above to start the server.
+Currently, only the three endpoints listed below are implemented.
 Note that products and prices share a common "product" ID 
 
 ```
@@ -91,9 +97,7 @@ Run a watcher to rebuild when source files are changed
     ./watch.sh
 
 
-### vuecart
-
-VueJS web components
+### Web components
 
 Preview web components with **dev** server
 ```
@@ -161,10 +165,10 @@ Could not find a declaration file for module '@vue/web-component-wrapper'...
 @vue/web-component-wrapper/dist/vue-wc-wrapper.js' implicitly has an 'any' type.
 ```
 
-**TODO** 
-- Why is component styling applied for `App.vue`,
-but not for `HelloWorld.`, `ShoppingCart.vue`, etc?  
-- AGNS (pronounced Agnes?), is the App Global Name Space. 
-It must make it easy to swap out components built in other frameworks 
-(e.g. Angular or React). Revise `window.AGNSInit`
-- Make vuecart components use AGNS
+
+### Static pages
+
+**TODO** Same example as above, but only hits the `/v1/orders` API.
+Product data is loaded statically from the page
+
+

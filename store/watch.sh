@@ -12,9 +12,11 @@ open http://localhost:${APP_PORT}/build.index.html
 # NOTE you still have to refresh the browser window
 # NOTE code inside /vuecart and /vuex is built separately
 APP_DEBUG=true ${GOPATH}/bin/watcher -d 1500 -r -dir "" \
-  --include ".*/index.html$" \
   --include ".*.go$" \
+  --include ".*.html$" \
+  --include ".*.js$" \
   --include ".*.ts$" \
+  --exclude ".*build.index.html$" \
   --excludeDir ".*/build.*" \
   --excludeDir ".*/lib.*" \
   --excludeDir ".*/node_modules.*" \

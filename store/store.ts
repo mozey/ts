@@ -1,7 +1,7 @@
 // import axios from 'axios';
 
 // Source of inventory data
-import {agns} from "./agns";
+import {ns} from "./ns";
 
 export enum Source {
     // Fetch data from API
@@ -16,7 +16,7 @@ export enum Source {
 export class Store {
     constructor() {
         setTimeout(function() {
-            agns.data.message = "foo"
+            ns.data.message = "foo"
         }, 2000)
     }
     // constructor(s: Source, sUrl: string) {
