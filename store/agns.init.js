@@ -1,23 +1,22 @@
-// The namespace (ns.ts) might be compiled to other module types,
+// The namespace (agns.ts) might be compiled to other module types,
 // accordingly this file can be swapped out for other module loaders.
 // Load namespace, then call back to framework
-window.ns = function (config, cb) {
+window.AGNS = function (config, cb) {
     // Configure RequireJS to use arbitrary globals
     // https://requirejs.org/docs/jquery.html
     requirejs.config({
         paths: {
-            "ns": "build/ns",
-            "axios": "lib/axios-0.21.1.min",
+            "agns": "build/agns",
             "sprintf-js": "lib/sprintf-1.1.2"
         }
     });
 
-    requirejs(["ns"], function (module) {
+    requirejs(["agns"], function (module) {
         // Run main
-        window.ns = module.ns
-        ns.main(config)
+        window.agns = module.agns
+        agns.main(config)
 
         // Callback to init framework
-        cb(ns.data)
+        cb(agns.data)
     })
 }

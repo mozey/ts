@@ -22,16 +22,16 @@ tsc
 # Therefore the end result of this build can be included as a separate script,
 # at the cost of 18KB extra for the minified module loader
 echo "Bundling module loader with build..."
-rm -f build/ns.js
-cat lib/require-2.3.6.min.js > build/ns.js
+rm -f build/agns.js
+cat lib/require-2.3.6.min.js > build/agns.js
 echo "
 
-// build/ns.js" >> build/ns.js
-cat build/ns.amd.js >> build/ns.js
+// build/agns.js" >> build/agns.js
+cat build/agns.amd.js >> build/agns.js
 echo "
 
-// ns-main.js" >> build/ns.js
-cat ns.init.js >> build/ns.js
+// agns-main.js" >> build/agns.js
+cat agns.init.js >> build/agns.js
 
 # ..............................................................................
 echo "Building index..."

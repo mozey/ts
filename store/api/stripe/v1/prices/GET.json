@@ -3,17 +3,17 @@
         {
             "product": "1",
             "currency": "usd",
-            "unit_amount": 500.01
+            "unit_amount": 50001
         },
         {
             "product": "2",
             "currency": "usd",
-            "unit_amount": 10.99
+            "unit_amount": 1099
         },
         {
             "product": "3",
             "currency": "usd",
-            "unit_amount": 19.99
+            "unit_amount": 1999
         }
     ]
 }

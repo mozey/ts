@@ -5,8 +5,5 @@
     "author": "",
     "devDependencies": {
         "@types/sprintf-js": "1.1.2"
-    },
-    "dependencies": {
-        "axios": "0.21.1"
     }
 }

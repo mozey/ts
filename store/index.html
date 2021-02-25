@@ -10,53 +10,67 @@
 <body>
 
 <div id="app">
-    {{ message }}
+    <h3>{{ header }}</h3>
 </div>
 
 <!--Libs-->
-<script src="lib/axios-0.21.1.min.js"></script>
 <script src="lib/sprintf-1.1.2.min.js"></script>
 <script src="lib/vue-2.6.12.js"></script>
 
 <!--Application global namespace-->
-<script type="text/javascript">
-    // Default config is set from env vars, see build.sh.
-    // For prod this will be inlined in build/ns.js
-    window.nsConfig = {
-        baseUrl: "http://localhost:{{.Port}}",
+<script>
+    // TODO Bundle with agns.js in prod
+    // Default config
+    window.AGNSConfig = {
+        baseUrlSearch: "http://localhost:{{.Port}}/search",
+        baseUrlStripe: "http://localhost:{{.Port}}/stripe",
         dataUrl: "",
         port: "{{.Port}}",
-        source: "api",
         version: "{{.Version}}"
     }
 </script>
-<script src="build/ns.js?v={{.Version}}"></script>
+<script src="build/agns.js?v={{.Version}}"></script>
 
 <!--Main-->
 <script type="text/javascript">
-    // Initialize the app global namespace before creating the Vue app.
-    // Devs might build apps in other frameworks (React, Angular, etc)
-    ns({
-        // TODO Data file example
-        // Pre-loading data can be a simple solution for a small catalogue,
-        // where inventory data is versioned in the repo.
-        dataUrl: "stripe/data.csv",
-        // source: "csv",
-
-        // TODO Component data example
-        // source: "props",
-
-    }, function (data) {
-        new Vue({
-            el: '#app',
-            data: data,
-            mounted: function () {
-                // It's possible to run a method
-                // at page load with VueJS like this
-                // https://stackoverflow.com/a/40867310/639133
-            }
+    // Initialize the namespace before handing over control to the framework.
+    // Devs might build apps in other frameworks (React, Angular, etc).
+    AGNS(
+        // Config overrides (must be flat key value pairs)
+        {
+            // TODO dataUrl example
+            // dataUrl might be used to implement static e-commerce pages,
+            // where inventory data is versioned as files in the repo.
+            //
+            // Another approach to generating static e-commerce pages,
+            // not shown here, is to make a static site generator consume
+            // the data files during the build process.
+            //
+            // With sharding both approaches can also support large inventory,
+            // e.g. data-partition1.json, data-partition1.json, etc, where
+            // each partition maps to a subset of inventory.
+            //
+            // The benefits of static e-commerce are
+            // - front end devs can build sites with HTML, CSS, and components
+            // - efficient and scalable content delivery, i.e. static site
+            // - SEO for static pages much simpler than dynamic content
+            //
+            // By default, if the dataUrl is empty, Source.API applies
+            // dataUrl: "api/stripe/data.js",
+            dataUrl: "",
+        },
+        // Callback receives shared data
+        function (data) {
+            new Vue({
+                el: '#app',
+                data: data,
+                mounted: async function () {
+                    // It's possible to run a method
+                    // at page load with VueJS like this
+                    // https://stackoverflow.com/a/40867310/639133
+                }
+            })
         })
-    })
 </script>
 
 </body>
