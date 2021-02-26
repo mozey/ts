@@ -4,11 +4,12 @@
         "noImplicitAny": true,
         "removeComments": false,
         "preserveConstEnums": true,
-        "outDir": "build",
-        "outFile": "build/agns.amd.js",
+        "outDir": "static/build",
+        "outFile": "static/build/agns.amd.js",
         "sourceMap": true,
         "incremental": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "target": "ES6"
     },
     "include": [
         "**/*"

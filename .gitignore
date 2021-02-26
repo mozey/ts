@@ -57,10 +57,10 @@
 /webcomponent/pure.d.ts
 /webcomponent/template.ts
 
-/store/build
-/store/build.index.html
-/store/build.port
-/store/lib
+/store/static/build
+/store/static/build.index.html
+/store/static/build.port
+/store/static/lib
 /store/node_modules
 /store/package-lock.json
 /store/openport.sh

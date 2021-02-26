@@ -1,4 +1,4 @@
-let data = [
+window.AGNSData = [
     {
         "sku": "1",
         "name": "iPad 4 Mini",

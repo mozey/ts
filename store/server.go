@@ -30,16 +30,24 @@ func main() {
 		log.Fatal("invalid APP_PORT")
 	}
 
-	// Search
+	// search
 	http.HandleFunc("/search/products", stub)
 
-	// Stripe
+	// src
+	http.Handle("/src/",
+		// Explanation of StripPrefix here
+		// https://stackoverflow.com/a/27946132/639133
+		http.StripPrefix("/src/",
+			http.FileServer(http.Dir(filepath.Join(dir, "src")))))
+
+	// static
+	http.Handle("/",
+		http.FileServer(http.Dir(filepath.Join(dir, "static"))))
+
+	// stripe
 	http.HandleFunc("/stripe/v1/products", stub)
 	http.HandleFunc("/stripe/v1/prices", stub)
 	http.HandleFunc("/stripe/v1/orders", stub)
-
-	fs := http.FileServer(http.Dir(dir))
-	http.Handle("/", fs)
 
 	addr := fmt.Sprintf("localhost:%s", port)
 	log.Println(fmt.Sprintf("Listening on %s...", addr))

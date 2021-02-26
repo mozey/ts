@@ -2,7 +2,7 @@ import {Cart} from "./cart";
 import {Config} from "./config";
 import {Store} from "./store";
 
-// Global namespace
+// Global namespace (try to use a unique name for easy grepping)
 // https://stackoverflow.com/a/30174360/639133
 export namespace agns {
     export let data: any
@@ -15,9 +15,11 @@ export namespace agns {
      * @param config Specify key values to override config
      */
     export function main(config?: any) {
+        // Config must be initialized before other services
+        agns.config = new Config(config)
+
         // Services
         agns.cart = new Cart()
-        agns.config = new Config(config)
         agns.store = new Store()
 
         // Shared data
