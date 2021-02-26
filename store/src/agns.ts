@@ -33,7 +33,8 @@ export namespace agns {
         }, 2000)
 
         agns.store.listItems().then((resp) => {
-            console.info("agns.store.listItems", resp)
+            console.info(
+                "agns.store.listItems", JSON.stringify(resp, null, "  "))
         })
     }
 }

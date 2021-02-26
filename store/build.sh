@@ -46,7 +46,7 @@ else
   APP_PORT=$(cat ./static/build.port)
 fi
 APP_VERSION=$(date +"%s")
-sed "s/{{.Port}}/${APP_PORT}/g" static/index.html |
+sed "s/{{.Port}}/${APP_PORT}/g" static/dev.index.html |
 sed "s/{{.Version}}/${APP_VERSION}/g" > static/build.index.html
 echo ${APP_PORT} > static/build.port
 

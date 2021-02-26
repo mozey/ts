@@ -34,7 +34,7 @@ Consider a minimal VueJS v2 example,
 [Hello World](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world?file=/index.html).
 Here is an offline equivalent of the codesandbox link
 ```
-open static/index.hello_vue.html
+open static/hellovue.html
 ```
 
 

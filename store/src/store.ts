@@ -15,6 +15,29 @@ export enum Source {
     JSON = "json",
 }
 
+// TODO Move interface defs below to a separate file?
+
+// Item is a generic good or service
+export interface Item {
+    sku: string
+    name: string
+    currency: string
+    price: bigint
+}
+
+// StripeProduct as returned by /v1/products
+export interface StripeProduct {
+    id: string
+    name: string
+}
+
+// StripeProduct as returned by /v1/prices
+export interface StripePrice {
+    product: string // Maps to StripeProduct.id
+    currency: string
+    unit_amount: bigint
+}
+
 /**
  * Store creates a simplified and uniform wrapper around various APIs.
  * It does not try to support all API features,
@@ -22,7 +45,7 @@ export enum Source {
  * For fuller integration with specific APIs, this code can be a starting point
  */
 export class Store {
-    private data: any
+    readonly data: Item[]
 
     // source determines where inventory data is loaded from
     readonly source: Source
@@ -54,8 +77,8 @@ export class Store {
      * https://stripe.com/docs/api/products/list
      * https://stripe.com/docs/api/prices/list
      *
-     * NOTE The skus API is not used. However,
-     * this func could be changed so the skus params maps to
+     * NOTE The Stripe "skus API" is not used. However,
+     * this func could be changed so the skus param maps to
      * either the Stripe sku.id or product.id,
      * depending on whether we want to list goods or services
      * https://stripe.com/docs/api/skus/list
@@ -63,19 +86,61 @@ export class Store {
      * SKU definition
      * https://en.wikipedia.org/wiki/Stock_keeping_unit
      *
-     * See article re "Async/await in TypeScript"
-     * https://blog.logrocket.com/async-await-in-typescript/
+     * Promise.all()
+     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
      *
      * @param [skus] Filter items by SKU
      *
      */
-    public async listItems(skus?: string[]) {
-        // TODO Pass in ids param if skus is set
-        // https://stripe.com/docs/api/products/list
-        // TODO Fetch products and prices like runAsyncFunctions in link above
-        const req = new Request(
-            sprintf("%s/v1/products", agns.config.baseUrlStripe()))
-        return fetch(req).then(response => response.json());
+    public async listItems(skus?: string[]): Promise<Item[]> {
+        if (
+            this.source == Source.STATIC ||
+            this.source == Source.CSV ||
+            this.source == Source.JSON
+        ) {
+            // Use data set by the constructor
+            // TODO Filter skus if param is set
+            return this.data
+
+        } else if (this.source == Source.API) {
+            // Fetch data from the API
+            // TODO Pass in ids param if skus is set
+            // https://stripe.com/docs/api/products/list
+            const products = new Request(
+                sprintf("%s/v1/products", agns.config.baseUrlStripe()))
+            const prices = new Request(
+                sprintf("%s/v1/prices", agns.config.baseUrlStripe()))
+            return await Promise.all([
+                fetch(products).then(resp => resp.json()),
+                fetch(prices).then(resp => resp.json()),
+            ]).then(resp => {
+                let itemMap = new Map<string, Item>()
+                // Products
+                resp[0]["data"].forEach((p: StripeProduct) => {
+                    itemMap.set(p.id, <Item>{
+                        sku: p.id,
+                        name: p.name
+                    })
+                })
+                // Prices
+                resp[1]["data"].forEach((p: StripePrice) => {
+                    // TODO Error handling if p.product not found
+                    let item = itemMap.get(p.product)
+                    item.currency = p.currency
+                    item.price = p.unit_amount
+                })
+                // Create items array
+                let items: Item[] = []
+                itemMap.forEach((item: Item) => {
+                    items.push(item)
+                })
+                // Done mapping stripe API to internal data structures
+                return items
+            })
+
+        } else {
+            throw new Error(sprintf("invalid source %s", this.source))
+        }
     }
 
 }
