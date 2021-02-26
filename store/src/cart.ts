@@ -31,11 +31,13 @@ export class Cart {
      * See for example https://stripe.com/docs/payments/payment-intents
      */
     public async checkout() {
+        let body = this.data
+        console.info("body", JSON.stringify(body, null, "  "))
         const req = new Request(
             sprintf("%s/v1/orders", agns.config.baseUrlStripe()),
             {
                 method: "POST",
-                body: this.data
+                body: body
             })
         return fetch(req).then(response => response.json());
     }

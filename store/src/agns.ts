@@ -32,9 +32,17 @@ export namespace agns {
             window.agns.data.header = "Stripecart Example"
         }, 2000)
 
-        agns.store.listItems().then((resp) => {
+        // Demonstration of store and cart without using components
+        agns.store.listItems().then((items) => {
             console.info(
-                "agns.store.listItems", JSON.stringify(resp, null, "  "))
+                "agns.store.listItems", JSON.stringify(items, null, "  "))
+
+            agns.cart.updateItem(items[0].sku, 10)
+
+            agns.cart.checkout().then(resp => {
+                console.info(
+                    "agns.cart.checkout", JSON.stringify(resp, null, "  "))
+            })
         })
     }
 }
