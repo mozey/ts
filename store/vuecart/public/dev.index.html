@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+
+<noscript>You need javascript.</noscript>
+<div id="app"></div>
+
+<!--TODO Move components to the template src/App.vue-->
+<product-list group="123"></product-list>
+<shopping-cart/>
+
+<!--Libs-->
+<script src="lib/sprintf-1.1.2.min.js"></script>
+<script src="lib/vue-2.6.12.js"></script>
+
+<!--Application global namespace-->
+<script>
+    // TODO Bundle with agns.js in prod
+    // Default config
+    window.AGNSConfig = {
+        baseUrlSearch: "http://localhost:{{.Port}}/search",
+        baseUrlStripe: "http://localhost:{{.Port}}/stripe",
+        dataUrl: "",
+        port: "{{.Port}}",
+        version: "{{.Version}}"
+    }
+</script>
+<script src="build/agns.js?v={{.Version}}"></script>
+
+<!--Main-->
+<script type="text/javascript">
+    // Initialize the namespace
+    AGNS(
+        // No config overrides, just use stub server
+        {},
+        // Callback receives shared data
+        function (data) {
+            // TODO Pass data into src/App.vue and start VueJS here?
+        })
+</script>
+
+</body>
+</html>

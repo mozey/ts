@@ -2,6 +2,9 @@
 set -eu # exit on error or undefined variable
 bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 
+# ..............................................................................
+echo "Creating symlinks"
+
 if [[ ! -e ./static/lib ]]; then
   echo "Creating lib symlink..."
   ln -s ../../http/lib static/lib
@@ -12,6 +15,25 @@ if [[ ! -e openport.sh ]]; then
   cp ../webcomponent/openport.sh ./
 fi
 
+# Development of the namespace and the web components can be separated.
+# However, the namespace must be built first,
+# and then included by the component index,
+# see vuecart/public/index.html
+
+if [[ ! -e ./vuecart/public/build ]]; then
+  echo "Creating vuecart/public/build symlink..."
+  ln -s ../../static/build ./vuecart/public/build
+fi
+if [[ ! -e ./vuecart/public/lib ]]; then
+  echo "Creating vuecart/public/lib symlink..."
+  ln -s ../../../http/lib ./vuecart/public/lib
+fi
+if [[ ! -e ./vuecart/public/src ]]; then
+  echo "Creating vuecart/public/src symlink..."
+  ln -s ../../src ./vuecart/public/src
+fi
+
+# ..............................................................................
 echo "Compiling typescript..."
 tsc
 
@@ -46,9 +68,15 @@ else
   APP_PORT=$(cat ./static/build.port)
 fi
 APP_VERSION=$(date +"%s")
+
+# Namespace
 sed "s/{{.Port}}/${APP_PORT}/g" static/dev.index.html |
 sed "s/{{.Version}}/${APP_VERSION}/g" > static/build.index.html
 echo ${APP_PORT} > static/build.port
+
+# Web components
+sed "s/{{.Port}}/${APP_PORT}/g" vuecart/public/dev.index.html |
+sed "s/{{.Version}}/${APP_VERSION}/g" > vuecart/public/index.html
 
 # ..............................................................................
 echo "(Re)starting server on localhost:${APP_PORT}..."

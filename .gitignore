@@ -19,6 +19,8 @@
 
 /_excluded
 
+# TODO Move below to .gitignore files inside example dirs
+
 /http/build
 /http/build.index.html
 /http/node_modules
@@ -64,5 +66,9 @@
 /store/node_modules
 /store/package-lock.json
 /store/openport.sh
+/store/vuecart/public/build
+/store/vuecart/public/index.html
+/store/vuecart/public/lib
+/store/vuecart/public/src
 /store/vuex
 

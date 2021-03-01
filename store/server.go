@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/julienschmidt/httprouter"
+	"github.com/rs/cors"
 	"log"
 	"net/http"
 	"os"
@@ -30,28 +32,40 @@ func main() {
 		log.Fatal("invalid APP_PORT")
 	}
 
+	// Routes...................................................................
+	var srv http.Server
+	router := httprouter.New()
+
 	// search
-	http.HandleFunc("/search/products", stub)
+	router.HandlerFunc("GET", "/search/products", stub)
 
 	// src
-	http.Handle("/src/",
+	router.Handler("GET", "/src/",
 		// Explanation of StripPrefix here
 		// https://stackoverflow.com/a/27946132/639133
 		http.StripPrefix("/src/",
 			http.FileServer(http.Dir(filepath.Join(dir, "src")))))
 
 	// static
-	http.Handle("/",
+	router.Handler("GET", "/",
 		http.FileServer(http.Dir(filepath.Join(dir, "static"))))
 
 	// stripe
-	http.HandleFunc("/stripe/v1/products", stub)
-	http.HandleFunc("/stripe/v1/prices", stub)
-	http.HandleFunc("/stripe/v1/orders", stub)
+	router.HandlerFunc("GET", "/stripe/v1/products", stub)
+	router.HandlerFunc("GET", "/stripe/v1/prices", stub)
+	router.HandlerFunc("POST", "/stripe/v1/orders", stub)
 
-	addr := fmt.Sprintf("localhost:%s", port)
-	log.Println(fmt.Sprintf("Listening on %s...", addr))
-	err := http.ListenAndServe(addr, nil)
+	srv.Handler = router
+
+	// Middleware...............................................................
+
+	// CORS
+	srv.Handler = cors.Default().Handler(srv.Handler)
+
+	// Start....................................................................
+	srv.Addr = fmt.Sprintf("localhost:%s", port)
+	log.Println(fmt.Sprintf("Listening on %s...", srv.Addr))
+	err := srv.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
 	}
