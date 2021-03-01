@@ -18,11 +18,11 @@
 <script src="lib/vue-2.6.12.js"></script>
 
 <!--Application global namespace-->
-<script src="data.js?v={{.Version}}"></script>
-<script>
+<script src="static-data.js?v={{.Version}}"></script>
+<script type="text/javascript">
     // TODO Bundle with agns.js in prod
     // Default config
-    window.AGNSConfig = {
+    window.AGNS_CONFIG = {
         baseUrlSearch: "http://localhost:{{.Port}}/search",
         baseUrlStripe: "http://localhost:{{.Port}}/stripe",
         dataUrl: "",
@@ -57,14 +57,14 @@
             // - SEO for static pages much simpler than dynamic content
             //
             // By default, if the dataUrl is empty, Source.API applies
-            // dataUrl: "api/stripe/data.js",
+            // dataUrl: "api/stripe/static-data.js",
             dataUrl: "",
         },
-        // Callback receives shared data
-        function (data) {
+        // Callback after namespace loaded
+        function () {
             new Vue({
                 el: '#app',
-                data: data,
+                data: window.AGNS_DATA,
                 mounted: async function () {
                     // It's possible to run a method
                     // at page load with VueJS like this

@@ -45,6 +45,8 @@ export interface StripePrice {
  * For fuller integration with specific APIs, this code can be a starting point
  */
 export class Store {
+    // data private to the store,
+    // not to be confused with window.AGNSData
     readonly data: Item[]
 
     // source determines where inventory data is loaded from
@@ -53,17 +55,17 @@ export class Store {
     constructor() {
         let dataUrl = agns.config.dataUrl()
         // @ts-ignore
-        if (window.AGNSData != undefined) {
+        if (window.AGNS_STATIC != undefined) {
             this.source = Source.STATIC
             // @ts-ignore
-            this.data = window.AGNSData
-        } else if (dataUrl == "") {
+            this.data = window.AGNS_STATIC
+        } else if (agns.config.dataUrl() == "") {
             // Caching is possible but out of scope for this example
             this.source = Source.API
-        } else if (dataUrl.endsWith(".csv")) {
+        } else if (agns.config.dataUrl().endsWith(".csv")) {
             this.source = Source.CSV
             // TODO Load data from CSV file
-        } else if (dataUrl.endsWith(".json")) {
+        } else if (agns.config.dataUrl().endsWith(".json")) {
             this.source = Source.JSON
             // TODO Load data from JSON file
         }

@@ -5,8 +5,6 @@ import {Store} from "./store";
 // Global namespace (try to use a unique name for easy grepping)
 // https://stackoverflow.com/a/30174360/639133
 export namespace agns {
-    export let data: any
-
     export let cart: Cart
     export let config: Config
     export let store: Store
@@ -23,13 +21,12 @@ export namespace agns {
         agns.store = new Store()
 
         // Shared data
-        agns.data = {
-            header: "Init..."
-        }
+        // @ts-ignore
+        window.AGNS_DATA["header"] = "Init..."
         setTimeout(function () {
             // This demonstrates "reactively" updating the VueJS state
             // @ts-ignore
-            window.agns.data.header = "Stripecart Example"
+            window.AGNS_DATA["header"] = "Stripecart Example"
         }, 2000)
 
         // Demonstration of store and cart without using components

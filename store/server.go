@@ -22,6 +22,22 @@ func stub(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, filepath.Join(elem...))
 }
 
+// NotFound serves static files if the path matches, or 404 if not.
+// Using this approach instead of `router.ServeFiles` to get the path right
+func notFound(w http.ResponseWriter, r *http.Request) {
+	p := r.URL.Path
+	parts := strings.Split(p, "/")
+	switch parts[1] {
+	case "src":
+		http.ServeFile(w, r, filepath.Join(parts...))
+		return
+	default:
+		parts = append([]string{"static"}, parts...)
+		http.ServeFile(w, r, filepath.Join(parts...))
+		return
+	}
+}
+
 func main() {
 	dir = os.Getenv("APP_DIR")
 	if dir == "" {
@@ -39,23 +55,13 @@ func main() {
 	// search
 	router.HandlerFunc("GET", "/search/products", stub)
 
-	// src
-	router.Handler("GET", "/src/",
-		// Explanation of StripPrefix here
-		// https://stackoverflow.com/a/27946132/639133
-		http.StripPrefix("/src/",
-			http.FileServer(http.Dir(filepath.Join(dir, "src")))))
-
-	// static
-	router.Handler("GET", "/",
-		http.FileServer(http.Dir(filepath.Join(dir, "static"))))
-
 	// stripe
 	router.HandlerFunc("GET", "/stripe/v1/products", stub)
 	router.HandlerFunc("GET", "/stripe/v1/prices", stub)
 	router.HandlerFunc("POST", "/stripe/v1/orders", stub)
 
-	srv.Handler = router
+	// Static content
+	router.NotFound = http.HandlerFunc(notFound)
 
 	// Middleware...............................................................
 
@@ -63,6 +69,7 @@ func main() {
 	srv.Handler = cors.Default().Handler(srv.Handler)
 
 	// Start....................................................................
+	srv.Handler = router
 	srv.Addr = fmt.Sprintf("localhost:%s", port)
 	log.Println(fmt.Sprintf("Listening on %s...", srv.Addr))
 	err := srv.ListenAndServe()

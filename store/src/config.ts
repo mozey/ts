@@ -11,7 +11,9 @@ export class Config {
     constructor(config?: any) {
         // Copy defaults
         // @ts-ignore
-        let defaultConfig = {...window.AGNSConfig}
+        console.info(JSON.stringify(window.AGNS_CONFIG, null, "  "))
+        // @ts-ignore
+        let defaultConfig = {...window.AGNS_CONFIG}
         if (config) {
             // @ts-ignore
             for (let k of Object.keys(defaultConfig)) {

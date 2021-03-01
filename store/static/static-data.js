@@ -1,4 +1,4 @@
-window.AGNSData = [
+window.AGNS_STATIC = [
     {
         "sku": "1",
         "name": "iPad 4 Mini",
