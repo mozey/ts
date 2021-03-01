@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -24,7 +24,7 @@
 <script>
     // TODO Bundle with agns.js in prod
     // Default config
-    window.AGNSConfig = {
+    window.AGNS_CONFIG = {
         baseUrlSearch: "http://localhost:{{.Port}}/search",
         baseUrlStripe: "http://localhost:{{.Port}}/stripe",
         dataUrl: "",
@@ -40,9 +40,10 @@
     AGNS(
         // No config overrides, just use stub server
         {},
-        // Callback receives shared data
-        function (data) {
-            // TODO Pass data into src/App.vue and start VueJS here?
+        // Callback after namespace loaded
+        function () {
+            // Nothing to do here?
+            // Root data is set in vuecart/src/App.vue
         })
 </script>
 

@@ -12,7 +12,11 @@ const ShoppingCartComponent = wrap(Vue, ShoppingCart);
 window.customElements.define("shopping-cart", ShoppingCartComponent);
 
 // Vue App
-Vue.config.productionTip = false
-new Vue({
-    render: h => h(App),
-}).$mount('#app')
+// Wait for static content to load first
+// https://stackoverflow.com/a/1033448/639133
+window.addEventListener("load", function () {
+    Vue.config.productionTip = false
+    new Vue({
+        render: h => h(App),
+    }).$mount('#app')
+})

@@ -63,13 +63,14 @@ func main() {
 	// Static content
 	router.NotFound = http.HandlerFunc(notFound)
 
+	srv.Handler = router
+
 	// Middleware...............................................................
 
 	// CORS
 	srv.Handler = cors.Default().Handler(srv.Handler)
 
 	// Start....................................................................
-	srv.Handler = router
 	srv.Addr = fmt.Sprintf("localhost:%s", port)
 	log.Println(fmt.Sprintf("Listening on %s...", srv.Addr))
 	err := srv.ListenAndServe()

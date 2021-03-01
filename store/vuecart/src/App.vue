@@ -1,18 +1,24 @@
 <template>
   <!-- NOTE This div replaces the #app div in public/index.html -->
   <div id="app">
-    <HelloWorld msg="Shopping Cart Example 🛒"/>
+    <h3>{{ header }}</h3>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 
 export default Vue.extend({
   name: 'App',
+  data: function () {
+    return {
+      // NOTE Users doesn't have to use window.AGNS_DATA
+      header: "VueCart Example",
+    }
+  },
   components: {
-    HelloWorld
+    // Example keeps it simple, however,
+    // user are not prevented from including custom components in their apps
   }
 });
 </script>
@@ -29,6 +35,7 @@ export default Vue.extend({
   color: darkgreen;
   margin-top: 20px;
 }
+
 #app img {
   height: 46px;
 }

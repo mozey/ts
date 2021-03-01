@@ -1,4 +1,4 @@
-// Frameworks (like VueJS) should use this as the root data object
+// Frameworks (like VueJS) can use this to initialize the root data object
 window.AGNS_DATA = {}
 
 // The namespace (agns.ts) might be compiled to other module types,
