@@ -59,16 +59,14 @@
 /webcomponent/pure.d.ts
 /webcomponent/template.ts
 
+/store/index.html
 /store/static/build
-/store/static/build.index.html
 /store/static/build.port
 /store/static/lib
 /store/node_modules
 /store/package-lock.json
 /store/openport.sh
-/store/vuecart/public/build
 /store/vuecart/public/index.html
-/store/vuecart/public/lib
-/store/vuecart/public/src
+/store/vuecart/public/static
 /store/vuex
 

@@ -11,12 +11,12 @@ window.customElements.define("product-list", ProductListComponent);
 const ShoppingCartComponent = wrap(Vue, ShoppingCart);
 window.customElements.define("shopping-cart", ShoppingCartComponent);
 
-// Vue App
-// Wait for static content to load first
-// https://stackoverflow.com/a/1033448/639133
-window.addEventListener("load", function () {
+// @ts-ignore
+window.START_VUE = () => {
+    // Vue App must wait for namespace to load first,
+    // see public/index.html
     Vue.config.productionTip = false
     new Vue({
         render: h => h(App),
     }).$mount('#app')
-})
+}

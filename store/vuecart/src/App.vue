@@ -10,11 +10,21 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'App',
-  data: function () {
+  data: () => {
+    // WARNING Do not browser reload, it breaks the npm auto reload, why though?
     return {
-      // NOTE Users doesn't have to use window.AGNS_DATA
-      header: "VueCart Example",
+      header: "Header not set yet...."
     }
+  },
+  methods: {
+    setData() {
+      // TODO Create type def for window.agns
+      // @ts-ignore
+      this.header = window.AGNS_DATA.header
+    }
+  },
+  created() {
+    this.setData()
   },
   components: {
     // Example keeps it simple, however,

@@ -34,6 +34,10 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "public/static/build",
+    "public/static/lib",
+    "public/static/src",
+    "public/static/stubs"
   ]
 }

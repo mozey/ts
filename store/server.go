@@ -14,28 +14,17 @@ import (
 var dir string
 var port string
 
+func index(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, filepath.Join(dir, "index.html"))
+}
+
 func stub(w http.ResponseWriter, r *http.Request) {
 	elem := []string{dir}
-	elem = append(elem, "api")
+	elem = append(elem, "static")
+	elem = append(elem, "stubs")
 	elem = append(elem, strings.Split(r.URL.Path, "/")...)
 	elem = append(elem, fmt.Sprintf("%s.json", r.Method))
 	http.ServeFile(w, r, filepath.Join(elem...))
-}
-
-// NotFound serves static files if the path matches, or 404 if not.
-// Using this approach instead of `router.ServeFiles` to get the path right
-func notFound(w http.ResponseWriter, r *http.Request) {
-	p := r.URL.Path
-	parts := strings.Split(p, "/")
-	switch parts[1] {
-	case "src":
-		http.ServeFile(w, r, filepath.Join(parts...))
-		return
-	default:
-		parts = append([]string{"static"}, parts...)
-		http.ServeFile(w, r, filepath.Join(parts...))
-		return
-	}
 }
 
 func main() {
@@ -52,6 +41,10 @@ func main() {
 	var srv http.Server
 	router := httprouter.New()
 
+	// index
+	router.HandlerFunc("GET", "/", index)
+	router.HandlerFunc("GET", "/index.html", index)
+
 	// search
 	router.HandlerFunc("GET", "/search/products", stub)
 
@@ -61,7 +54,8 @@ func main() {
 	router.HandlerFunc("POST", "/stripe/v1/orders", stub)
 
 	// Static content
-	router.NotFound = http.HandlerFunc(notFound)
+	//router.NotFound = http.HandlerFunc(notFound)
+	router.ServeFiles("/static/*filepath", http.Dir("static"))
 
 	srv.Handler = router
 

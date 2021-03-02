@@ -14,11 +14,11 @@
 </div>
 
 <!--Libs-->
-<script src="lib/sprintf-1.1.2.min.js"></script>
-<script src="lib/vue-2.6.12.js"></script>
+<script src="static/lib/sprintf-1.1.2.min.js"></script>
+<script src="static/lib/vue-2.6.12.js"></script>
 
 <!--Application global namespace-->
-<script src="static-data.js?v={{.Version}}"></script>
+<script src="static/agns_static.js?v={{.Version}}"></script>
 <script type="text/javascript">
     // TODO Bundle with agns.js in prod
     // Default config
@@ -30,7 +30,7 @@
         version: "{{.Version}}"
     }
 </script>
-<script src="build/agns.js?v={{.Version}}"></script>
+<script src="static/build/agns.js?v={{.Version}}"></script>
 
 <!--Main-->
 <script type="text/javascript">
@@ -57,7 +57,7 @@
             // - SEO for static pages much simpler than dynamic content
             //
             // By default, if the dataUrl is empty, Source.API applies
-            // dataUrl: "api/stripe/static-data.js",
+            // dataUrl: "api/stripe/agns_static.js",
             dataUrl: "",
         },
         // Callback after namespace loaded

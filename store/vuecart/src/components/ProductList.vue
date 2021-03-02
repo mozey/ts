@@ -1,11 +1,21 @@
 <template>
   <div id="product-list">
+    {{ foo }}
     <p>Product List {{ group }}</p>
+    <ul>
+      <li v-for="item in items">{{ item.name }}</li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import {Item} from "../../public/static/share/types";
+
+interface ProductListData {
+  foo: string
+  items: Item[]
+}
 
 export default Vue.extend({
   name: 'ProductList',
@@ -13,6 +23,27 @@ export default Vue.extend({
     // group ID might be used to fetch a group of products
     group: String,
   },
+  data: (): ProductListData => {
+    return {
+      foo: "bar2",
+      items: []
+    }
+  },
+  methods: {
+    listItems() {
+      console.info("ProductList 1")
+      // TODO Create type def for window.agns
+      // @ts-ignore
+      window.agns.store.listItems((items) => {
+        console.info("ProductList 2 -")
+        console.info("items", items)
+        this.items = items
+      })
+    }
+  },
+  created() {
+    this.listItems()
+  }
 });
 </script>
 

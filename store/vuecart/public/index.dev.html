@@ -17,11 +17,11 @@
 <shopping-cart/>
 
 <!--Libs-->
-<script src="lib/sprintf-1.1.2.min.js"></script>
-<script src="lib/vue-2.6.12.js"></script>
+<script src="static/lib/sprintf-1.1.2.min.js"></script>
+<script src="static/lib/vue-2.6.12.js"></script>
 
 <!--Application global namespace-->
-<script>
+<script type="text/javascript">
     // TODO Bundle with agns.js in prod
     // Default config
     window.AGNS_CONFIG = {
@@ -32,7 +32,7 @@
         version: "{{.Version}}"
     }
 </script>
-<script src="build/agns.js?v={{.Version}}"></script>
+<script src="static/build/agns.js?v={{.Version}}"></script>
 
 <!--Main-->
 <script type="text/javascript">
@@ -42,8 +42,7 @@
         {},
         // Callback after namespace loaded
         function () {
-            // Nothing to do here?
-            // Root data is set in vuecart/src/App.vue
+            window.START_VUE()
         })
 </script>
 

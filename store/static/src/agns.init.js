@@ -1,5 +1,6 @@
 // Frameworks (like VueJS) can use this to initialize the root data object
 window.AGNS_DATA = {}
+console.info("AGNS_DATA")
 
 // The namespace (agns.ts) might be compiled to other module types,
 // accordingly this file can be swapped out for other module loaders.
@@ -12,8 +13,8 @@ window.AGNS = function (config, cb) {
         // https://requirejs.org/docs/jquery.html
         requirejs.config({
             paths: {
-                "agns": "build/agns",
-                "sprintf-js": "lib/sprintf-1.1.2"
+                "agns": "static/build/agns",
+                "sprintf-js": "static/lib/sprintf-1.1.2"
             }
         });
 

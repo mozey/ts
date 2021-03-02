@@ -34,7 +34,7 @@ Consider a minimal VueJS v2 example,
 [Hello World](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world?file=/index.html).
 Here is an offline equivalent of the codesandbox link
 ```
-open static/hellovue.html
+open hellovue.html
 ```
 
 
@@ -58,7 +58,7 @@ i.e. [billing](https://stripe.com/billing)
 Build and open the example
 ```
 ./build.sh
-APP_PORT=$(cat ./static/build.port) && open http://localhost:${APP_PORT}/build.index.html
+APP_PORT=$(cat ./static/build.port) && open http://localhost:${APP_PORT}
 ```
 
 

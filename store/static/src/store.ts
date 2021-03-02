@@ -1,5 +1,6 @@
 import {agns} from "./agns";
 import {sprintf} from "sprintf-js";
+import {Item} from "../share/types";
 
 // Source enums valid data sources
 // TODO "props" is not a data source, but they could override,
@@ -16,14 +17,6 @@ export enum Source {
 }
 
 // TODO Move interface defs below to a separate file?
-
-// Item is a generic good or service
-export interface Item {
-    sku: string
-    name: string
-    currency: string
-    price: bigint
-}
 
 // StripeProduct as returned by /v1/products
 export interface StripeProduct {
@@ -95,6 +88,7 @@ export class Store {
      *
      */
     public async listItems(skus?: string[]): Promise<Item[]> {
+        console.info("source", this.source)
         if (
             this.source == Source.STATIC ||
             this.source == Source.CSV ||
@@ -102,6 +96,7 @@ export class Store {
         ) {
             // Use data set by the constructor
             // TODO Filter skus if param is set
+            console.info("listItems - 1")
             return this.data
 
         } else if (this.source == Source.API) {
@@ -137,6 +132,7 @@ export class Store {
                     items.push(item)
                 })
                 // Done mapping stripe API to internal data structures
+                console.info("listItems - 2", JSON.stringify(items, null, " "))
                 return items
             })
 

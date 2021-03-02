@@ -11,7 +11,7 @@ if [[ ! -e ./static/lib ]]; then
 fi
 
 if [[ ! -e openport.sh ]]; then
-  echo "Copying src..."
+  echo "Creating openport.sh symlink..."
   cp ../webcomponent/openport.sh ./
 fi
 
@@ -20,17 +20,9 @@ fi
 # and then included by the component index,
 # see vuecart/public/index.html
 
-if [[ ! -e ./vuecart/public/build ]]; then
-  echo "Creating vuecart/public/build symlink..."
-  ln -s ../../static/build ./vuecart/public/build
-fi
-if [[ ! -e ./vuecart/public/lib ]]; then
-  echo "Creating vuecart/public/lib symlink..."
-  ln -s ../../../http/lib ./vuecart/public/lib
-fi
-if [[ ! -e ./vuecart/public/src ]]; then
-  echo "Creating vuecart/public/src symlink..."
-  ln -s ../../src ./vuecart/public/src
+if [[ ! -e ./vuecart/public/static ]]; then
+  echo "Creating ./vuecart/public/static symlink..."
+  ln -s ../../static ./vuecart/public/static
 fi
 
 # ..............................................................................
@@ -53,7 +45,7 @@ cat static/build/agns.amd.js >> static/build/agns.js
 echo "
 
 // agns-main.js" >> static/build/agns.js
-cat src/agns.init.js >> static/build/agns.js
+cat static/src/agns.init.js >> static/build/agns.js
 
 # ..............................................................................
 echo "Building index..."
@@ -70,12 +62,12 @@ fi
 APP_VERSION=$(date +"%s")
 
 # Namespace
-sed "s/{{.Port}}/${APP_PORT}/g" static/dev.index.html |
-sed "s/{{.Version}}/${APP_VERSION}/g" > static/build.index.html
+sed "s/{{.Port}}/${APP_PORT}/g" index.dev.html |
+sed "s/{{.Version}}/${APP_VERSION}/g" > index.html
 echo ${APP_PORT} > static/build.port
 
 # Web components
-sed "s/{{.Port}}/${APP_PORT}/g" vuecart/public/dev.index.html |
+sed "s/{{.Port}}/${APP_PORT}/g" vuecart/public/index.dev.html |
 sed "s/{{.Version}}/${APP_VERSION}/g" > vuecart/public/index.html
 
 # ..............................................................................
