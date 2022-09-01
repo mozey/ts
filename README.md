@@ -1,43 +1,15 @@
 # ts
 
-Misc Typescript examples and libs 
+Misc TypeScript examples and libs 
+
+This repo is framework agnostic, and tries to think of dependencies as libraries. That said, some frameworks can be used like libraries, see for example [using VueJS as a general purpose library](https://blog.logrocket.com/use-vue-js-general-purpose-javascript-library) or [AlpineJS](https://alpinejs.dev/)
+
+Consider the following quote re. [frameworks vs libraries](https://martinfowler.com/bliki/InversionOfControl.html) *"Inversion of Control is a key part of what makes a framework different to a library. A **library** is essentially a set of functions that you can call, these days usually organized into classes. Each call does some work and returns control to the client... A **framework** embodies some abstract design, with more behavior built in. In order to use it you need to insert your behavior into various places in the framework either by sub-classing or by plugging in your own classes. The framework's code then calls your code at these points."* 
+
+The ability to easily inspect and understand the [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp), and instant visual feedback, is an important part of what makes programming the browser fun. Many modern frameworks make it very hard for the user to understand the rendered page source by wrapping it in layers of metadata tags. Or, using techniques like Virtual DOM, it [is pure overhead](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
 
 
-## Usage
-
-To run the libs and examples first clone this repo,
-then follow the instructions below 
-
-**NOTE** npm is only used for **type definitions** to help with IDE completion.
-This keeps the size on disk of `node_modules` to a bare minimum 
-
-This repo is self-contained and must not rely on code inside of `node_modules`.
-Eventually the examples might make use of 
-[deno imports](https://deno.land/manual/examples/import_export)
-
-This repo is framework agnostic, instead think of dependencies as libraries.
-That said, some frameworks can easily be used like libraries, 
-without them trying to take over everything. See for example 
-[using Vue.js as a general purpose library](https://blog.logrocket.com/use-vue-js-general-purpose-javascript-library)
-or [AlpineJS](https://github.com/alpinejs/alpine)
-What is the closest you can get to **"just use TypeScript"**?
-
-Lastly, [consider this](https://w3techs.com/technologies/details/js-jquery)
-*"jQuery is used by 96.0% of all the websites whose JavaScript library we know. 
-This is 77.4% of all websites."*
-
-
-## Examples
-
-**TODO** Inside `ts/examples` create a list of examples for TypeScript 
-similar to [Go by Example](https://gobyexample.com/)
-
-Examples might also have a corresponding TS lib for re-use in other projects.
-
-
-## Libs
-
-### http
+## http
 
 Example of doing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
 a.k.a. [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)  
@@ -47,26 +19,28 @@ around the browsers native XMLHttpRequest object, and
 [jquery-growl](https://github.com/ksylvest/jquery-growl) for messaging the user
 
 Build
-
-    cd ts/http
-    ./build.sh
+```bash
+cd ts/http
+./build.sh
+```
     
 Open the index file in your default browser to run the example.
 It will make some requests to [httpbin](https://httpbin.org)
 and display the results
-
-    open build.index.html
+```bash
+open build.index.html
+```
 
 Make some change, run `build.sh` again, 
 and click the browser refresh button to see the results
 
 Watch and rebuild when files are changed,
 you still have to refresh the browser window
+```bash
+./watch.sh
+```
 
-    ./watch.sh
-
-
-### template
+## template
 
 Basic template loader and cache, makes use of the `http` lib described above.
 
@@ -75,20 +49,22 @@ and copies TypeScript libraries to `ts/template/src`.
 The latter are included by `tsconfig.json` and compiled to `build/app.js` 
 
 Build
+```bash
+cd ts/template
+./build.sh
+```
 
-    cd ts/template
-    ./build.sh
- 
 Run
+```bash
+open build.index.html
+```
 
-    open build.index.html
-    
 Reset to remove build artifacts
-
-    ./reset.sh
+```bash
+./reset.sh
+```
    
-   
-### datepicker
+## datepicker
 
 Simple datepicker using `<select>` tags.
 Works great on mobile browsers
@@ -96,7 +72,7 @@ Works great on mobile browsers
 Build, run and reset works the same as the previous examples
 
 
-### webcomponent
+## webcomponent
 
 Web components use [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
 to encapsulate a widget's DOM tree from the rest of the page.
@@ -119,28 +95,30 @@ Older browser versions not supporting Shadow DOM can use the
 [webcomponentsjs polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)
 
 Build
+```bash
+./build.sh
+```
 
-    ./build.sh
-    
-#### Web Component Example 1
+### Web Component Example 1
 
 Load and render template into a div (with shadow DOM), set heading using a 
 [slot](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots)
+```bash
+APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
+```
 
-    APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
-
-#### Web Component Example 2
+### Web Component Example 2
 
 VueJS single file component wrapped as a custom element.
 
 This example uses the pre-built `vuejs/weather/dist-vuejs-weather.js` widget,
 To make sense of the source code in `vuejs/weather` see the
 [README](https://github.com/mozey/ts/tree/main/webcomponent/vuejs)
+```bash
+open index2.html
+``` 
 
-    open index2.html
-    
-
-### [store](https://github.com/mozey/ts/tree/main/store) 
+## [store](https://github.com/mozey/ts/tree/main/store) 
 
 State sharing using a simple store pattern 
 
