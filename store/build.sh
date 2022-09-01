@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu # exit on error or undefined variable
+set -eu                   # exit on error or undefined variable
 bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 
 # ..............................................................................
@@ -35,17 +35,20 @@ tsc
 # that might be used with other JS frameworks too, e.g. React, Angular.
 # Therefore the end result of this build can be included as a separate script,
 # at the cost of 18KB extra for the minified module loader
+# TODO Bundle build artifacts with RequireJS optimizer?
+# [optimization](https://requirejs.org/docs/optimization.html)
+#
 echo "Bundling module loader with build..."
 rm -f static/build/agns.js
-cat static/lib/require-2.3.6.min.js > static/build/agns.js
+cat static/lib/require-2.3.6.min.js >static/build/agns.js
 echo "
 
-// static/build/agns.js" >> static/build/agns.js
-cat static/build/agns.amd.js >> static/build/agns.js
+// static/build/agns.js" >>static/build/agns.js
+cat static/build/agns.amd.js >>static/build/agns.js
 echo "
 
-// agns-main.js" >> static/build/agns.js
-cat static/src/agns.init.js >> static/build/agns.js
+// agns.init.js" >>static/build/agns.js
+cat static/src/agns.init.js >>static/build/agns.js
 
 # ..............................................................................
 echo "Building index..."
@@ -63,12 +66,12 @@ APP_VERSION=$(date +"%s")
 
 # Namespace
 sed "s/{{.Port}}/${APP_PORT}/g" index.dev.html |
-sed "s/{{.Version}}/${APP_VERSION}/g" > index.html
-echo ${APP_PORT} > static/build.port
+  sed "s/{{.Version}}/${APP_VERSION}/g" >index.html
+echo ${APP_PORT} >static/build.port
 
 # Web components
 sed "s/{{.Port}}/${APP_PORT}/g" vuecart/public/index.dev.html |
-sed "s/{{.Version}}/${APP_VERSION}/g" > vuecart/public/index.html
+  sed "s/{{.Version}}/${APP_VERSION}/g" >vuecart/public/index.html
 
 # ..............................................................................
 echo "(Re)starting server on localhost:${APP_PORT}..."
@@ -78,5 +81,3 @@ if tmux has-session -t ${APP_NAME} 2>/dev/null; then
 fi
 tmux new -d -s ${APP_NAME}
 tmux send -t ${APP_NAME} "APP_DIR=${APP_DIR} APP_PORT=${APP_PORT} go run server.go" ENTER
-
-

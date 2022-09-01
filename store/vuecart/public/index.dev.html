@@ -9,13 +9,6 @@
 </head>
 <body>
 
-<noscript>You need javascript.</noscript>
-<div id="app"></div>
-
-<!--TODO Move components to the template src/App.vue-->
-<product-list group="123"></product-list>
-<shopping-cart/>
-
 <!--Libs-->
 <script src="static/lib/sprintf-1.1.2.min.js"></script>
 <script src="static/lib/vue-2.6.12.js"></script>
@@ -34,17 +27,12 @@
 </script>
 <script src="static/build/agns.js?v={{.Version}}"></script>
 
-<!--Main-->
-<script type="text/javascript">
-    // Initialize the namespace
-    AGNS(
-        // No config overrides, just use stub server
-        {},
-        // Callback after namespace loaded
-        function () {
-            window.START_VUE()
-        })
-</script>
+<noscript>You need javascript.</noscript>
+<div id="app"></div>
+
+<!--TODO Move components to the template src/App.vue-->
+<!--<product-list group="123"></product-list>-->
+<!--<shopping-cart/>-->
 
 </body>
 </html>
