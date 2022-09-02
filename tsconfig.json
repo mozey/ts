@@ -1,3 +1,4 @@
+// Project layout based on https://github.com/mozey/alpinejs
 {
     "compilerOptions": {
       "target": "ESNext",

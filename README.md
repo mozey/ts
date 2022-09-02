@@ -9,6 +9,16 @@ Consider the following quote re. [frameworks vs libraries](https://martinfowler.
 The ability to easily inspect and understand the [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp), and instant visual feedback, is an important part of what makes programming the browser fun. Many modern frameworks make it very hard for the user to understand the rendered page source by wrapping it in layers of metadata tags. Or, using techniques like [Virtual DOM (is pure overhead)](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
 
 
+## Demo
+
+Build src and start Caddy static file server
+```bash
+APP_DIR=$(pwd) ./scripts/up.sh
+```
+
+Open the index page in your browser and browse the examples
+
+
 ## http
 
 Example of doing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) a.k.a. [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)  
