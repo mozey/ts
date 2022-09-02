@@ -6,17 +6,14 @@ This repo is framework agnostic, and tries to think of dependencies as libraries
 
 Consider the following quote re. [frameworks vs libraries](https://martinfowler.com/bliki/InversionOfControl.html) *"Inversion of Control is a key part of what makes a framework different to a library. A **library** is essentially a set of functions that you can call, these days usually organized into classes. Each call does some work and returns control to the client... A **framework** embodies some abstract design, with more behavior built in. In order to use it you need to insert your behavior into various places in the framework either by sub-classing or by plugging in your own classes. The framework's code then calls your code at these points."* 
 
-The ability to easily inspect and understand the [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp), and instant visual feedback, is an important part of what makes programming the browser fun. Many modern frameworks make it very hard for the user to understand the rendered page source by wrapping it in layers of metadata tags. Or, using techniques like Virtual DOM, it [is pure overhead](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
+The ability to easily inspect and understand the [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp), and instant visual feedback, is an important part of what makes programming the browser fun. Many modern frameworks make it very hard for the user to understand the rendered page source by wrapping it in layers of metadata tags. Or, using techniques like [Virtual DOM (is pure overhead)](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
 
 
 ## http
 
-Example of doing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
-a.k.a. [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)  
+Example of doing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) a.k.a. [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)  
 
-Makes use of the [jqXHR](https://api.jquery.com/jquery.ajax) wrapper 
-around the browsers native XMLHttpRequest object, and 
-[jquery-growl](https://github.com/ksylvest/jquery-growl) for messaging the user
+Makes use of the [jqXHR](https://api.jquery.com/jquery.ajax) wrapper around the browsers native XMLHttpRequest object, and [jquery-growl](https://github.com/ksylvest/jquery-growl) for messaging the user
 
 Build
 ```bash
@@ -24,18 +21,14 @@ cd ts/http
 ./build.sh
 ```
     
-Open the index file in your default browser to run the example.
-It will make some requests to [httpbin](https://httpbin.org)
-and display the results
+Open the index file in your default browser to run the example. It will make some requests to [httpbin](https://httpbin.org) and display the results
 ```bash
 open build.index.html
 ```
 
-Make some change, run `build.sh` again, 
-and click the browser refresh button to see the results
+Make some changes, run `build.sh` again, and click the browser refresh button to see the results
 
-Watch and rebuild when files are changed,
-you still have to refresh the browser window
+Watch and rebuild when files are changed, you still have to refresh the browser window manually
 ```bash
 ./watch.sh
 ```
