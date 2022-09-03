@@ -11,6 +11,20 @@ The ability to easily inspect and understand the [DOM](https://www.w3schools.com
 
 ## Demo
 
+Clone the repo
+```bash
+git clone https://github.com/mozey/ts.git
+cd ts
+```
+
+Configure environment variables
+```bash
+# Copy `sample.env` to `.env` and tweak values as required
+cp sample.env .env
+# Export environment variables
+export $(grep -v '^#' .env | xargs)
+```
+
 Build src and start Caddy static file server
 ```bash
 APP_DIR=$(pwd) ./scripts/up.sh
@@ -18,6 +32,10 @@ APP_DIR=$(pwd) ./scripts/up.sh
 
 Open the index page in your browser and browse the examples
 
+
+<hr/>
+
+**TODO** Refactor examples listed below
 
 ## http
 
