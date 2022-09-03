@@ -1,26 +1,12 @@
 // import Alpine from 'alpinejs'
 import { sprintf } from "sprintf-js";
-import { HttpbinResp } from "./httpbin";
+import { HttpbinResp } from "./models/httpbin";
+import { Animal } from "./models/animal";
 
 // Examples inspired by 
 // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/
 export namespace examples {
     let baseURL = "https://httpbin.org"
-
-    // setResults of the HTTP request
-    export function setResults(req: RequestInit, resp: HttpbinResp) {
-        let reqJSON = JSON.stringify(req, null, 4)
-        let respJSON = JSON.stringify(resp, null, 4)
-        let panel = document.getElementsByTagName("template")[0];
-        let clone = panel.content.cloneNode(true)
-        let results = document.getElementById("results")
-        if (results !== null) {
-            results.textContent = ""
-            results.appendChild(clone)
-            results.getElementsByTagName("pre")[0].innerText = reqJSON
-            results.getElementsByTagName("pre")[1].innerText = respJSON
-        }
-    }
 
     // TODO Use local containerized services?
     // setBaseURL is useful for using a locally hosted httpbin
@@ -29,22 +15,32 @@ export namespace examples {
     }
 
     export function post() {
-        console.info("post")
         const url = sprintf("%s/post", baseURL);
+        
+        let a1: Animal = {
+            name: "mouse",
+            food: "cheese"
+        }
+        let a2: Animal = {
+            name: "bird",
+            food: "seed"
+        }
+        let animals: Animal[] = [a1, a2]
+
         const options = {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json;charset=UTF-8",
             },
-            body: JSON.stringify({
-                a: 10,
-                b: 20,
-            }),
+            body: JSON.stringify(animals),
         };
         fetch(url, options)
             .then((response: Response) => response.json())
             .then((data: HttpbinResp) => {
+                let animals = data.json as Animal[]
+                console.info("name", animals[0].name)
+                console.info("food", animals[0].food)
                 setResults(options, data)
             });
     }
@@ -78,4 +74,18 @@ export namespace examples {
     export function simultaneous() {
     }
 
+    // setResults of the HTTP request
+    export function setResults(req: RequestInit, resp: HttpbinResp) {
+        let reqJSON = JSON.stringify(req, null, 4)
+        let respJSON = JSON.stringify(resp, null, 4)
+        let panel = document.getElementsByTagName("template")[0];
+        let clone = panel.content.cloneNode(true)
+        let results = document.getElementById("results")
+        if (results !== null) {
+            results.textContent = ""
+            results.appendChild(clone)
+            results.getElementsByTagName("pre")[0].innerText = reqJSON
+            results.getElementsByTagName("pre")[1].innerText = respJSON
+        }
+    }
 }
