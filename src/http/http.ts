@@ -115,6 +115,8 @@ export async function run() {
         cm.outputHttpBinResponse(body, res.message);
     }
     catch (err) {
-        console.error('Failed: ' + err.message);
+        if (cm.isError(err)) {
+            console.error('Failed: ' + err.message);
+        }
     }
 }

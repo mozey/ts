@@ -45,6 +45,8 @@ export async function run() {
         console.log(ores.statusCode);
     }
     catch (err) {
-        console.error('Failed: ' + err.message);
+        if (cm.isError(err)) {
+            console.error('Failed: ' + err.message);
+        }
     }
 }

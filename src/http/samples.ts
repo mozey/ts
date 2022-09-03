@@ -1,6 +1,7 @@
 import * as httpSamples from './http';
 import * as restSamples from './rest';
 import * as handlerSamples from './handlers';
+import * as cm from './common';
 
 async function run() {
     try {
@@ -9,8 +10,10 @@ async function run() {
         await handlerSamples.run();
     }
     catch (err) {
-        console.error('Failed');
-        console.error(err.message);
+        if (cm.isError(err)) {
+            console.error('Failed');
+            console.error(err.message);
+        }
     }
 }
 

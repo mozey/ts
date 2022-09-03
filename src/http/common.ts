@@ -60,3 +60,11 @@ export function httpBinOptions(): restm.IRequestOptions {
 
     return options;
 }
+
+// Type guard https://stackoverflow.com/a/66519708/639133
+export interface Error {
+    message: string;
+}
+export function isError(x: any): x is Error {
+    return typeof x.message === 'string';
+}
