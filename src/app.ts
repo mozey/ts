@@ -1,8 +1,10 @@
 import Alpine from 'alpinejs'
+import { examples as ExamplesNS } from "./examples"
 import 'w3-css/w3.css';
 
-// Make alpine available on window for better DX
+// Make globals available on window for better DX
 window.alpine = Alpine
+window.examples = ExamplesNS
 
 Alpine.store("data", {
   examples: "Examples"
