@@ -1,8 +1,5 @@
-export class Examples {
-    async run() {
-        console.log("running...")
-        // TODO See ts/http/app.ts
-
+export namespace examples {
+    export function post() {
         // Example as per https://blog.logrocket.com/axios-vs-fetch-best-http-requests/
         const url = "https://jsonplaceholder.typicode.com/todos";
         const options = {
@@ -17,7 +14,7 @@ export class Examples {
             }),
         };
         fetch(url, options)
-            .then((response) => response.json())
+            .then((response: Response) => response.json())
             .then((data) => {
                 console.log(data);
             });
