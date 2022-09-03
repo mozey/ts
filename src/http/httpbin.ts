@@ -15,16 +15,7 @@ export interface Headers {
     "X-Amzn-Trace-Id": string
 }
 
-// ResponseGET from https://httpbin.org/get
-export interface ResponseGET {
-    args: any
-    headers: Headers
-    origin: string
-    url: string
-}
-
-// ResponsePOST from https://httpbin.org/post
-export interface ResponsePOST {
+export interface HttpbinResp {
     args: any
     data: string
     files: any

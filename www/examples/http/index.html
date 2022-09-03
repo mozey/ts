@@ -10,31 +10,59 @@
 </head>
 
 <body>
-    <div x-data class="w3-container">
-        <h3>
-            <a href="https://github.com/mozey/ts/tree/http/src/http">
-                HTTP Client Examples</a>
-        </h3>
-        <p>
-            Makes use of the Fetch API. 
-            Click the links below to make HTTP Requests,
-            and view the results in the Dev Console
-        </p>
-        <ul>
-            <li><a href="javascript:" x-on:click="examples.http.post()">
-                    Post</a></li>
-            <li><a href="javascript:" x-on:click="examples.http.timeout()">
-                    Timeout</a></li>
-            <li><a href="javascript:" x-on:click="examples.http.interceptor()">
-                    Intercept requests</a></li>
-            <li><a href="javascript:" x-on:click="examples.http.progress()">
-                    Progress indicator</a></li>
-            <li><a href="javascript:" x-on:click="examples.http.simultaneous()">
-                    Simultaneous requests</a></li>
-        </ul>
+    <div x-data>
+        <div class="w3-container">
+            <h3>
+                <a href="https://github.com/mozey/ts/tree/http/src/http">
+                    HTTP Client Examples</a>
+            </h3>
+            <p>
+                Makes use of the Fetch API.
+                Click the links below to make HTTP Requests,
+                and view the results in the Dev Console
+            </p>
+            <ul>
+                <li><a href="javascript:" x-on:click="examples.http.post()">
+                        Post</a></li>
+                <li><a href="javascript:" x-on:click="examples.http.timeout()">
+                        Timeout</a></li>
+                <li><a href="javascript:" x-on:click="examples.http.interceptor()">
+                        Intercept requests</a></li>
+                <li><a href="javascript:" x-on:click="examples.http.progress()">
+                        Progress indicator</a></li>
+                <li><a href="javascript:" x-on:click="examples.http.simultaneous()">
+                        Simultaneous requests</a></li>
+            </ul>
+        </div>
+
+        <div id="results" class="w3-container" style="display:none">
+            This is where the results go...
+        </div>
+
+        <!-- https://www.w3schools.com/tags/tag_template.asp -->
+        <template>
+            <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
+            <div class="w3-panel w3-display-container w3-pale-yellow">
+                <span x-on:click="$el.parentElement.remove()" class="w3-button w3-display-topright">&times;</span>
+                <h3>Request</h3>
+                <p><pre>&nbsp;</pre></p>
+                <h3>Response</h3>
+                <p><pre>&nbsp;</pre></p>
+            </div>
+        </template>
     </div>
 
     <script src="/dist/app.js"></script>
+    <script>
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
+        window.addEventListener('load', (event) => {
+            // Not necessary to clear results here,
+            // just demonstrating the "load" event
+            result = document.getElementById("results")
+            result.textContent = ""
+            result.style.display = ""
+        });
+    </script>
 </body>
 
 </html>

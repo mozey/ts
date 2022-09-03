@@ -1,10 +1,26 @@
+// import Alpine from 'alpinejs'
 import { sprintf } from "sprintf-js";
-import { ResponsePOST } from "./httpbin";
+import { HttpbinResp } from "./httpbin";
 
 // Examples inspired by 
 // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/
 export namespace examples {
     let baseURL = "https://httpbin.org"
+
+    // setResults of the HTTP request
+    export function setResults(req: RequestInit, resp: HttpbinResp) {
+        let reqJSON = JSON.stringify(req, null, 4)
+        let respJSON = JSON.stringify(resp, null, 4)
+        let panel = document.getElementsByTagName("template")[0];
+        let clone = panel.content.cloneNode(true)
+        let results = document.getElementById("results")
+        if (results !== null) {
+            results.textContent = ""
+            results.appendChild(clone)
+            results.getElementsByTagName("pre")[0].innerText = reqJSON
+            results.getElementsByTagName("pre")[1].innerText = respJSON
+        }
+    }
 
     // TODO Use local containerized services?
     // setBaseURL is useful for using a locally hosted httpbin
@@ -28,8 +44,8 @@ export namespace examples {
         };
         fetch(url, options)
             .then((response: Response) => response.json())
-            .then((data: ResponsePOST) => {
-                console.info(data);
+            .then((data: HttpbinResp) => {
+                setResults(options, data)
             });
     }
 
