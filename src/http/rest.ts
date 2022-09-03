@@ -17,7 +17,9 @@ export async function run() {
         //
         cm.heading('get rest obj');
         let restRes: rm.IRestResponse<cm.HttpBinData> = await restc.get<cm.HttpBinData>('get');
-        console.log(restRes.statusCode, restRes.result['url']);
+        if (restRes.result !== null) {
+            console.log(restRes.statusCode, restRes.result['url']);
+        }
 
         //
         // Create and Update Resource(s)

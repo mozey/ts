@@ -1,4 +1,4 @@
-import * as http from "http";
+// import * as http from "http";
 import * as restm from 'typed-rest-client/RestClient';
 
 // using httpbin.org.
@@ -7,10 +7,10 @@ export interface HttpBinData {
     data: any;
 }
 
-export function getEnv(name: string): string {
-    let val = process.env[name];
-    return val;
-}
+// export function getEnv(name: string): string {
+//     let val = process.env[name];
+//     return val;
+// }
 
 export function banner(title: string): void {
     console.log();
@@ -27,7 +27,8 @@ export function heading(title: string): void {
 //
 // Utility functions
 //
-export async function outputHttpBinResponse(body: string, message?: http.IncomingMessage) {
+// export async function outputHttpBinResponse(body: string, message?: http.IncomingMessage) {
+export async function outputHttpBinResponse(body: string, message?: any) {
     if (message) {
         if (message.statusCode) {
             console.log('status', message.statusCode);
