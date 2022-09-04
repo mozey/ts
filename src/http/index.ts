@@ -18,6 +18,7 @@ export namespace index {
         console.info("Hello!")
     }
 
+    // HTTP POST request example
     export function post() {
         const url = sprintf("%s/post", baseURL);
 
@@ -50,6 +51,7 @@ export namespace index {
             });
     }
 
+    // Abort after specified timeout example
     export function timeout() {
         const url = sprintf("%s/delay/1", baseURL);
         const controller = new AbortController();
@@ -65,8 +67,8 @@ export namespace index {
         // const timeoutId = setTimeout(() => controller.abort(), 4000);
         setTimeout(() => controller.abort(), 500);
         promise
-            .then(response => { 
-                console.info(response) 
+            .then(response => {
+                console.info(response)
                 alert("Oops, response didn't timeout?")
             })
             .catch((error: string) => {
@@ -80,7 +82,47 @@ export namespace index {
             });
     }
 
+    // After calling this function all calls to fetch will be logged
     export function interceptor() {
+        const url = sprintf("%s/get", baseURL);
+
+        // the global window seen by JavaScript code running within a given tab 
+        // always represents the tab in which the code is running
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window
+
+        // Intercepting JavaScript Fetch API requests and responses
+        // https://blog.logrocket.com/intercepting-javascript-fetch-api-requests-responses/
+        const { fetch: originalFetch } = window;
+        window.fetch = async (...args) => {
+            let [url, config] = args;
+
+            // START request interceptor
+            console.info("Intercepted request to ", url)
+            // END request interceptor
+
+            const response = await originalFetch(url, config);
+
+            // START response interceptor
+            const json = () =>
+                response
+                    .clone()
+                    .json()
+                    .then(
+                        (d: HttpbinResp) => ({
+                            ...d,
+                            interceptor: `Intercepted request from ${d.origin}`
+                        }));
+            response.json = json;
+            // END response interceptor
+
+            return response;
+        };
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                setResults({}, data)
+            });
     }
 
     export function progress() {
@@ -93,7 +135,7 @@ export namespace index {
     export function setResults(req: RequestInit, resp: HttpbinResp) {
         let reqJSON = JSON.stringify(req, null, 4)
         let respJSON = JSON.stringify(resp, null, 4)
-        
+
         // Clone
         let panel =
             document.getElementById("results-template") as HTMLTemplateElement
@@ -117,7 +159,7 @@ export namespace index {
             HTMLPreElement
         reqElem.innerText = reqJSON
         // Resp
-        let respElem = 
+        let respElem =
             results.getElementsByClassName("x-app-resp")[0] as
             HTMLPreElement
         respElem.innerText = respJSON
