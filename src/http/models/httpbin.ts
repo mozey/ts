@@ -16,13 +16,13 @@ export interface Headers {
 }
 
 export interface HttpbinResp {
-    args: any
-    data: string
-    files: any
-    form: any
-    headers: Headers
-    json: any[]
-    origin: string
+    args?: any
+    data?: string
+    files?: any
+    form?: any
+    headers?: Headers
+    json?: any[]
+    origin?: string
     url: string
 }
 

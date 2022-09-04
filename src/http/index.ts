@@ -50,24 +50,34 @@ export namespace index {
             });
     }
 
-    // TODO
     export function timeout() {
+        const url = sprintf("%s/delay/1", baseURL);
         const controller = new AbortController();
         const options = {
             method: 'POST',
             signal: controller.signal,
             body: JSON.stringify({
-                firstName: 'David',
-                lastName: 'Pollock'
-            })
+                name: "squirrel",
+                food: "nuts"
+            } as Animal)
         };
-        const promise = fetch('/login', options);
-        // @ts-ignore
-        const timeoutId = setTimeout(() => controller.abort(), 4000);
-
+        const promise = fetch(url, options);
+        // const timeoutId = setTimeout(() => controller.abort(), 4000);
+        setTimeout(() => controller.abort(), 500);
         promise
-            .then(response => { console.info(response) })
-            .catch(error => console.error('timeout exceeded', error));
+            .then(response => { 
+                console.info(response) 
+                alert("Oops, response didn't timeout?")
+            })
+            .catch((error: string) => {
+                let msg = sprintf("timeout exceeded => %s", error)
+                console.error(msg)
+                let resp: HttpbinResp = {
+                    url: url,
+                    data: msg
+                }
+                setResults(options, resp)
+            });
     }
 
     export function interceptor() {
