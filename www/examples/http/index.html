@@ -35,19 +35,26 @@
             </ul>
         </div>
 
-        <div id="results" class="w3-container" style="display:none">
-            This is where the results go...
-        </div>
+        <div id="results" class="w3-container">&nbsp;</div>
 
         <!-- https://www.w3schools.com/tags/tag_template.asp -->
-        <template>
+        <template id="results-template">
             <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
             <div class="w3-panel w3-display-container w3-pale-yellow">
                 <span x-on:click="$el.parentElement.remove()" class="w3-button w3-display-topright">&times;</span>
                 <h3>Request</h3>
-                <p><pre>&nbsp;</pre></p>
+                <h3>
+                    <form class="x-app-url" action="" method="" target="_blank">
+                        url => <a href="javascript:" onclick="this.parentElement.submit()">&nbsp;</a>
+                    </form>
+                </h3>
+                <p>
+                <pre class="x-app-req">&nbsp;</pre>
+                </p>
                 <h3>Response</h3>
-                <p><pre>&nbsp;</pre></p>
+                <p>
+                <pre class="x-app-resp">&nbsp;</pre>
+                </p>
             </div>
         </template>
     </div>
@@ -56,11 +63,10 @@
     <script>
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
         window.addEventListener('load', (event) => {
-            // Not necessary to clear results here,
-            // just demonstrating the "load" event
-            result = document.getElementById("results")
-            result.textContent = ""
-            result.style.display = ""
+            // Demonstrating the "load" event, and calling a function 
+            // on the global "examples" namespace, see src/examples.ts,
+            // and log in the Dev Console
+            examples.http.sayHello();
         });
     </script>
 </body>
