@@ -19,6 +19,7 @@ export namespace index {
     }
 
     // HTTP POST request example
+    // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#basic-syntax
     export function post() {
         const url = sprintf("%s/post", baseURL);
 
@@ -52,6 +53,7 @@ export namespace index {
     }
 
     // Abort after specified timeout example
+    // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#response-timeout
     export function timeout() {
         const url = sprintf("%s/delay/1", baseURL);
         const controller = new AbortController();
@@ -83,6 +85,9 @@ export namespace index {
     }
 
     // After calling this function all calls to fetch will be logged
+    // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#HTTP-interceptors
+    // Also see "Intercepting JavaScript Fetch API requests and responses"
+    // https://blog.logrocket.com/intercepting-javascript-fetch-api-requests-responses/
     export function interceptor() {
         const url = sprintf("%s/get", baseURL);
 
@@ -90,8 +95,6 @@ export namespace index {
         // always represents the tab in which the code is running
         // https://developer.mozilla.org/en-US/docs/Web/API/Window
 
-        // Intercepting JavaScript Fetch API requests and responses
-        // https://blog.logrocket.com/intercepting-javascript-fetch-api-requests-responses/
         const { fetch: originalFetch } = window;
         window.fetch = async (...args) => {
             let [url, config] = args;
@@ -125,7 +128,86 @@ export namespace index {
             });
     }
 
+    // Progress indicator example
+    // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#download-progress
     export function progress() {
+        const element = document.getElementById('progress') as HTMLDivElement;
+        let setProgress = function ({ loaded, total }: any) {
+            element.innerHTML = Math.round(loaded / total * 100) + '%';
+        }
+
+        // TODO Refactor to use httpbin instead? E.g.
+        // https://httpbin.org/drip?numbytes=100&duration=5&delay=0&code=200
+        fetch('https://fetch-progress.anthum.com/30kbps/images/sunrise-baseline.jpg')
+            .then(response => {
+                if (response === null) {
+                    return
+                }
+                if (!response.ok) {
+                    throw Error(response.status + ' ' + response.statusText)
+                }
+                // ensure ReadableStream is supported
+                if (!response.body) {
+                    throw Error('ReadableStream not yet supported in this browser.')
+                }
+                // store the size of the entity-body, in bytes
+                const contentLength = response.headers.get('content-length');
+                // ensure contentLength is available
+                if (!contentLength) {
+                    throw Error('Content-Length response header unavailable');
+                }
+                // parse the integer into a base-10 number
+                const total = parseInt(contentLength, 10);
+                let loaded = 0;
+                return new Response(
+                    // create and return a readable stream
+                    new ReadableStream({
+                        start(controller) {
+                            if (response.body === null) {
+                                return
+                            }
+                            const reader = response.body.getReader();
+                            read();
+                            function read() {
+                                reader.read().then(({ done, value }) => {
+                                    if (done) {
+                                        controller.close();
+                                        return;
+                                    }
+                                    loaded += value.byteLength;
+                                    setProgress({ loaded, total })
+                                    controller.enqueue(value);
+                                    read();
+                                }).catch(error => {
+                                    console.error(error);
+                                    controller.error(error)
+                                })
+                            }
+                        }
+                    })
+                );
+            })
+            .then(response => {
+                // TODO 
+                console.info("response", response)
+                // construct a blob from the data
+                if (response == null) {
+                    return
+                }
+                response.blob()
+            }).then(data => {
+                console.info("data", data)
+                if (data == null) {
+                    return
+                }
+                // insert the downloaded image into the page
+                let image = document.getElementById('img') as HTMLImageElement
+                console.info("image", image, data)
+                image.src = URL.createObjectURL(data);
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     export function simultaneous() {
