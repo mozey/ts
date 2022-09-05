@@ -18,6 +18,8 @@ export namespace index {
         console.info("Hello!")
     }
 
+    // .........................................................................
+
     // HTTP POST request example
     // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#basic-syntax
     export function post() {
@@ -48,7 +50,7 @@ export namespace index {
                 console.info("Typed data enables IDE completion")
                 console.info("name =>", animals[0].name)
                 console.info("food =>", animals[0].food)
-                setResults(options, data)
+                setHttpbinResp(options, data)
             });
     }
 
@@ -80,7 +82,7 @@ export namespace index {
                     url: url,
                     data: msg
                 }
-                setResults(options, resp)
+                setHttpbinResp(options, resp)
             });
     }
 
@@ -124,9 +126,44 @@ export namespace index {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                setResults({}, data)
+                setHttpbinResp({}, data)
             });
     }
+
+    export function setHttpbinResp(req: RequestInit, resp: HttpbinResp) {
+        let reqJSON = JSON.stringify(req, null, 4)
+        let respJSON = JSON.stringify(resp, null, 4)
+
+        // Clone
+        let panel =
+            document.getElementById("results-template") as HTMLTemplateElement
+        let clone = panel.content.cloneNode(true) as HTMLDivElement
+
+        // Append template
+        let results = document.getElementById("results") as HTMLDivElement
+        results.textContent = ""
+        results.appendChild(clone)
+
+        // Set template values...
+        // Link form
+        let form = results.getElementsByClassName("x-app-url")[0] as
+            HTMLFormElement
+        form.action = resp.url
+        form.method = req.method as string
+        let link = form.getElementsByTagName("a")[0] as HTMLAnchorElement
+        link.textContent = resp.url
+        // Req
+        let reqElem = results.getElementsByClassName("x-app-req")[0] as
+            HTMLPreElement
+        reqElem.innerText = reqJSON
+        // Resp
+        let respElem =
+            results.getElementsByClassName("x-app-resp")[0] as
+            HTMLPreElement
+        respElem.innerText = respJSON
+    }
+
+    // .........................................................................
 
     // Progress indicator example
     // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#download-progress
@@ -188,13 +225,12 @@ export namespace index {
                 );
             })
             .then(response => {
-                // TODO 
                 console.info("response", response)
                 // construct a blob from the data
                 if (response == null) {
                     return
                 }
-                response.blob()
+                return response.blob()
             }).then(data => {
                 console.info("data", data)
                 if (data == null) {
@@ -210,12 +246,37 @@ export namespace index {
             })
     }
 
+    // .........................................................................
+    
+    // Simultaneous requests example
     export function simultaneous() {
+        var options: RequestInit = {
+            headers: {
+                Accept: "application/json",
+            }
+        }
+        let url1 = 
+            "https://petstore.swagger.io/v2/pet/findByStatus?status=pending"
+        let url2 = 
+            "https://petstore.swagger.io/v2/pet/findByStatus?status=sold"
+        Promise.all([
+            fetch(url1, options),
+            fetch(url2, options),
+        ])
+            .then(async ([res1, res2]) => {
+                const d1 = await res1.json()
+                const d2 = await res2.json()
+                console.info(d1)
+                console.info(d2)
+                setPetStoreResp([url1, url2], options, [d1, d2])
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
-    // setResults of the HTTP request
-    export function setResults(req: RequestInit, resp: HttpbinResp) {
-        let reqJSON = JSON.stringify(req, null, 4)
+    export function setPetStoreResp(urls: string[], req: RequestInit, resp: any) {
+        let reqJSON = JSON.stringify({urls: urls, req}, null, 4)
         let respJSON = JSON.stringify(resp, null, 4)
 
         // Clone
@@ -232,10 +293,7 @@ export namespace index {
         // Link form
         let form = results.getElementsByClassName("x-app-url")[0] as
             HTMLFormElement
-        form.action = resp.url
-        form.method = req.method as string
-        let link = form.getElementsByTagName("a")[0] as HTMLAnchorElement
-        link.textContent = resp.url
+        form.remove()
         // Req
         let reqElem = results.getElementsByClassName("x-app-req")[0] as
             HTMLPreElement
@@ -246,4 +304,9 @@ export namespace index {
             HTMLPreElement
         respElem.innerText = respJSON
     }
+
+    // .........................................................................
+
+    // TODO Wrapper example
+
 }
