@@ -37,30 +37,6 @@ Open the index page in your browser and browse the examples
 
 **TODO** Refactor examples listed below
 
-## http
-
-Example of doing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) a.k.a. [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX)  
-
-Makes use of the [jqXHR](https://api.jquery.com/jquery.ajax) wrapper around the browsers native XMLHttpRequest object, and [jquery-growl](https://github.com/ksylvest/jquery-growl) for messaging the user
-
-Build
-```bash
-cd ts/http
-./build.sh
-```
-    
-Open the index file in your default browser to run the example. It will make some requests to [httpbin](https://httpbin.org) and display the results
-```bash
-open build.index.html
-```
-
-Make some changes, run `build.sh` again, and click the browser refresh button to see the results
-
-Watch and rebuild when files are changed, you still have to refresh the browser window manually
-```bash
-./watch.sh
-```
-
 ## template
 
 Basic template loader and cache, makes use of the `http` lib described above.
