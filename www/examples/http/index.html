@@ -32,16 +32,12 @@
                         Progress indicator</a></li>
                 <li><a href="javascript:" x-on:click="examples.http.simultaneous()">
                         Simultaneous requests</a></li>
+                <li><a href="javascript:" x-on:click="examples.http.requestInterface()">
+                        Request interface</a></li>
             </ul>
         </div>
 
         <div id="results" class="w3-container">&nbsp;</div>
-
-        <!-- TODO Move to template -->
-        <div class="w3-container">
-            <div id="progress">progress</div>
-            <img id="img" src="">
-        </div>
 
         <!-- https://www.w3schools.com/tags/tag_template.asp -->
         <template id="results-template">
@@ -61,6 +57,13 @@
                 <p>
                 <pre class="x-app-resp">&nbsp;</pre>
                 </p>
+            </div>
+        </template>
+
+        <template id="results-template-2">
+            <div class="w3-container">
+                <div id="progress">progress</div>
+                <img id="img" src="">
             </div>
         </template>
     </div>

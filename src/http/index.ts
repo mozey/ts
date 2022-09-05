@@ -130,7 +130,7 @@ export namespace index {
             });
     }
 
-    export function setHttpbinResp(req: RequestInit, resp: HttpbinResp) {
+    function setHttpbinResp(req: RequestInit, resp: HttpbinResp) {
         let reqJSON = JSON.stringify(req, null, 4)
         let respJSON = JSON.stringify(resp, null, 4)
 
@@ -168,6 +168,16 @@ export namespace index {
     // Progress indicator example
     // https://blog.logrocket.com/axios-vs-fetch-best-http-requests/#download-progress
     export function progress() {
+        // Clone
+        let panel =
+            document.getElementById("results-template-2") as HTMLTemplateElement
+        let clone = panel.content.cloneNode(true) as HTMLDivElement
+
+        // Append template
+        let results = document.getElementById("results") as HTMLDivElement
+        results.textContent = ""
+        results.appendChild(clone)
+
         const element = document.getElementById('progress') as HTMLDivElement;
         let setProgress = function ({ loaded, total }: any) {
             element.innerHTML = Math.round(loaded / total * 100) + '%';
@@ -275,7 +285,23 @@ export namespace index {
             });
     }
 
-    export function setPetStoreResp(urls: string[], req: RequestInit, resp: any) {
+    // Example usage of the Request interface of the Fetch API 
+    // https://developer.mozilla.org/en-US/docs/Web/API/Request
+    export async function requestInterface() {
+        let url1 = 
+            "https://petstore.swagger.io/v2/pet/findByStatus?status=pending"
+        var options: RequestInit = {
+            headers: {
+                Accept: "application/json",
+            }
+        }
+        const req = new Request(url1, options)
+        let j = await fetch(req).then(response => response.json());
+        console.info("Response JSON =>", j)
+        setPetStoreResp([url1], options, [j])
+    }
+
+    function setPetStoreResp(urls: string[], req: RequestInit, resp: any) {
         let reqJSON = JSON.stringify({urls: urls, req}, null, 4)
         let respJSON = JSON.stringify(resp, null, 4)
 
@@ -307,6 +333,6 @@ export namespace index {
 
     // .........................................................................
 
-    // TODO Wrapper example
+    // TODO Wrapper example, see http/http.ts
 
 }
