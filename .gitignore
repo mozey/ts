@@ -18,8 +18,10 @@
 # vendor/
 
 /_excluded
+/www/dist
+/.env
 
-# TODO Move below to .gitignore files inside example dirs
+# TODO Remove lines below after refactoring.....................................
 
 /http/build
 /http/build.index.html
