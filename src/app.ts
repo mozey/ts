@@ -7,10 +7,11 @@ window.alpine = Alpine
 window.examples = ExamplesNS
 
 Alpine.store("data", {
-  examples: "Examples"
+  header: "Mostly TypeScript Examples"
 })
 
 // "Extensions must have been registered IN BETWEEN when the Alpine
 // global object is imported and when Alpine is initialized with
 // the Alpine.start() call"
+// https://alpinejs.dev/advanced/extending
 Alpine.start()

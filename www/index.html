@@ -11,7 +11,13 @@
 
 <body>
   <div x-data class="w3-container">
-    <h3><a href="/examples" x-text="$store.data.examples">Examples</a></h3>
+    <h3 x-text="$store.data.header">&nbsp;</h3>
+
+    <p>
+      <ul><li><a href="/examples/http">HTTP Client</a></li></ul>
+      <ul><li><a href="/examples/templates">Templates</a></li></ul>
+      <ul><li><a href="/examples/web_components">Web Components</a></li></ul>
+    </p>
   </div>
 
   <script src="/dist/app.js"></script>
