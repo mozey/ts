@@ -32,16 +32,16 @@
   </div>
 
   <template id="my-paragraph-sd">
-    <!-- Using Shadow DOM the styles below are contained in the component -->
     <style>
       p {
-        color: white;
-        background-color: #666;
-        padding: 5px;
+        color: DarkSlateBlue;
+        background-color: BurlyWood;
       }
     </style>
+    <!-- CSS classes not applied inside Shadow Root?  -->
     <div class="w3-container">
-      <p>Template style tag contained in the component</p>
+      <p class="w3-padding-small">
+        Template style tag contained in component with Shadow DOM</p>
     </div>
   </template>
 

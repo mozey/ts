@@ -44,7 +44,9 @@ export class Template {
         }
     }
 
-    // Set specified template variables
+    /** 
+     * Set specified template variables
+     */ 
     setVariables(s: string): string {
         for (var variable of this.options.variables) {
             // Replace template variables with values
@@ -54,6 +56,9 @@ export class Template {
         return s
     }
 
+    /** 
+     * Insert HTML template
+     */ 
     insert(template: string): ShadowRoot|null {
         let root = document.querySelector(this.options.selector) as Element
         if (root) {
@@ -69,6 +74,9 @@ export class Template {
     
             // Just insert the template
             root.innerHTML = template;
+
+            // Difference between null and undefined
+            // https://stackoverflow.com/a/5076962/639133
             return null
         }
 
@@ -77,9 +85,10 @@ export class Template {
     }
 
     /**
-     * @param path To load template from
-     * @param complete Is called after the template is inserted,
-     * root is only defined if the shadowDOM option is set
+     * Load a template that is not defined in a tag on the page
+     * @param path Path to the template file, or cache key
+     * @param complete This function is called after the template is inserted,
+     *  the root param is only defined if the shadowDOM option is set
      */
     async load(path: string, complete?: (root: ShadowRoot|null) => void) {
         try {

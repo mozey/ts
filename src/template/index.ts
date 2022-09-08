@@ -12,6 +12,8 @@ export namespace index {
     }
 
     export function loadTemplate() {
+        // Note that the style in the template is only applied once,
+        // and only if this example runs before the tag example
         let options = new TemplateOptions()
         let variables: TemplateVariable[] = [
             new TemplateVariable("Counter", sprintf("%i", loadTemplateCounter)),
