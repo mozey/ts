@@ -16,7 +16,7 @@ The application is organized like a static site using folders and files, instead
 
 This approach encourages using production tools, like [hugo](https://gohugo.io/) (static site generator), and [Caddy](https://caddyserver.com/) (file server), in the development environment too.
 
-Pages can use [AlpineJS](https://alpinejs.dev/) syntax for composing behavior directly in the markup, or access more complex logic via the `window.app` namespace. The `windows.alpine` is made available to improve [DX](https://en.wikipedia.org/wiki/User_experience#Developer_experience). Additional code can easily be included inline, or imported from external files, with [script tags](https://www.w3schools.com/tags/tag_script.asp)
+Pages can use [AlpineJS](https://alpinejs.dev/) syntax for composing behavior directly in the markup, or access more complex logic via the `window.app` namespace. The `windows.alpine` global is made available to improve [DX](https://en.wikipedia.org/wiki/User_experience#Developer_experience). Additional JavaScript code can easily be included inline, or imported from external files, with [script tags](https://www.w3schools.com/tags/tag_script.asp)
 
 
 ## Demo
