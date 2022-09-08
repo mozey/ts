@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>examples/web_components</title>
+  <link rel="stylesheet" href="/dist/app.css">
+</head>
+
+<body>
+  <div x-data class="w3-container">
+    <h3>
+      <a href="https://github.com/mozey/ts/tree/main/src/component#readme">
+        Web Component Examples</a>
+    </h3>
+    <p>
+      Click the links below to render components,
+      and view the logs in the
+      <a href="https://www.w3schools.com/js/js_debugging.asp">Dev Console</a>
+    </p>
+    <p>
+      Also see <a href="/examples/templates">templates</a>
+    </p>
+    <ul>
+      <li><a href="javascript:" x-on:click="examples.component.shadowDOM()">
+          Shadow DOM</a></li>
+      <li><a href="javascript:" x-on:click="examples.component.namedSlots()">
+          Named slots</a></li>
+    </ul>
+  </div>
+
+  <template id="my-paragraph-sd">
+    <!-- Using Shadow DOM the styles below are contained in the component -->
+    <style>
+      p {
+        color: white;
+        background-color: #666;
+        padding: 5px;
+      }
+    </style>
+    <div class="w3-container">
+      <p>Template style tag contained in the component</p>
+    </div>
+  </template>
+
+  <template id="element-details-template">
+    <style>
+      details {
+        font-family: "Open Sans Light", Helvetica, Arial
+      }
+
+      .name {
+        font-weight: bold;
+        color: #217ac0;
+        font-size: 120%
+      }
+
+      h4 {
+        margin: 10px 0 -8px 0;
+      }
+
+      h4 span {
+        background: #217ac0;
+        padding: 2px 6px 2px 6px
+      }
+
+      h4 span {
+        border: 1px solid #cee9f9;
+        border-radius: 4px
+      }
+
+      h4 span {
+        color: white
+      }
+
+      .attributes {
+        margin-left: 22px;
+        font-size: 90%
+      }
+
+      .attributes p {
+        margin-left: 16px;
+        font-style: italic
+      }
+    </style>
+    <details>
+      <summary>
+        <span>
+          <code class="name">&lt;<slot name="element-name">NEED NAME</slot>&gt;</code>
+          <span class="desc">
+            <slot name="description">NEED DESCRIPTION</slot>
+          </span>
+        </span>
+      </summary>
+      <div class="attributes">
+        <h4><span>Attributes</span></h4>
+        <slot name="attributes">
+          <p>None</p>
+        </slot>
+      </div>
+    </details>
+    <hr>
+  </template>
+
+  <script src="/dist/app.js"></script>
+</body>
+
+</html>

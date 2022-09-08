@@ -20,33 +20,30 @@
       and view the logs in the
       <a href="https://www.w3schools.com/js/js_debugging.asp">Dev Console</a>
     </p>
+    <p>
+      Also see <a href="/examples/web-components">web-components</a>
+    </p>
     <ul>
       <li><a href="javascript:" x-on:click="examples.template.template()">
           Template</a></li>
-      <li><a href="javascript:" x-on:click="examples.template.shadowDOM()">
-          Shadow DOM</a></li>
+      <li><a href="javascript:" x-on:click="examples.template.loadTemplate()">
+          Load template from file</a></li>
     </ul>
   </div>
 
-  <template id="my-paragraph">
-    <!-- A style tag here (like the Shadow DOM example below)
-        would affect elements in the the rest of the page -->
-    <div class="w3-container">
-      <p>My paragraph</p>
-    </div>
-  </template>
+  <div id="root" class="w3-container"></div>
 
-  <template id="my-paragraph-sd">
-    <!-- Using Shadow DOM the styles below is contained in the component -->
-    <style>
-      p {
-        color: white;
-        background-color: #666;
-        padding: 5px;
-      }
-    </style>
+  <template id="my-paragraph">
+    <!-- A style tag here (when not using Shadow DOM)
+        affect elements in the rest of the page too -->
     <div class="w3-container">
-      <p>My paragraph</p>
+      <style>
+        p {
+          color: Tan;
+          background-color: DarkSlateGray;
+        }
+      </style>
+      <p class="w3-padding-small">Template style tags affect the rest of the page</p>
     </div>
   </template>
 
