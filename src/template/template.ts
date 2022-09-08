@@ -1,9 +1,5 @@
 import { sprintf } from "sprintf-js"
-
-export enum ShadowMode {
-    open = "open",
-    closed = "closed",
-}
+import { ShadowMode } from "./utils"
 
 export class TemplateVariable {
     // key to replace, e.g. "{{.Key}}"
@@ -65,7 +61,7 @@ export class Template {
             if (this.options.shadowDOM) {
                 // Use shadow DOM
                 root.attachShadow(<ShadowRootInit>{
-                    mode: sprintf("%s", this.options.shadowMode),
+                    mode: this.options.shadowMode,
                 })
                 root.innerHTML = template;
                 // @ts-ignore

@@ -23,17 +23,17 @@
                 <a href="https://www.w3schools.com/js/js_debugging.asp">Dev Console</a>
             </p>
             <ul>
-                <li><a href="javascript:" x-on:click="examples.http.post()">
+                <li><a href="javascript:" x-on:click="app.examples.http.post()">
                         Post</a></li>
-                <li><a href="javascript:" x-on:click="examples.http.timeout()">
+                <li><a href="javascript:" x-on:click="app.examples.http.timeout()">
                         Timeout</a></li>
-                <li><a href="javascript:" x-on:click="examples.http.interceptor()">
+                <li><a href="javascript:" x-on:click="app.examples.http.interceptor()">
                         Intercept requests</a></li>
-                <li><a href="javascript:" x-on:click="examples.http.progress()">
+                <li><a href="javascript:" x-on:click="app.examples.http.progress()">
                         Progress indicator</a></li>
-                <li><a href="javascript:" x-on:click="examples.http.simultaneous()">
+                <li><a href="javascript:" x-on:click="app.examples.http.simultaneous()">
                         Simultaneous requests</a></li>
-                <li><a href="javascript:" x-on:click="examples.http.requestInterface()">
+                <li><a href="javascript:" x-on:click="app.examples.http.requestInterface()">
                         Request interface</a></li>
             </ul>
         </div>
@@ -74,9 +74,9 @@
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
         window.addEventListener('load', (event) => {
             // Demonstrating the "load" event, and calling a function 
-            // on the global "examples" namespace, see src/examples.ts,
-            // and log in the Dev Console
-            examples.http.sayHello();
+            // on the global "app" namespace, see src/app.ts,
+            // and logs in the Dev Console
+            app.examples.http.sayHello();
         });
     </script>
 </body>

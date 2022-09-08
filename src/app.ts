@@ -1,10 +1,16 @@
 import Alpine from 'alpinejs'
-import { examples as ExamplesNS } from "./examples"
+import { index as httpIndexNS } from "./http/index";
+import { index as templateIndexNS } from "./template/index";
 import 'w3-css/w3.css';
 
-// Make globals available on window for better DX
-window.alpine = Alpine
-window.examples = ExamplesNS
+// app is a singleton
+// https://stackoverflow.com/a/30174360/639133
+export namespace app {
+  export let examples = {
+      http: httpIndexNS,
+      template: templateIndexNS,
+  }
+}
 
 Alpine.store("data", {
   header: "Mostly TypeScript Examples"
@@ -15,3 +21,7 @@ Alpine.store("data", {
 // the Alpine.start() call"
 // https://alpinejs.dev/advanced/extending
 Alpine.start()
+
+// Make globals available on window for better DX
+window.alpine = Alpine
+window.app = app

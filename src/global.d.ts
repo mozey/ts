@@ -1,7 +1,7 @@
 import { Alpine as AlpineType } from 'alpinejs'
-import { examples as ExamplesNS } from "./examples"
+import { app as appNS } from "./app"
 
 declare global {
   var alpine: AlpineType
-  var examples: ExamplesNS
+  var app: appNS
 }
