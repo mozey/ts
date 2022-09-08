@@ -8,6 +8,10 @@ Consider the following quote re. [frameworks vs libraries](https://martinfowler.
 
 The ability to easily inspect and understand the [DOM](https://www.w3schools.com/whatis/whatis_htmldom.asp), and instant visual feedback, is an important part of what makes programming the browser fun. Many modern frameworks make it very hard for the user to understand the rendered page source by wrapping it in layers of metadata tags. Or, using techniques like [Virtual DOM (is pure overhead)](https://svelte.dev/blog/virtual-dom-is-pure-overhead).
 
+The [TypeScript](https://www.typescriptlang.org/) compiler is used for static code analysis, see [scripts/build.sh](https://github.com/mozey/ts/blob/main/scripts/build.sh)
+
+Bundling is done with [esbuild](https://esbuild.github.io/): *"current build tools for the web are 10-100x slower than they could be. The main goal of the esbuild bundler project is to bring about a new era of build tool performance, and create an easy-to-use modern bundler along the way"*
+
 
 ## Demo
 
@@ -37,30 +41,6 @@ Open the index page in your browser and browse the examples
 
 **TODO** Refactor examples listed below
 
-## template
-
-Basic template loader and cache, makes use of the `http` lib described above.
-
-Note that `build.sh` creates a symlink to `ts/http/lib` (JavaScript files),
-and copies TypeScript libraries to `ts/template/src`.
-The latter are included by `tsconfig.json` and compiled to `build/app.js` 
-
-Build
-```bash
-cd ts/template
-./build.sh
-```
-
-Run
-```bash
-open build.index.html
-```
-
-Reset to remove build artifacts
-```bash
-./reset.sh
-```
-   
 ## datepicker
 
 Simple datepicker using `<select>` tags.
