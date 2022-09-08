@@ -1,5 +1,6 @@
 import { sprintf } from "sprintf-js"
 import { ShadowMode } from "./utils"
+import { config } from "../config/config"
 
 export class TemplateVariable {
     // key to replace, e.g. "{{.Key}}"
@@ -24,7 +25,7 @@ export class TemplateOptions {
     // shadowMode is open by default, and only applicable if shadowDOM is set
     // https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/mode
     shadowMode: ShadowMode = ShadowMode.open
-    // variables to set before template is appended
+    // variables to set before template is appended, not used with clone method
     variables: TemplateVariable[] = []
 }
 
@@ -81,30 +82,47 @@ export class Template {
     }
 
     /**
+     * Fetch HTML template string
+     * @param path Path to the template file, or template cache key
+     */
+    async fetch(path: string): Promise<string> {
+        let template: string
+        if (config.TemplateCacheEnabled == "true") {
+            // Allowing dynamic fetching of templates in prod 
+            // might not a good idea due to CSP concerns, 
+            // see comments for this question
+            // https://stackoverflow.com/questions/36631762/returning-html-with-fetch
+            if (window.app.templates) {
+                return Promise.resolve(window.app.templates[path])
+            } else {
+                return Promise.resolve("Template cache undefined")
+            }
+        }
+        try {
+            // Fetch template dynamically from specified path
+            let url = this.options.baseURL
+            url.pathname = path
+            let resp = await fetch(url.toString());
+            template = await resp.text();
+            return this.setVariables(template)
+        } catch (err) {
+            console.error(sprintf("load %s", path), err);
+            return Promise.resolve("Error fetching template")
+        }
+    }
+
+    // TODO Define interface for complete func
+    /**
      * Load a template that is not defined in a tag on the page
-     * @param path Path to the template file, or cache key
+     * @param path Path to the template file, or template cache key
      * @param complete This function is called after the template is inserted,
      *  the root param is only defined if the shadowDOM option is set
      */
     async load(path: string, complete?: (root: ShadowRoot|null) => void) {
-        try {
-            let url = this.options.baseURL
-            url.pathname = path
-            // TODO Option load templates from "app.cache" only.
-            // Allowing dynamic loading of templates in prod 
-            // probably not a good idea due to CSP concerns?
-            // See comments for this question
-            // https://stackoverflow.com/questions/36631762/returning-html-with-fetch
-            let resp = await fetch(url.toString());
-            let raw = await resp.text();
-            let template = this.setVariables(raw)
-            let root = this.insert(template)
-            if (complete) {
-                complete(root)
-            }
-
-        } catch (err) {
-            console.error(sprintf("load %s", path), err);
+        let template = await this.fetch(path)
+        let root = this.insert(template)
+        if (complete) {
+            complete(root)
         }
     }
 }
