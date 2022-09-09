@@ -56,53 +56,6 @@ Build, run and reset works the same as the previous examples
 
 **TODO** Move to [dropaday](https://github.com/mozey/dropaday)?
 
-
-## webcomponent
-
-Web components use [Shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
-to encapsulate a widget's DOM tree from the rest of the page.
-This is useful to prevent issues like
-- Duplicate DOM element IDs
-- JS namespace clashes
-- CSS leaking
-- etc?
-
-Shadow DOM is not to be confused with Virtual DOM, a performance optimization 
-technique where a copy of the UI is kept in memory and occasionally synced 
-with what the user sees. 
-
-More info on 
-[using custom elements](https://developers.google.com/web/fundamentals/web-components/customelements),
-and here is a tutorial on 
-[understanding the Shadow DOM](https://blog.logrocket.com/understanding-shadow-dom-v1-fa9b81ebe3ac)
-
-Older browser versions not supporting Shadow DOM can use the
-[webcomponentsjs polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)
-
-Build
-```bash
-./build.sh
-```
-
-### Web Component Example 1
-
-Load and render template into a div (with shadow DOM), set heading using a 
-[slot](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots)
-```bash
-APP_PORT=$(cat ./build.port) && open http://localhost:${APP_PORT}/build.index.html
-```
-
-### Web Component Example 2
-
-VueJS single file component wrapped as a custom element.
-
-This example uses the pre-built `vuejs/weather/dist-vuejs-weather.js` widget,
-To make sense of the source code in `vuejs/weather` see the
-[README](https://github.com/mozey/ts/tree/main/webcomponent/vuejs)
-```bash
-open index2.html
-``` 
-
 ## [store](https://github.com/mozey/ts/tree/main/store) 
 
 State sharing using a simple store pattern 
