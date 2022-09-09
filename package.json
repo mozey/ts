@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@types/alpinejs": "^3.7.0",
+    "@types/luxon": "^3.0.1",
     "@types/sprintf-js": "^1.1.2"
   }
 }

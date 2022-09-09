@@ -22,6 +22,9 @@ esbuild --version >/dev/null 2>&1 ||
     echo "Install esbuild https://formulae.brew.sh/formula/esbuild"
     exit 1
   }
+# TODO Possible to make esbuild include ES Modules?
+# Or import in app.ts?
+    # --external:"luxon" \
 esbuild "${APP_DIR}"/src/app.ts --sourcemap --bundle \
     --outfile="${APP_DIR}"/www/dist/app.js
 
