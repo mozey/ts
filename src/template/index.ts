@@ -5,6 +5,7 @@ import { Component } from "./component";
 export namespace index {
     let appendFromFileCounter = 1
     let appendCustomElementFromFileCounter = 1
+    let namedSlotsCounter = 1
 
     export function appendFromPage() {
         let template =
@@ -42,17 +43,17 @@ export namespace index {
         // Generate unique element name and template ID for each function call
         let customElementName = sprintf(
             "my-paragraph-%i", appendCustomElementFromFileCounter)
-        
+
         let variables: TemplateVariable[] = [
             new TemplateVariable(
                 "Counter", sprintf("%i", appendCustomElementFromFileCounter)),
             new TemplateVariable(
-                "Append", (appendCustomElementFromFileCounter > 1) ? 
-                    "times" : "time"),
+                "Append", (appendCustomElementFromFileCounter > 1) ?
+                "times" : "time"),
         ]
 
         Template.fetch(
-            Template.getBaseURL(), 
+            Template.getBaseURL(),
             "examples/templates/data/my-paragraph.html",
             variables).then(template => {
                 Component.defineFromString(
@@ -62,24 +63,32 @@ export namespace index {
             })
     }
 
+    // See "Creating a template with some slots"
+    // https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots#a_more_involved_example
     export function namedSlots() {
-        // TODO
-        alert("Not implemented")
-        // // Creating a template with some slots
-        // // https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots#creating_a_template_with_some_slots
-        // customElements.define('element-details',
-        //     class extends HTMLElement {
-        //         constructor() {
-        //             super();
-        //             const template = 
-        //                 document.getElementById('element-details-template') as 
-        //                 HTMLTemplateElement;
-        //             let templateContent = template.content;
-        //             const shadowRoot = this.attachShadow({ mode: 'open' });
-        //             shadowRoot.appendChild(templateContent.cloneNode(true));
-        //         }
-        //     }
-        // );
+        // Generate unique element name and template ID for each function call
+        let customElementName = sprintf(
+            "element-details-%i", namedSlotsCounter)
+
+        let appendSnippet = () => {
+            let variables: TemplateVariable[] = [
+                new TemplateVariable("ElementDetails", customElementName),
+            ]
+            let options = new TemplateOptions()
+            options.variables = variables
+            let t = new Template(options)
+            t.load("examples/templates/data/element-details.html");
+            namedSlotsCounter++
+        }
+        let defineComponent = (template: string) => {
+            Component.defineFromString(
+                customElementName, customElementName, template)
+            appendSnippet()
+        }
+        Template.fetch(
+            Template.getBaseURL(),
+            "examples/templates/data/element-details-template.html").then(
+                defineComponent)
     }
 
     export function componentUsingVueJS() {
