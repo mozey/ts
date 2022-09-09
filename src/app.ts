@@ -2,6 +2,8 @@ import Alpine from 'alpinejs'
 import { index as datepickerIndexNS } from "./datepicker/index";
 import { index as httpIndexNS } from "./http/index";
 import { index as templateIndexNS } from "./template/index";
+
+// Files to include in the build
 import 'w3-css/w3.css';
 import 'luxon/luxon.js';
 
