@@ -56,6 +56,8 @@ Build, run and reset works the same as the previous examples
 
 **TODO** Move to [dropaday](https://github.com/mozey/dropaday)?
 
+## loader
+
 ## [store](https://github.com/mozey/ts/tree/main/store) 
 
 State sharing using a simple store pattern 
