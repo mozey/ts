@@ -23,9 +23,9 @@ export class Component {
                         let clone = template.content.cloneNode(true)
                         if (injectAppStyle) {
                             // If app styles are included with a link tag,
-                            // injecting it will result another network request.
-                            // That can be avoided by inlining app.css as part
-                            // of the build process
+                            // injecting it will make another network request.
+                            // That can be avoided by inlining app.css in a 
+                            // style tag as part of the build process
                             let appStyle = document.getElementById(
                                 "app-stylesheet") as HTMLElement
                             shadowRoot.appendChild(appStyle.cloneNode(true))

@@ -93,6 +93,7 @@ export namespace index {
 
     export function componentUsingVueJS() {
         console.info("TODO")
+        // See webcomponent/vuejs
     }
 }
 
