@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>web-components</title>
-  <link rel="stylesheet" href="/dist/app.css">
+  <link id="app-stylesheet" rel="stylesheet" href="/dist/app.css">
 </head>
 
 <body>
@@ -22,11 +22,9 @@
       Also see <a href="/examples/templates">templates</a>
     </p>
     <ul>
-      <li><a href="javascript:" x-on:click="app.examples.template.shadowDOM()">
-          Shadow DOM</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.customElement()">
-          Custom element</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.loadCustomElement()">
+      <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromPage()">
+          Custom element with Shadow DOM</a></li>
+      <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromFile()">
           Custom element from file</a></li>
       <li><a href="javascript:" x-on:click="app.examples.template.namedSlots()">
           Named slots</a></li>
@@ -35,17 +33,18 @@
 
   <div id="root" class="w3-container"></div>
 
-  <template id="my-paragraph-sd">
+  <template id="my-paragraph">
     <style>
       p {
-        color: DarkSlateBlue;
-        background-color: BurlyWood;
+        color: Tan;
+        background-color: DarkSlateGray;
       }
     </style>
-    <!-- CSS classes not applied inside Shadow Root?  -->
     <div class="w3-container">
       <p class="w3-padding-small">
-        Template style tag contained in component with Shadow DOM</p>
+        Template style tag contained in component with Shadow DOM.
+        The styles in app.css are not applied by default
+      </p>
     </div>
   </template>
 

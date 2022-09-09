@@ -3,56 +3,63 @@ import { Template, TemplateOptions, TemplateVariable } from "./template";
 import { Component } from "./component";
 
 export namespace index {
-    let loadTemplateCounter = 1
+    let appendFromFileCounter = 1
+    let appendCustomElementFromFileCounter = 1
 
-    export function template() {
+    export function appendFromPage() {
         let template =
             document.getElementById('my-paragraph') as HTMLTemplateElement
         let templateContent = template.content.cloneNode(true);
         document.body.appendChild(templateContent);
     }
 
-    export function loadTemplate() {
-        // Note that the style in the template is only applied once,
-        // and only if this example runs before the tag example
+    // Note that this method does not create a new template element on the page
+    export function appendFromFile() {
         let options = new TemplateOptions()
         let variables: TemplateVariable[] = [
-            new TemplateVariable("Counter", sprintf("%i", loadTemplateCounter)),
+            new TemplateVariable("Counter", sprintf("%i", appendFromFileCounter)),
             new TemplateVariable(
-                "Append", (loadTemplateCounter > 1) ? "times" : "time"),
+                "Append", (appendFromFileCounter > 1) ? "times" : "time"),
         ]
         options.variables = variables
         let template = new Template(options)
-        template.load("examples/templates/_my-paragraph.html");
-        loadTemplateCounter++
+        template.load("examples/templates/data/my-paragraph.html");
+        appendFromFileCounter++
     }
 
-    // TODO Template not displayed?
-    export function shadowDOM() {
-        let options = new TemplateOptions()
-        options.shadowDOM = true
-        let variables: TemplateVariable[] = [
-            new TemplateVariable("Counter", sprintf("%i", loadTemplateCounter)),
-            new TemplateVariable(
-                "Append", (loadTemplateCounter > 1) ? "times" : "time"),
-        ]
-        options.variables = variables
-        let template = new Template(options)
-        template.load("examples/templates/_my-paragraph.html");
-        loadTemplateCounter++
-    }
-
-    export function customElement() {
+    export function appendCustomElementFromPage() {
         let customElementName = "my-paragraph"
-        Component.define(customElementName, "my-paragraph-sd")
+        // Note the error that is logged if the customer element already exists.
+        // Also note that app.css is not applied by default inside Shadow Root
+        Component.define(customElementName, "my-paragraph")
+        // Definition errors are caught, so append will always succeed
         Component.append("body", customElementName)
     }
 
-    export function loadCustomElement() {
-        let customElementName = "my-paragraph-2"
-        // TODO Load template string from file (or cache)
-        Component.defineString(customElementName, "<p>foo</p>")
-        Component.append("body", customElementName)
+    // Note that this method creates a new template element on the page,
+    // the template element is then cloned when the component is appended
+    export function appendCustomElementFromFile() {
+        // Generate unique element name and template ID for each function call
+        let customElementName = sprintf(
+            "my-paragraph-%i", appendCustomElementFromFileCounter)
+        
+        let variables: TemplateVariable[] = [
+            new TemplateVariable(
+                "Counter", sprintf("%i", appendCustomElementFromFileCounter)),
+            new TemplateVariable(
+                "Append", (appendCustomElementFromFileCounter > 1) ? 
+                    "times" : "time"),
+        ]
+
+        Template.fetch(
+            Template.getBaseURL(), 
+            "examples/templates/data/my-paragraph.html",
+            variables).then(template => {
+                Component.defineFromString(
+                    customElementName, customElementName, template, true)
+                Component.append("body", customElementName)
+                appendCustomElementFromFileCounter++
+            })
     }
 
     export function namedSlots() {

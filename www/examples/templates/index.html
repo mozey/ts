@@ -22,25 +22,23 @@
       Also see <a href="/examples/templates/web-components.html">web-components</a>
     </p>
     <ul>
-      <li><a href="javascript:" x-on:click="app.examples.template.template()">
+      <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
           Template</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.loadTemplate()">
+      <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
           Load template from file</a></li>
     </ul>
   </div>
 
-  <div id="root" class="w3-container"></div>
-
   <template id="my-paragraph">
     <!-- A style tag here (when not using Shadow DOM)
         affect elements in the rest of the page too -->
+    <style>
+      p {
+        color: Tan;
+        background-color: DarkSlateGray;
+      }
+    </style>
     <div class="w3-container">
-      <style>
-        p {
-          color: Tan;
-          background-color: DarkSlateGray;
-        }
-      </style>
       <p class="w3-padding-small">
         Template style tags affect the rest of the page</p>
     </div>
