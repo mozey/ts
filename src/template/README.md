@@ -7,4 +7,10 @@
 - [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
 - HTML templates, i.e. [template](https://www.w3schools.com/tags/tag_template.asp) and [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) tags
 
+## component.ts
 
+Define and append Web Components
+
+## template.ts
+
+Fetch and append templates
