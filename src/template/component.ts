@@ -6,10 +6,10 @@ export class Component {
      * Define a custom HTML element, i.e. "Web Component",
      * using a template tag that is already defined on the page
      * @param name Name of the custom element
-     * @param id ID of the template tag to use
+     * @param templateID ID of the template tag to use
      * @param injectAppStyle Inject app.css into shadow root
      */
-    static define(name: string, id: string, injectAppStyle?: boolean) {
+    static define(name: string, templateID: string, injectAppStyle?: boolean) {
         try {
             customElements.define(name,
                 class extends HTMLElement {
@@ -18,7 +18,7 @@ export class Component {
                         const shadowRoot = this.attachShadow({ 
                             mode: ShadowMode.open 
                         }) as ShadowRoot;
-                        let template = document.getElementById(id) as 
+                        let template = document.getElementById(templateID) as 
                             HTMLTemplateElement;
                         let clone = template.content.cloneNode(true)
                         if (injectAppStyle) {
@@ -46,30 +46,34 @@ export class Component {
      * For templates that already exist on the page, 
      * use the Component.define method instead
      * @param name Name of the custom element
-     * @param id ID of the template tag to create
+     * @param templateID ID of the template tag to create
      * @param template Template HTML
      * @param injectAppStyle Inject app.css into shadow root
      */
     static defineFromString(
-        name: string, id: string, template: string, injectAppStyle?: boolean) {
+        name: string, templateID: string, template: string, injectAppStyle?: boolean) {
         // Append template
         let templateElement = document.createElement("template");
-        templateElement.id = id;
+        templateElement.id = templateID;
         templateElement.innerHTML = template;
         document.body.appendChild(templateElement)
         // Define custom element
-        this.define(name, id, injectAppStyle)
+        this.define(name, templateID, injectAppStyle)
     }
 
     /**
      * Append custom element to a container
      * @param selector Selector for the container
      * @param name Name of the custom element
+     * @param tagID ID of the custom element to append
      */
-    static append(selector: string, name: string) {
+    static append(selector: string, name: string, tagID?: string) {
         let container = document.querySelector(selector) as HTMLElement
         if (container) {
             let e = document.createElement(name) as HTMLElement
+            if (tagID) {
+                e.id = tagID
+            }
             container.appendChild(e)
         } else {
             console.error(sprintf("selector not found %s", selector))

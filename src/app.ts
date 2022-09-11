@@ -1,11 +1,12 @@
 import Alpine from "alpinejs"
+// import luxon from "luxon";
+import { $p as pure } from "pure";
 import { index as datepickerIndexNS } from "./datepicker/index";
 import { index as httpIndexNS } from "./http/index";
 import { index as templateIndexNS } from "./template/index";
 
 // Files to include in the build
 import "w3-css/w3.css";
-// import "pure-js/pure.js";
 
 // app is a singleton
 // https://stackoverflow.com/a/30174360/639133
@@ -30,5 +31,5 @@ Alpine.start()
 // Make globals available on window for better DX
 window.alpine = Alpine
 // window.luxon = luxon
-// window.pure = pure
+window.pure = pure
 window.app = app

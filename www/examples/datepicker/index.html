@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>datepicker</title>
-  <link rel="stylesheet" href="/dist/app.css">
+  <link id="app-stylesheet" rel="stylesheet" href="/dist/app.css">
 </head>
 
 <body>
@@ -21,10 +21,39 @@
     <ul>
       <li><a href="javascript:" x-on:click="app.examples.datepicker.appendSingle()">
           Datepicker</a></li>
+      <li><a href="javascript:" x-on:click="app.examples.datepicker.appendSingleShadowRoot()">
+          Datepicker with shadow root</a></li>
       <li><a href="javascript:" x-on:click="app.examples.datepicker.appendRange()">
           Pick a range of dates</a></li>
     </ul>
   </div>
+
+  <template id="date-picker-template">
+    <div id="date-picker" class="w3-container">
+      <h3>Select a date:</h3>
+      <div>
+          <select id="year" name="date1">
+              <option value=""></option>
+          </select>
+          <label for="year" style="display: none"></label>
+          <select id="month" name="date2">
+              <option value=""></option>
+          </select>
+          <label for="month" style="display: none"></label>
+          <select id="day" name="date3">
+              <option value=""></option>
+          </select>
+          <label for="day" style="display: none"></label>
+          <select id="time" name="time">
+              <option value=""></option>
+          </select>
+          <label for="time" style="display: none"></label>
+      </div>
+      <br>
+      <button id="format">Format date</button>
+      <span id="date">&nbsp;</span>
+    </div>
+  </template>
 
   <script src="/dist/app.js"></script>
 </body>

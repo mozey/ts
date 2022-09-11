@@ -2,6 +2,7 @@
   "dependencies": {
     "alpinejs": "^3.10.3",
     "luxon": "^3.0.3",
+    "pure": "^2.85.0",
     "sprintf-js": "^1.1.2",
     "w3-css": "^4.1.0"
   },

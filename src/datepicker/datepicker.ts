@@ -1,6 +1,6 @@
 import { DateTime, DateTimeFormatOptions } from "luxon";
 import { sprintf } from 'sprintf-js';
-// import pure from "pure"
+import { $p as pure } from "pure"
 
 export class DatepickerOptions {
     // Initial values
@@ -11,10 +11,10 @@ export class DatepickerOptions {
 
     // Selectors for dropdowns.
     // Pass empty string to ignore
-    yearSelector: string = ""
-    monthSelector: string = ""
-    daySelector: string = ""
-    timeSelector: string = ""
+    yearSelector: string = "#year"
+    monthSelector: string = "#month"
+    daySelector: string = "#day"
+    timeSelector: string = "#time"
 
     // Time can only be selected in this interval.
     // Pass zero to use default
@@ -55,6 +55,8 @@ export class DatepickerDate {
 }
 
 export class Datepicker {
+    container: HTMLElement|ShadowRoot
+
     options: DatepickerOptions
 
     // Current value
@@ -66,7 +68,9 @@ export class Datepicker {
     compiledDay!: (data: object) => string
     compiledTime!: (data: object) => string
 
-    constructor(options: DatepickerOptions) {
+    constructor(container: HTMLElement|ShadowRoot, options: DatepickerOptions) {
+        this.container = container
+
         // Shallow copy
         this.options = { ...options }
 
@@ -333,7 +337,7 @@ export class Datepicker {
     private renderYears(year: number) {
         let values = { values: this.getYears() }
         // console.info("values", JSON.stringify(values, null, "  "))
-        let e = document.querySelector(this.options.yearSelector) as
+        let e = this.container.querySelector(this.options.yearSelector) as
             HTMLSelectElement
         if (e) {
             e.innerHTML = this.compiledYear(values)
@@ -356,7 +360,7 @@ export class Datepicker {
     private renderMonths(month: number) {
         let values = { values: this.getMonths() }
         // console.info("values", JSON.stringify(values, null, "  "))
-        let e = document.querySelector(this.options.monthSelector) as
+        let e = this.container.querySelector(this.options.monthSelector) as
             HTMLSelectElement
         if (e) {
             e.innerHTML = this.compiledMonth(values)
@@ -379,7 +383,7 @@ export class Datepicker {
     private renderDays(day: number) {
         let values = { values: this.getDays() }
         // console.info("values", JSON.stringify(values, null, "  "))
-        let e = document.querySelector(this.options.daySelector) as
+        let e = this.container.querySelector(this.options.daySelector) as
             HTMLSelectElement
         if (e) {
             e.innerHTML = this.compiledDay(values)
@@ -402,7 +406,7 @@ export class Datepicker {
     private renderTimes(time: string) {
         let values = { values: this.getTimes() }
         // console.info("values", JSON.stringify(values, null, "  "))
-        let e = document.querySelector(this.options.timeSelector) as
+        let e = this.container.querySelector(this.options.timeSelector) as
             HTMLSelectElement
         if (e) {
             e.innerHTML = this.compiledTime(values)
@@ -417,8 +421,8 @@ export class Datepicker {
      */
     private bind() {
         // year
-        let yearElement = document.querySelector(this.options.yearSelector) as
-            HTMLSelectElement
+        let yearElement = this.container.querySelector(
+            this.options.yearSelector) as HTMLSelectElement
         if (yearElement) {
             // Add an event listener to an element
             // https://www.w3schools.com/jsref/met_element_addeventlistener.asp
@@ -430,8 +434,8 @@ export class Datepicker {
         }
         
         // month
-        let monthElement = document.querySelector(this.options.monthSelector) as
-            HTMLSelectElement
+        let monthElement = this.container.querySelector(
+            this.options.monthSelector) as HTMLSelectElement
         if (monthElement) {
             monthElement.addEventListener("change", () => {
                 this.current.month = Number(monthElement.value)
@@ -440,8 +444,8 @@ export class Datepicker {
         }
 
         // day
-        let dayElement = document.querySelector(this.options.daySelector) as
-            HTMLSelectElement
+        let dayElement = this.container.querySelector(
+            this.options.daySelector) as HTMLSelectElement
         if (dayElement) {
             dayElement.addEventListener("change", () => {
                 this.current.day = Number(dayElement.value)
@@ -449,8 +453,8 @@ export class Datepicker {
         }
 
         // time
-        let timeElement = document.querySelector(this.options.timeSelector) as
-            HTMLSelectElement
+        let timeElement = this.container.querySelector(
+            this.options.timeSelector) as HTMLSelectElement
         if (timeElement) {
             timeElement.addEventListener("change", () => {
                 this.current.time = String(timeElement.value)
@@ -460,45 +464,54 @@ export class Datepicker {
 
     render() {
         // Log error if selectors not found
-        let yearElement = document.querySelector(this.options.yearSelector) as
-            HTMLSelectElement
+        let yearElement = this.container.querySelector(
+            this.options.yearSelector) as HTMLSelectElement
         if (!yearElement) {
             console.error(
                 sprintf("year select not found %s", this.options.yearSelector))
         }
-        let monthElement = document.querySelector(this.options.monthSelector) as
-            HTMLSelectElement
+        let monthElement = this.container.querySelector(
+            this.options.monthSelector) as HTMLSelectElement
         if (!monthElement) {
             console.error(
                 sprintf("year select not found %s", this.options.monthSelector))
         }
-        let dayElement = document.querySelector(this.options.daySelector) as
-            HTMLSelectElement
+        let dayElement = this.container.querySelector(
+            this.options.daySelector) as HTMLSelectElement
         if (!dayElement) {
             console.error(
                 sprintf("year select not found %s", this.options.daySelector))
         }
-        let timeElement = document.querySelector(this.options.timeSelector) as
-            HTMLSelectElement
+        let timeElement = this.container.querySelector(
+            this.options.timeSelector) as HTMLSelectElement
         if (!timeElement) {
             console.error(
                 sprintf("year select not found %s", this.options.timeSelector))
         }
 
-        // // Compile render functions
-        // let directive = {
-        //     "option": {
-        //         "value<-values": {
-        //             "@value": "value.value",
-        //             ".": "value.display"
-        //         }
-        //     }
-        // }
-        // this.compiledYear =  pure(this.options.yearSelector).compile(directive)
-        // this.compiledMonth = $(this.options.monthSelector).compile(directive)
-        // this.compiledDay = $(this.options.daySelector).compile(directive)
+        // Compile render functions
+        let directive = {
+            "option": {
+                "value<-values": {
+                    "@value": "value.value",
+                    ".": "value.display"
+                }
+            }
+        }
+        this.compiledYear =  pure(this.options.yearSelector).compile(directive)
+        this.compiledMonth = pure(this.options.monthSelector).compile(directive)
+        this.compiledDay = pure(this.options.daySelector).compile(directive)
+        if (this.options.timeSelector !== "") {
+            this.compiledTime = 
+                pure(this.options.timeSelector).compile(directive)
+        }
+        // TODO This is required to make shadow root work?
+        // this.compiledYear =  pure(yearElement).compile(directive)
+        // this.compiledMonth = pure(monthElement).compile(directive)
+        // this.compiledDay = pure(dayElement).compile(directive)
         // if (this.options.timeSelector !== "") {
-        //     this.compiledTime = $(this.options.timeSelector).compile(directive)
+        //     this.compiledTime = 
+        //         pure(timeElement).compile(directive)
         // }
 
         // Render and set initial values
