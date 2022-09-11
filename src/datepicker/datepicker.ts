@@ -1,5 +1,6 @@
 import { DateTime, DateTimeFormatOptions } from "luxon";
 import { sprintf } from 'sprintf-js';
+// import pure from "pure"
 
 export class DatepickerOptions {
     // Initial values
@@ -484,7 +485,7 @@ export class Datepicker {
                 sprintf("year select not found %s", this.options.timeSelector))
         }
 
-        // Compile render functions
+        // // Compile render functions
         // let directive = {
         //     "option": {
         //         "value<-values": {
@@ -493,7 +494,7 @@ export class Datepicker {
         //         }
         //     }
         // }
-        // this.compiledYear = $(this.options.yearSelector).compile(directive)
+        // this.compiledYear =  pure(this.options.yearSelector).compile(directive)
         // this.compiledMonth = $(this.options.monthSelector).compile(directive)
         // this.compiledDay = $(this.options.daySelector).compile(directive)
         // if (this.options.timeSelector !== "") {
