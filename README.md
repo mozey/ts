@@ -18,6 +18,8 @@ This approach encourages using production tools, like [hugo](https://gohugo.io/)
 
 Pages can use [AlpineJS](https://alpinejs.dev/) syntax for composing behavior directly in the markup, or access more complex logic via the `window.app` namespace. The `windows.alpine` global is made available to improve [DX](https://en.wikipedia.org/wiki/User_experience#Developer_experience). Additional JavaScript code can easily be included inline, or imported from external files, with [script tags](https://www.w3schools.com/tags/tag_script.asp)
 
+Use native Javascript methods wherever possible, see for example [You Don't Need LoDash Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore). Most modern browsers support these methods natively, and for those that don't there is [es5-shim](https://github.com/es-shims/es5-shim)
+
 
 ## Demo
 
