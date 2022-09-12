@@ -100,5 +100,7 @@ export namespace index {
 
     export function appendRange() {
         alert("TODO")
+        // Example of controller logic with multiple datepickers objects,
+        // e.g. end date can't be before start date
     }
 }
