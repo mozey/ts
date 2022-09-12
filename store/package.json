@@ -1,9 +1,0 @@
-{
-    "name": "ts-store",
-    "version": "0.0.1",
-    "description": "",
-    "author": "",
-    "devDependencies": {
-        "@types/sprintf-js": "1.1.2"
-    }
-}

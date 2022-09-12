@@ -43,15 +43,3 @@ APP_DIR=$(pwd) ./scripts/up.sh
 ```
 
 Open the index page in your browser and browse the examples
-
-
-<hr/>
-
-**TODO** Refactor examples listed below
-
-## loader
-
-## [store](https://github.com/mozey/ts/tree/main/store) 
-
-State sharing using a simple store pattern 
-
