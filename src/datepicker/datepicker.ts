@@ -7,21 +7,18 @@ export class DatepickerOptions {
     year: number = 0
     month: number = 0
     day: number = 0
-    time: string = "" // format: HH:MM
+    time: string = "00:00" // format: HH:MM
 
-    // Selectors for dropdowns.
-    // Pass empty string to ignore
+    // Selectors for dropdowns
     yearSelector: string = "#year"
     monthSelector: string = "#month"
     daySelector: string = "#day"
     timeSelector: string = "#time"
 
-    // Time can only be selected in this interval.
-    // Pass zero to use default
-    timeIntervalMinutes: number = 0
+    // Time can only be selected in this interval
+    timeIntervalMinutes: number = 15
 
-    // Allowed date ranges.
-    // Pass zero to use default
+    // Allowed date ranges
     yearFrom: number = 0
     yearTo: number = 0
     monthFrom: number = 0
@@ -30,8 +27,7 @@ export class DatepickerOptions {
     // TODO allowedDays e.g. ["sat", "sun"]
     //allowedDays: []string
 
-    // Allowed time range.
-    // Pass empty string to use default
+    // Allowed time range
     timeFrom: string = ""
     timeTo: string = ""
 }
@@ -76,60 +72,8 @@ export class Datepicker {
 
         // console.info("options", JSON.stringify(this.options, null, "  "))
 
+        // Current date defaults to now
         let now = DateTime.local();
-
-        // Fill missing
-        this.options.year = this.options.year || 0
-        this.options.month = this.options.month || 0
-        this.options.day = this.options.day || 0
-        this.options.time = this.options.time || "00:00"
-        this.options.yearSelector = this.options.yearSelector || ""
-        this.options.monthSelector = this.options.monthSelector || ""
-        this.options.daySelector = this.options.daySelector || ""
-        this.options.timeSelector = this.options.timeSelector || ""
-        this.options.timeIntervalMinutes =
-            this.options.timeIntervalMinutes || 0
-        this.options.yearFrom = this.options.yearFrom || 0
-        this.options.yearTo = this.options.yearTo || 0
-        this.options.monthFrom = this.options.monthFrom || 0
-        this.options.monthTo = this.options.monthTo || 0
-        this.options.timeFrom = this.options.timeFrom || ""
-        this.options.timeTo = this.options.timeTo || ""
-
-        // ...year range
-        if (this.options.yearFrom <= 0) {
-            this.options.yearFrom = now.year
-        }
-        if (this.options.yearTo <= 0) {
-            this.options.yearTo = now.year + 10
-        } else if (this.options.yearTo < this.options.yearFrom) {
-            this.options.yearTo = this.options.yearFrom
-        }
-        // ...month range
-        if (this.options.monthFrom <= 0) {
-            this.options.monthFrom = now.month
-        }
-        if (this.options.monthTo <= 0) {
-            this.options.monthTo = 12
-        } else if (this.options.monthTo < this.options.monthFrom) {
-            this.options.monthTo = this.options.monthFrom
-        }
-
-        // ...time interval
-        if (this.options.timeIntervalMinutes === 0) {
-            this.options.timeIntervalMinutes = 15
-        }
-
-        // ...time range
-        if (this.options.timeFrom === "") {
-            this.options.timeFrom = "00:00"
-        }
-        if (this.options.timeTo === "") {
-            let m = this.options.timeIntervalMinutes
-            this.options.timeTo = "23:" + String((60 / m - 1) * m)
-        }
-
-        // Default values
         this.current = new DatepickerDate()
         if (this.options.year === 0) {
             this.current.year = now.year
@@ -148,6 +92,34 @@ export class Datepicker {
         }
         let t = this.parseTime(this.options.time)
         this.current.time = this.formatTime(t)
+
+        // ...year range
+        if (this.options.yearFrom <= 0) {
+            this.options.yearFrom = this.current.year
+        }
+        if (this.options.yearTo <= 0) {
+            this.options.yearTo = this.current.year + 10
+        } else if (this.options.yearTo < this.options.yearFrom) {
+            this.options.yearTo = this.options.yearFrom
+        }
+        // ...month range
+        if (this.options.monthFrom <= 0) {
+            this.options.monthFrom = this.current.month
+        }
+        if (this.options.monthTo <= 0) {
+            this.options.monthTo = 12
+        } else if (this.options.monthTo < this.options.monthFrom) {
+            this.options.monthTo = this.options.monthFrom
+        }
+
+        // ...time range
+        if (this.options.timeFrom === "") {
+            this.options.timeFrom = "00:00"
+        }
+        if (this.options.timeTo === "") {
+            let m = this.options.timeIntervalMinutes
+            this.options.timeTo = "23:" + String((60 / m - 1) * m)
+        }
 
         // console.info("options", JSON.stringify(this.options, null, "  "))
         // console.info("current", JSON.stringify(this.current, null, "  "))

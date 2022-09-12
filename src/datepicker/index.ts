@@ -4,6 +4,7 @@ import { DatepickerOptions, Datepicker } from "./datepicker";
 import { Component } from "../template/component";
 
 export namespace index {
+    let appendSingleClicked = false
     let appendShadowRootCounter = 2
 
     export function sayHello() {
@@ -35,16 +36,14 @@ export namespace index {
     }
 
     export function appendSingle() {
+        // Single click only
         let datePicker = "date-picker"
         let id = sprintf("%s-1", datePicker)
-
-        // Single only
-        let container = document.querySelector(id) as 
-        HTMLElement
-        if (container) {
+        if (appendSingleClicked) {
             console.info(sprintf("Container with ID %s already appended", id))
             return
         }
+        appendSingleClicked = true
 
         // Clone template and wrap in div
         let template =
@@ -57,7 +56,7 @@ export namespace index {
 
         // Append
         document.body.appendChild(div);
-        container = document.querySelector(sprintf("#%s", id)) as 
+        let container = document.querySelector(sprintf("#%s", id)) as 
             HTMLElement
         if (container) {
             // Prepend header with id
