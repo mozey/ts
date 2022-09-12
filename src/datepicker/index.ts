@@ -36,9 +36,9 @@ export namespace index {
 
     export function appendSingle() {
         let datePicker = "date-picker"
+        let id = sprintf("%s-1", datePicker)
 
         // Single only
-        let id = sprintf("#%s", datePicker)
         let container = document.querySelector(id) as 
         HTMLElement
         if (container) {
@@ -46,15 +46,18 @@ export namespace index {
             return
         }
 
-        // Clone template
+        // Clone template and wrap in div
         let template =
         document.getElementById(sprintf("%s-template", datePicker)) as 
             HTMLTemplateElement
         let templateContent = template.content.cloneNode(true);
+        let div = document.createElement("div") as HTMLDivElement
+        div.id = id
+        div.appendChild(templateContent)
 
         // Append
-        document.body.appendChild(templateContent);
-        container = document.querySelector(id) as 
+        document.body.appendChild(div);
+        container = document.querySelector(sprintf("#%s", id)) as 
             HTMLElement
         if (container) {
             // Prepend header with id
@@ -70,10 +73,14 @@ export namespace index {
     export function appendShadowRoot() {
         // Define custom element
         let datePicker = "date-picker"
-        Component.define(datePicker, sprintf("%s-template", datePicker), true)
+        let custom = customElements.get(datePicker)
+        if (!custom) {
+            Component.define(
+                datePicker, sprintf("%s-template", datePicker), true)
+        }
+        
+        // Append custom tag
         let id = sprintf("%s-%i", datePicker, appendShadowRootCounter)
-
-        // Append
         Component.append("body", datePicker, id)
 
         let e = document.querySelector(sprintf("#%s", id))

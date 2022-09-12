@@ -29,28 +29,36 @@
   </div>
 
   <template id="date-picker-template">
-    <div id="date-picker" class="w3-container">
+    <div class="w3-container">
       <h3>select a date:</h3>
-      <div>
-          <select id="year" name="date1">
-              <option value=""></option>
+      <div class="w3-row-padding">
+        <div class="w3-quarter">
+          <select id="year" name="date1" class="w3-select">
+            <option value=""></option>
           </select>
           <label for="year" style="display: none"></label>
-          <select id="month" name="date2">
-              <option value=""></option>
+        </div>
+        <div class="w3-quarter">
+          <select id="month" name="date2" class="w3-select">
+            <option value=""></option>
           </select>
           <label for="month" style="display: none"></label>
-          <select id="day" name="date3">
-              <option value=""></option>
+        </div>
+        <div class="w3-quarter">
+          <select id="day" name="date3" class="w3-select">
+            <option value=""></option>
           </select>
           <label for="day" style="display: none"></label>
-          <select id="time" name="time">
-              <option value=""></option>
+        </div>
+        <div class="w3-quarter">
+          <select id="time" name="time" class="w3-select">
+            <option value=""></option>
           </select>
           <label for="time" style="display: none"></label>
+        </div>
       </div>
       <br>
-      <button id="format">Format date</button>
+      <button id="format" class="w3-button w3-teal">Format date</button>
       <span id="date">&nbsp;</span>
     </div>
   </template>
