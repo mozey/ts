@@ -498,21 +498,17 @@ export class Datepicker {
                 }
             }
         }
-        this.compiledYear =  pure(this.options.yearSelector).compile(directive)
-        this.compiledMonth = pure(this.options.monthSelector).compile(directive)
-        this.compiledDay = pure(this.options.daySelector).compile(directive)
+        this.compiledYear =  
+            pure(this.options.yearSelector, this.container).compile(directive)
+        this.compiledMonth = 
+            pure(this.options.monthSelector, this.container).compile(directive)
+        this.compiledDay = 
+            pure(this.options.daySelector, this.container).compile(directive)
         if (this.options.timeSelector !== "") {
             this.compiledTime = 
-                pure(this.options.timeSelector).compile(directive)
+                pure(this.options.timeSelector, this.container).
+                    compile(directive)
         }
-        // TODO This is required to make shadow root work?
-        // this.compiledYear =  pure(yearElement).compile(directive)
-        // this.compiledMonth = pure(monthElement).compile(directive)
-        // this.compiledDay = pure(dayElement).compile(directive)
-        // if (this.options.timeSelector !== "") {
-        //     this.compiledTime = 
-        //         pure(timeElement).compile(directive)
-        // }
 
         // Render and set initial values
         this.renderYears(this.options.year)
