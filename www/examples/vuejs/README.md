@@ -15,7 +15,7 @@ curlie "https://api.met.no/weatherapi/locationforecast/2.0/compact.json?lat=-33.
 
 Preview widget with **dev** server
 ```bash
-cd www/examples/templates/data/vuejs/weather
+cd www/examples/vuejs/weather
 npm install
 du -sh node_modules
 # 188M
@@ -52,7 +52,7 @@ Also see "get started" link above for more info on
 
 Create a project with `vue/cli`, see [using TypeScript with VueJS](https://archive.is/nwkWV)
 ```bash
-cd www/examples/templates/data/vuejs
+cd www/examples/vuejs
 vue create weather
 # ? Please pick a preset
 # > Manually select features
