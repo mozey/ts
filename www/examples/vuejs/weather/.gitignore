@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /package-lock.json
-/dist
+# /dist # Version dist files so examples work out the box
 
 # local env files
 .env.local

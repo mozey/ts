@@ -1,0 +1,4 @@
+.DS_Store
+node_modules/
+/demo/public/build/
+# /dist # Version dist files so examples work out the box

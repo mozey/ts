@@ -1,4 +1,8 @@
-### weather
+# VueJS
+
+VueJS examples
+
+## weather
 
 VueJS weather widget, see [get started with VueJS web components](https://archive.is/OKA7l)
 
@@ -7,11 +11,11 @@ Uses the [YR](http://yr.no) [location forecast API](https://api.met.no/weatherap
 curlie "https://api.met.no/weatherapi/locationforecast/2.0/compact.json?lat=-33.947032&lon=18.377848"
 ```
 
-## Quick start
+### Quick start
 
 Preview widget with **dev** server
 ```bash
-cd www/examples/templates/data/vuejs/weather
+cd www/examples/vuejs/weather
 npm install
 du -sh node_modules
 # 188M
@@ -44,11 +48,11 @@ Also see "get started" link above for more info on
 - Applying styles in development
 
 
-## Setup from scratch
+### Setup from scratch
 
 Create a project with `vue/cli`, see [using TypeScript with VueJS](https://archive.is/nwkWV)
 ```bash
-cd www/examples/templates/data/vuejs
+cd www/examples/vuejs
 vue create weather
 # ? Please pick a preset
 # > Manually select features
