@@ -12,7 +12,7 @@ Svelte Components are not the same as Web Components. [Differences](https://arch
 
 ## demo
 
-Created with [svelte-web-components-template](https://github.com/sinedied/svelte-web-components-template), *"This template does not provide any web components poly-fills for older browsers support. It's usually best to leave that task to the host application, hence why they're left out"*
+Created with [svelte-web-components-template](https://github.com/mozey/svelte-web-components-template), *"This template does not provide any web components poly-fills for older browsers support. It's usually best to leave that task to the host application, hence why they're left out"*
 
 Install
 ```bash
