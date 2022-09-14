@@ -45,8 +45,12 @@ export class Template {
      * @returns 
      */
     static getBaseURL(): URL {
-        let url = new URL(document.location.origin)
-        url.pathname = document.location.pathname
+        let dir = document.location.href
+        if (dir.endsWith(".html")) {
+            // Remove filename from end of path
+            dir = dir.substring(0, dir.lastIndexOf("/")+1)
+        }
+        let url = new URL(dir)
         return url
     }
 
