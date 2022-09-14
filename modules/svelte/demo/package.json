@@ -2,8 +2,8 @@
   "name": "svelte-web-components-template",
   "description": "A base template for building a shareable web components library with Svelte",
   "version": "1.0.0",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "module": "../../../www/examples/svelte/demo/index.mjs",
+  "main": "../../../www/examples/svelte/demo/index.js",
   "keywords": [
     "svelte",
     "web-components",

@@ -21,7 +21,9 @@ Pages can use [AlpineJS](https://alpinejs.dev/) syntax for composing behavior di
 Use native Javascript methods wherever possible, see for example [You Don't Need LoDash Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore). Most modern browsers support these methods natively, and for those that don't there is [es5-shim](https://github.com/es-shims/es5-shim)
 
 
-## Demo
+## [Demo](https://mozey.co/demo/ts)
+
+### Run it yourself
 
 Clone the repo
 ```bash

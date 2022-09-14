@@ -24,7 +24,7 @@ export namespace index {
         ]
         options.variables = variables
         let template = new Template(options)
-        template.load("examples/templates/data/my-paragraph.html");
+        template.load(Template.getBaseURL(), "data/my-paragraph.html");
         appendFromFileCounter++
     }
 
@@ -54,7 +54,7 @@ export namespace index {
 
         Template.fetch(
             Template.getBaseURL(),
-            "examples/templates/data/my-paragraph.html",
+            "data/my-paragraph.html",
             variables).then(template => {
                 Component.defineFromString(
                     customElementName, customElementName, template, true)
@@ -77,7 +77,7 @@ export namespace index {
             let options = new TemplateOptions()
             options.variables = variables
             let t = new Template(options)
-            t.load("examples/templates/data/element-details.html");
+            t.load(Template.getBaseURL(), "data/element-details.html");
             namedSlotsCounter++
         }
         let defineComponent = (template: string) => {
@@ -87,13 +87,8 @@ export namespace index {
         }
         Template.fetch(
             Template.getBaseURL(),
-            "examples/templates/data/element-details-template.html").then(
+            "data/element-details-template.html").then(
                 defineComponent)
-    }
-
-    export function componentUsingVueJS() {
-        console.info("TODO")
-        // See webcomponent/vuejs
     }
 }
 

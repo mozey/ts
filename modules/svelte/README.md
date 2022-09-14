@@ -16,7 +16,8 @@ Created with [svelte-web-components-template](https://github.com/mozey/svelte-we
 
 Install
 ```bash
-cd www/examples/svelte/demo
+cd modules/svelte/demo
+npm install
 ```
 
 Build
@@ -29,7 +30,7 @@ npm run build
 
 Create a new project
 ```bash
-cd www/examples/svelte
+cd modules/svelte
 npx degit sinedied/svelte-web-components-template#main demo
 cd demo
 npm install # or yarn

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "Xbuild": "vue-cli-service build",
-    "build": "vue-cli-service build --target wc --name vuejs-weather ./src/components/Weather.vue"
+    "build": "vue-cli-service build --target wc --name vuejs-weather ./src/components/Weather.vue --dest ../../../www/examples/vuejs/weather"
   },
   "dependencies": {
     "@vue/web-component-wrapper": "^1.2.0",

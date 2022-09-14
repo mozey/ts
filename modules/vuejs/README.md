@@ -15,7 +15,7 @@ curlie "https://api.met.no/weatherapi/locationforecast/2.0/compact.json?lat=-33.
 
 Preview widget with **dev** server
 ```bash
-cd www/examples/vuejs/weather
+cd modules/vuejs/weather
 npm install
 du -sh node_modules
 # 188M
@@ -26,9 +26,9 @@ open http://localhost:8080
 For **prod**, "...create a build that is optimized for deployment and does not include the core Vue library. The rationale is that there can typically be multiple web components on a website and packaging the Vue library with every instance would be a waste of resources.", update `package.json` to `--target wc` then
 ```bash
 npm run build
-ls dist
-# dist/vuejs-weather.js
-# dist/vuejs-weather.js.map
+ls ../../../www/examples/vuejs/weather
+# vuejs-weather.js
+# vuejs-weather.js.map
 ```
 
 Similar to the "get started" link above, use the custom component by including
@@ -52,7 +52,7 @@ Also see "get started" link above for more info on
 
 Create a project with `vue/cli`, see [using TypeScript with VueJS](https://archive.is/nwkWV)
 ```bash
-cd www/examples/vuejs
+cd modules/vuejs
 vue create weather
 # ? Please pick a preset
 # > Manually select features

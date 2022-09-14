@@ -19,8 +19,6 @@ export class TemplateVariable {
 }
 
 export class TemplateOptions {
-    // baseURL for loading template files
-    baseURL: URL = Template.getBaseURL()
     // wrapper element for templates, for custom elements see component.ts
     wrapper: TemplateWrapper = new TemplateWrapper()
     // selector for parent element where template will be appended
@@ -43,11 +41,13 @@ export class Template {
     }
 
     /**
-     * Create URL from current document origin
+     * Create URL from current document
      * @returns 
      */
     static getBaseURL(): URL {
-        return new URL(document.location.origin)
+        let url = new URL(document.location.origin)
+        url.pathname = document.location.pathname
+        return url
     }
 
     /**
@@ -104,7 +104,7 @@ export class Template {
         try {
             // Fetch template dynamically from specified path
             let url = baseURL
-            url.pathname = path
+            url.pathname += path
             let resp = await fetch(url.toString());
             template = await resp.text();
             if (variables) {
@@ -124,9 +124,8 @@ export class Template {
      * @param complete This function is called after the template is inserted,
      *  with template root element as param
      */
-    async load(path: string, complete?: (root: HTMLElement) => void) {
-        let template = await Template.fetch(
-            this.options.baseURL, path, this.options.variables)
+    async load(url: URL, path: string, complete?: (root: HTMLElement) => void) {
+        let template = await Template.fetch(url, path, this.options.variables)
         let container = document.querySelector(this.options.selector) as 
             HTMLElement
         if (container) {
