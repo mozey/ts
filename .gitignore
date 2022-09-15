@@ -19,6 +19,7 @@
 
 /_excluded
 /www/dist
+/www/public
 /.env
 
 # TODO Remove lines below after refactoring.....................................
