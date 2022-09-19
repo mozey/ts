@@ -65,9 +65,12 @@ export class Template {
     /** 
      * Append HTML template
      */ 
-    append(container: Element, template: string) {
+    static append(container: Element, template: string) {
         // Append the template
         // https://stackoverflow.com/a/7327125/639133
+        // Using insertAdjacentHTML preserves event handlers on the container,
+        // as opposed to using innerHTML and appendChild with a wrapper element
+        // https://stackoverflow.com/a/41022696/639133
         container.insertAdjacentHTML("beforeend", template)
     }
 
@@ -117,7 +120,7 @@ export class Template {
         let container = document.querySelector(this.options.selector) as 
             HTMLElement
         if (container) {
-            this.append(container, template)
+            Template.append(container, template)
         } else {
             console.error(
                 sprintf("selector not found %s", this.options.selector))

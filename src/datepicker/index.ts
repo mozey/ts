@@ -49,13 +49,13 @@ export namespace index {
         let template =
         document.getElementById(sprintf("%s-template", datePicker)) as 
             HTMLTemplateElement
-        let templateContent = template.content.cloneNode(true);
-        let div = document.createElement("div") as HTMLDivElement
-        div.id = id
-        div.appendChild(templateContent)
+        let templateContent = template.content.cloneNode(true) as HTMLElement
+        let wrapper = templateContent.querySelector("div") as HTMLElement
+        wrapper.id = id
 
         // Append
-        document.body.appendChild(div);
+        let root = document.querySelector("#root") as HTMLElement
+        root.appendChild(templateContent)
         let container = document.querySelector(sprintf("#%s", id)) as 
             HTMLElement
         if (container) {
@@ -80,7 +80,7 @@ export namespace index {
         
         // Append custom tag
         let id = sprintf("%s-%i", datePicker, appendShadowRootCounter)
-        Component.append("body", datePicker, id)
+        Component.append("#root", datePicker, id)
 
         let e = document.querySelector(sprintf("#%s", id))
         if (e) {

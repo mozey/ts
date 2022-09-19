@@ -8,18 +8,22 @@ export namespace index {
     let namedSlotsCounter = 1
 
     export function appendFromPage() {
-        let template =
-            document.getElementById('my-paragraph') as HTMLTemplateElement
-        let templateContent = template.content.cloneNode(true);
-        let root = document.querySelector("#root") as HTMLDivElement
-        root.appendChild(templateContent);
+        let id = "my-paragraph"
+        let template = document.getElementById(sprintf("%s-template", id)) as 
+            HTMLTemplateElement
+        let templateContent = template.content.cloneNode(true) as HTMLElement
+        let wrapper = templateContent.querySelector("div") as HTMLElement
+        wrapper.id = id
+        let root = document.querySelector("#root") as HTMLElement
+        root.appendChild(templateContent)
     }
 
     // Note that this method does not create a new template element on the page
     export function appendFromFile() {
         let options = new TemplateOptions()
         let variables: TemplateVariable[] = [
-            new TemplateVariable("Counter", sprintf("%i", appendFromFileCounter)),
+            new TemplateVariable(
+                "Counter", sprintf("%i", appendFromFileCounter)),
             new TemplateVariable(
                 "Append", (appendFromFileCounter > 1) ? "times" : "time"),
         ]
