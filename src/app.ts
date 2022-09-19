@@ -6,7 +6,7 @@ import { index as httpIndexNS } from "./http/index";
 import { index as templateIndexNS } from "./template/index";
 
 // Files to include in the build
-import "w3-css/w3.css";
+import "bulma/css/bulma.css";
 
 // app is a singleton
 // https://stackoverflow.com/a/30174360/639133
