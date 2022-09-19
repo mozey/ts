@@ -11,7 +11,8 @@ export namespace index {
         let template =
             document.getElementById('my-paragraph') as HTMLTemplateElement
         let templateContent = template.content.cloneNode(true);
-        document.body.appendChild(templateContent);
+        let root = document.querySelector("#root") as HTMLDivElement
+        root.appendChild(templateContent);
     }
 
     // Note that this method does not create a new template element on the page
@@ -22,6 +23,7 @@ export namespace index {
             new TemplateVariable(
                 "Append", (appendFromFileCounter > 1) ? "times" : "time"),
         ]
+        options.selector = "#root"
         options.variables = variables
         let template = new Template(options)
         template.load(Template.getBaseURL(), "data/my-paragraph.html");

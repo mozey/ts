@@ -27,10 +27,10 @@
 </head>
 
 <body>
-    <div id="loader" style="display: none">&nbsp;</div>
+    <section class="section" x-data>
+        <div id="loader" style="display: none">&nbsp;</div>
 
-    <div x-data>
-        <div class="w3-container">
+        <div class="container">
             <h3>
                 <a href="https://github.com/mozey/ts/tree/main/src/http#readme">
                     HTTP Client Examples</a>
@@ -54,37 +54,37 @@
                         Request interface</a></li>
             </ul>
         </div>
+    
+        <div id="results" class="container">&nbsp;</div>
+    </section>
 
-        <div id="results" class="w3-container">&nbsp;</div>
+    <!-- https://www.w3schools.com/tags/tag_template.asp -->
+    <template id="results-template">
+        <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
+        <div class="w3-panel w3-display-container w3-pale-yellow">
+            <span x-on:click="$el.parentElement.remove()" class="w3-button w3-display-topright">&times;</span>
+            <h3>Request</h3>
+            <h3>
+                <form class="x-app-url" action="" method="" target="_blank">
+                    url => <a href="javascript:" onclick="this.parentElement.submit()">&nbsp;</a>
+                </form>
+            </h3>
+            <p>
+            <pre class="x-app-req">&nbsp;</pre>
+            </p>
+            <h3>Response</h3>
+            <p>
+            <pre class="x-app-resp">&nbsp;</pre>
+            </p>
+        </div>
+    </template>
 
-        <!-- https://www.w3schools.com/tags/tag_template.asp -->
-        <template id="results-template">
-            <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
-            <div class="w3-panel w3-display-container w3-pale-yellow">
-                <span x-on:click="$el.parentElement.remove()" class="w3-button w3-display-topright">&times;</span>
-                <h3>Request</h3>
-                <h3>
-                    <form class="x-app-url" action="" method="" target="_blank">
-                        url => <a href="javascript:" onclick="this.parentElement.submit()">&nbsp;</a>
-                    </form>
-                </h3>
-                <p>
-                <pre class="x-app-req">&nbsp;</pre>
-                </p>
-                <h3>Response</h3>
-                <p>
-                <pre class="x-app-resp">&nbsp;</pre>
-                </p>
-            </div>
-        </template>
-
-        <template id="results-template-2">
-            <div class="w3-container">
-                <div id="progress">progress</div>
-                <img id="img" src="">
-            </div>
-        </template>
-    </div>
+    <template id="results-template-2">
+        <div class="container">
+            <progress id="progress" class="progress" value="0" max="100"></progress>
+            <img id="img" src="">
+        </div>
+    </template>
 
     <script src="../../dist/app.js"></script>
     <script>

@@ -178,9 +178,10 @@ export namespace index {
         results.textContent = ""
         results.appendChild(clone)
 
-        const element = document.getElementById('progress') as HTMLDivElement;
+        const element = document.getElementById('progress') as 
+            HTMLProgressElement;
         let setProgress = function ({ loaded, total }: any) {
-            element.innerHTML = Math.round(loaded / total * 100) + '%';
+            element.value = Math.round(loaded / total * 100);
         }
 
         // TODO Refactor to use httpbin instead? E.g.

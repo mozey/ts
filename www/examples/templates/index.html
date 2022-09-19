@@ -11,36 +11,38 @@
 </head>
 
 <body>
-  <div x-data class="w3-container">
-    <h3>
-      <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
-        Template Examples</a>
-    </h3>
-    <p>
-      Click the links below to render templates
-    </p>
-    <p>
-      Also see <a href="./web-components.html">web-components</a>
-    </p>
-    <ul>
-      <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
-          Template</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
-          Load template from file</a></li>
-    </ul>
-  </div>
+  <section x-data class="section">
+    <div id="root" class="container">
+      <h3>
+        <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
+          Template Examples</a>
+      </h3>
+      <p>
+        Click the links below to render templates
+      </p>
+      <p>
+        Also see <a href="./web-components.html">web-components</a>
+      </p>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
+            Template</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
+            Load template from file</a></li>
+      </ul>
+    </div>
+  </section>
 
   <template id="my-paragraph">
     <!-- A style tag here (when not using Shadow DOM)
         affect elements in the rest of the page too -->
     <style>
-      p {
+      p.box, p {
         color: Tan;
         background-color: DarkSlateGray;
       }
     </style>
-    <div class="w3-container">
-      <p class="w3-padding-small">
+    <div class="block">
+      <p class="box">
         Template style tags affect the rest of the page</p>
     </div>
   </template>
