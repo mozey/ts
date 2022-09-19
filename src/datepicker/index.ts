@@ -74,8 +74,11 @@ export namespace index {
         let datePicker = "date-picker"
         let custom = customElements.get(datePicker)
         if (!custom) {
-            Component.define(
-                datePicker, sprintf("%s-template", datePicker), true)
+            Component.define({
+                name: datePicker,
+                templateID: sprintf("%s-template", datePicker),
+                injectAppStyle: true
+            })
         }
         
         // Append custom tag

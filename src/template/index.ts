@@ -35,12 +35,15 @@ export namespace index {
     }
 
     export function appendCustomElementFromPage() {
-        let customElementName = "my-paragraph"
+        let id = "my-paragraph"
         // Note the error that is logged if the customer element already exists.
         // Also note that app.css is not applied by default inside Shadow Root
-        Component.define(customElementName, "my-paragraph")
+        Component.define({
+            name: id,
+            templateID: id
+        })
         // Definition errors are caught, so append will always succeed
-        Component.append("body", customElementName)
+        Component.append("body", id)
     }
 
     // Note that this method creates a new template element on the page,
@@ -62,8 +65,11 @@ export namespace index {
             Template.getBaseURL(),
             "data/my-paragraph.html",
             variables).then(template => {
-                Component.defineFromString(
-                    customElementName, customElementName, template, true)
+                Component.defineFromString({
+                    name: customElementName,
+                    templateID: customElementName,
+                    injectAppStyle: true
+                }, template)
                 Component.append("body", customElementName)
                 appendCustomElementFromFileCounter++
             })
@@ -87,8 +93,10 @@ export namespace index {
             namedSlotsCounter++
         }
         let defineComponent = (template: string) => {
-            Component.defineFromString(
-                customElementName, customElementName, template)
+            Component.defineFromString({
+                name: customElementName,
+                templateID: customElementName
+            }, template)
             appendSnippet()
         }
         Template.fetch(
