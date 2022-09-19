@@ -7,5 +7,5 @@ APP_DIR="${APP_DIR}"
 echo "Building static site..."
 
 # TODO
-echo "Setup hugo..."
+echo "TODO Setup hugo"
 # hugo --config "${APP_DIR}"/www/config.yaml

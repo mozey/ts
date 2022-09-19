@@ -28,7 +28,7 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
       -dir "./www/" \
       -excludeDir "./www/dist/" \
       -excludeDir "./www/public/" |
-      xargs -n1 bash -c "${APP_DIR}/scripts/build-static.sh"
+      xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
   ) &
 fi
 
