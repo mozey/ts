@@ -13,56 +13,87 @@
 <body>
   <section x-data class="section">
     <div id="root" class="container">
-      <h3>
-        <a href="https://github.com/mozey/ts/tree/main/src/datepicker#readme">
-          Datepicker Examples</a>
-      </h3>
-      <p>
-        Click the links below to see the examples
+      <h1 class="title">
+          Datepicker Examples
+      </h1>
+      <p>&nbsp;</p>
+      <p class="subtitle">
+        Click the links below to append datepickers to the page.
       </p>
-      <ul>
-        <li><a id="append-single" href="javascript:" x-on:click="app.examples.datepicker.appendSingle()">
-            Datepicker</a></li>
-        <li><a href="javascript:" x-on:click="app.examples.datepicker.appendShadowRoot()">
-            Datepicker with shadow root</a></li>
-        <li><a href="javascript:" x-on:click="app.examples.datepicker.appendRange()">
-            Pick a range of dates</a></li>
-      </ul>
+      <p class="subtitle">
+        The <a href="https://github.com/mozey/ts/tree/main/src/datepicker#readme">
+          Datepicker</a> class uses <a href="https://pure-js.com/">PureJS</a>
+        to render and refresh the available options on the select element,
+        the render directive is an implementation detail of the class.
+        As opposed to making use of the AlpineJS <code>x-for</code> attribute,
+        which would have to be added to the markup on this page
+      </p>
+      <div class="block">
+        <ul>
+          <li><a id="append-single" href="javascript:" x-on:click="app.examples.datepicker.appendSingle()">
+              Datepicker</a></li>
+          <li><a href="javascript:" x-on:click="app.examples.datepicker.appendShadowRoot()">
+              Datepicker with shadow root</a></li>
+          <li><a href="javascript:" x-on:click="app.examples.datepicker.appendRange()">
+              Pick a range of dates</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <template id="date-picker-template">
-    <div class="block">
-      <div class="box">
-        <h3 class="subtitle">select a date:</h3>
-        <div class="field is-horizontal">
-          <div class="field-body">
-            <div class="select">
-              <select id="year" name="date1">
-                <option value=""></option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="month" name="date2">
-                <option value=""></option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="day" name="date3">
-                <option value=""></option>
-              </select>
-            </div>
-            <div class="select">
-              <select id="time" name="time">
-                <option value=""></option>
-              </select>
-            </div>
+    <div class="box">
+      <h3 class="subtitle">select a date:</h3>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="control is-expanded">
+              <div class="select is-fullwidth">
+                <select id="year" name="date1">
+                  <option value=""></option>
+                </select>
+              </div>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded">
+              <div class="select is-fullwidth">
+                <select id="month" name="date2">
+                  <option value=""></option>
+                </select>
+              </div>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded">
+              <div class="select is-fullwidth">
+                <select id="day" name="date3">
+                  <option value=""></option>
+                </select>
+              </div>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded">
+              <div class="select is-fullwidth">
+                <select id="time" name="time">
+                  <option value=""></option>
+                </select>
+              </div>
+            </p>
           </div>
         </div>
+      </div>
 
-        <div class="field is-horizontal">
-          <button id="format" class="button is-primary">Format date</button>
-          <span id="date">&nbsp;</span>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <button id="format" class="button is-primary">Format date</button>
+            </p>
+            <p id="date" class="help">
+              Click the button to print a formatted date</p>
+          </div>
         </div>
       </div>
     </div>

@@ -11,41 +11,51 @@
 </head>
 
 <body>
-  <div x-data class="container">
-    <h3>
-      <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
-        Web Component Examples</a>
-    </h3>
-    <p>
-      Click the links below to render components
-    </p>
-    <p>
-      Also see <a href="./index.html">templates</a>
-    </p>
-    <ul>
-      <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromPage()">
-          Custom element with Shadow DOM</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromFile()">
-          Custom element from file</a></li>
-      <li><a href="javascript:" x-on:click="app.examples.template.namedSlots()">
-          Template with named slots</a></li>
-    </ul>
-  </div>
+  <section x-data class="section">
+    <div class="container">
+      <h1 class="title">
+        <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
+          Web Component Examples</a>
+      </h1>
+  
+      <p>&nbsp;</p>
+  
+      <p class="subtitle">
+        Click the links below to render components
+      </p>
+      <p class="subtitle">
+        Also see <a href="./index.html">templates</a>
+      </p>
+  
+      <div class="block">
+        <ul>
+          <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromPage()">
+              Custom element with Shadow DOM</a></li>
+          <li><a href="javascript:" x-on:click="app.examples.template.appendCustomElementFromFile()">
+              Custom element from file</a></li>
+          <li><a href="javascript:" x-on:click="app.examples.template.namedSlots()">
+              Template with named slots</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <div id="root" class="container"></div>
 
   <template id="my-paragraph">
     <style>
-      p {
+      div.box {
         color: Tan;
         background-color: DarkSlateGray;
       }
     </style>
-    <div class="container">
-      <p class="w3-padding-small">
-        Template style tag contained in component with Shadow DOM.
-        The styles in app.css are not applied by default
-      </p>
+    <div class="block">
+      <div class="box">
+        <p class="subtitle">
+          Template style tag contained in component with Shadow DOM.
+          The styles in app.css are not applied by default
+        </p>
+      </div>
     </div>
   </template>
 

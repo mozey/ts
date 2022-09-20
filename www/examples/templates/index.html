@@ -13,22 +13,28 @@
 <body>
   <section x-data class="section">
     <div id="root" class="container">
-      <h3>
+      <h1 class="title">
         <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
           Template Examples</a>
-      </h3>
-      <p>
+      </h1>
+
+      <p>&nbsp;</p>
+
+      <p class="subtitle">
         Click the links below to render templates
       </p>
-      <p>
+      <p class="subtitle">
         Also see <a href="./web-components.html">web-components</a>
       </p>
-      <ul>
-        <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
-            Template</a></li>
-        <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
-            Load template from file</a></li>
-      </ul>
+
+      <div class="block">
+        <ul>
+          <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
+              Template</a></li>
+          <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
+              Load template from file</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -36,14 +42,17 @@
     <!-- A style tag here (when not using Shadow DOM)
         affect elements in the rest of the page too -->
     <style>
-      p.box, p {
+      p.subtitle, p, div.box {
         color: Tan;
         background-color: DarkSlateGray;
       }
     </style>
     <div class="block">
-      <p class="box">
-        Template style tags affect the rest of the page</p>
+      <div class="box">
+        <p class="subtitle">
+          Template style tags affect the rest of the page
+        </p>
+      </div>
     </div>
   </template>
 

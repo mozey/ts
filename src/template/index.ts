@@ -43,7 +43,7 @@ export namespace index {
             templateID: id
         })
         // Definition errors are caught, so append will always succeed
-        Component.append("body", id)
+        Component.append({selector: "#root", name: id})
     }
 
     // Note that this method creates a new template element on the page,
@@ -70,7 +70,7 @@ export namespace index {
                     templateID: customElementName,
                     injectAppStyle: true
                 }, template)
-                Component.append("body", customElementName)
+                Component.append({selector: "#root", name: customElementName})
                 appendCustomElementFromFileCounter++
             })
     }
@@ -87,6 +87,7 @@ export namespace index {
                 new TemplateVariable("ElementDetails", customElementName),
             ]
             let options = new TemplateOptions()
+            options.selector = "#root"
             options.variables = variables
             let t = new Template(options)
             t.load(Template.getBaseURL(), "data/element-details.html");

@@ -4,7 +4,6 @@ import { DatepickerOptions, Datepicker } from "./datepicker";
 import { Component } from "../template/component";
 
 export namespace index {
-    let appendSingleClicked = false
     let appendShadowRootCounter = 2
 
     export function sayHello() {
@@ -39,24 +38,30 @@ export namespace index {
         // Single click only
         let datePicker = "date-picker"
         let id = sprintf("%s-1", datePicker)
-        if (appendSingleClicked) {
+        let container = document.querySelector(sprintf("#%s", id)) as 
+            HTMLElement
+        if (container) {
             console.info(sprintf("Container with ID %s already appended", id))
             return
         }
-        appendSingleClicked = true
 
         // Clone template and wrap in div
         let template =
         document.getElementById(sprintf("%s-template", datePicker)) as 
             HTMLTemplateElement
         let templateContent = template.content.cloneNode(true) as HTMLElement
-        let wrapper = templateContent.querySelector("div") as HTMLElement
-        wrapper.id = id
+        let div = templateContent.querySelector("div") as HTMLElement
+        div.id = id
+        let wrapper = document.createElement("div") as HTMLElement
+        wrapper.classList.add("block")
+        wrapper.appendChild(templateContent)
 
         // Append
         let root = document.querySelector("#root") as HTMLElement
-        root.appendChild(templateContent)
-        let container = document.querySelector(sprintf("#%s", id)) as 
+        root.appendChild(wrapper)
+        
+        // Render date picker
+        container = document.querySelector(sprintf("#%s", id)) as 
             HTMLElement
         if (container) {
             // Prepend header with id
@@ -64,7 +69,6 @@ export namespace index {
             if (header) {
                 header.textContent = sprintf("%s - %s", id, header.textContent)
             }
-            // Render date picker in container
             newDatepicker(id, container)
         }
     }
@@ -83,7 +87,14 @@ export namespace index {
         
         // Append custom tag
         let id = sprintf("%s-%i", datePicker, appendShadowRootCounter)
-        Component.append("#root", datePicker, id)
+        let wrapper = document.createElement("div")
+        wrapper.classList.add("block")
+        Component.append({
+            selector: "#root", 
+            name: datePicker, 
+            tagID: id,
+            wrapper: wrapper
+        })
 
         let e = document.querySelector(sprintf("#%s", id))
         if (e) {

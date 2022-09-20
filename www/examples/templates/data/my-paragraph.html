@@ -1,9 +1,13 @@
 <style>
-  p.box, p {
+  p.subtitle, p, div.box {
     color: DarkSlateBlue;
     background-color: BurlyWood;
   }
 </style>
 <div class="block">
-  <p class="box">Template loaded from file {{.Counter}} {{.Append}}</p>
+  <div class="box">
+    <p class="subtitle">
+      Template loaded from file {{.Counter}} {{.Append}}
+    </p>
+  </div>
 </div>
