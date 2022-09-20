@@ -146,20 +146,16 @@ export namespace index {
 
         // Set template values...
         // Link form
-        let form = results.getElementsByClassName("x-app-url")[0] as
-            HTMLFormElement
+        let form = document.getElementById("url") as HTMLFormElement
         form.action = resp.url
         form.method = req.method as string
         let link = form.getElementsByTagName("a")[0] as HTMLAnchorElement
         link.textContent = resp.url
         // Req
-        let reqElem = results.getElementsByClassName("x-app-req")[0] as
-            HTMLPreElement
+        let reqElem = document.getElementById("req") as HTMLPreElement
         reqElem.innerText = reqJSON
         // Resp
-        let respElem =
-            results.getElementsByClassName("x-app-resp")[0] as
-            HTMLPreElement
+        let respElem = document.getElementById("resp") as HTMLPreElement
         respElem.innerText = respJSON
     }
 
@@ -318,17 +314,13 @@ export namespace index {
 
         // Set template values...
         // Link form
-        let form = results.getElementsByClassName("x-app-url")[0] as
-            HTMLFormElement
+        let form = document.getElementById("url") as HTMLFormElement
         form.remove()
         // Req
-        let reqElem = results.getElementsByClassName("x-app-req")[0] as
-            HTMLPreElement
+        let reqElem = document.getElementById("req") as HTMLPreElement
         reqElem.innerText = reqJSON
         // Resp
-        let respElem =
-            results.getElementsByClassName("x-app-resp")[0] as
-            HTMLPreElement
+        let respElem = document.getElementById("resp") as HTMLPreElement
         respElem.innerText = respJSON
     }
 
