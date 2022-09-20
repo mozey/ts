@@ -1,7 +1,7 @@
 import { sprintf } from "sprintf-js"
 import { ShadowMode } from "./utils"
 
-export class ComponentOptions {
+export class DefineComponentOptions {
     // Unique tag name of the custom element
     name!: string;
     // ID of the template to use
@@ -10,13 +10,24 @@ export class ComponentOptions {
     injectAppStyle?: boolean = false
 }
 
+export class AppendComponentOptions {
+    // Selector for the container where the element is appended
+    selector!: string
+    // Unique name for the custom element
+    name!: string
+    // Unique ID for the custom element
+    tagID?: string
+    // Wrapper elements can be used for structural styles
+    wrapper?: HTMLElement
+}
+
 export class Component {
     /**
      * Define a custom HTML element, i.e. "Web Component",
      * using a template tag that is already defined on the page
      * @param options
      */
-    static define(options: ComponentOptions) {
+    static define(options: DefineComponentOptions) {
         try {
             customElements.define(options.name,
                 class extends HTMLElement {
@@ -24,10 +35,10 @@ export class Component {
                         super();
                         const shadowRoot = this.attachShadow({ 
                             mode: ShadowMode.open 
-                        }) as ShadowRoot;
+                        }) as ShadowRoot
                         let template = 
                             document.getElementById(options.templateID) as 
-                            HTMLTemplateElement;
+                            HTMLTemplateElement
                         let clone = template.content.cloneNode(true)
                         if (options.injectAppStyle) {
                             // TODO If app styles are included with a link tag,
@@ -38,10 +49,10 @@ export class Component {
                                 "app-stylesheet") as HTMLElement
                             shadowRoot.appendChild(appStyle.cloneNode(true))
                         }
-                        shadowRoot.appendChild(clone);
+                        shadowRoot.appendChild(clone)
                     }
                 }
-            );
+            )
         } catch (err) {
             // Defining the custom element more than once throws an exception
             console.error(err)
@@ -56,11 +67,11 @@ export class Component {
      * @param options
      * @param template Template HTML
      */
-    static defineFromString(options: ComponentOptions, template: string) {
+    static defineFromString(options: DefineComponentOptions, template: string) {
         // Append template
-        let templateElement = document.createElement("template");
-        templateElement.id = options.templateID;
-        templateElement.innerHTML = template;
+        let templateElement = document.createElement("template")
+        templateElement.id = options.templateID
+        templateElement.innerHTML = template
         document.body.appendChild(templateElement)
         // Define custom element
         this.define(options)
@@ -68,20 +79,23 @@ export class Component {
 
     /**
      * Append custom element to a container
-     * @param selector Selector for the container
-     * @param name Name of the custom element
-     * @param tagID ID of the custom element to append
+     * @param options
      */
-    static append(selector: string, name: string, tagID?: string) {
-        let container = document.querySelector(selector) as HTMLElement
+    static append(options: AppendComponentOptions) {
+        let container = document.querySelector(options.selector) as HTMLElement
         if (container) {
-            let e = document.createElement(name) as HTMLElement
-            if (tagID) {
-                e.id = tagID
+            let e = document.createElement(options.name) as HTMLElement
+            if (options.tagID) {
+                e.id = options.tagID
             }
-            container.appendChild(e)
+            if (options.wrapper) {
+                options.wrapper.appendChild(e)
+                container.appendChild(options.wrapper)
+            } else {
+                container.appendChild(e)
+            }
         } else {
-            console.error(sprintf("selector not found %s", selector))
+            console.error(sprintf("selector not found %s", options.selector))
         }
     }
 }
