@@ -69,8 +69,7 @@
         <div class="block">
             <div class="box">
                 <div class="buttons is-right">
-                    <!-- TODO Better way to find div to be removed? -->
-                    <span x-on:click="$el.parentElement.parentElement.parentElement.remove()" class="button is-danger">&times;</span>
+                    <span x-on:click="$el.closest('div.block').remove()" class="button is-danger">&times;</span>
                 </div>
                 <h3>Request</h3>
                 <h3>
@@ -79,7 +78,6 @@
                     </form>
                 </h3>
                 <p>
-                <!-- TODO Use id instead of class for this type of thing -->
                 <pre id="req">&nbsp;</pre>
                 </p>
                 <h3>Response</h3>
