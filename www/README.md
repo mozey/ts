@@ -9,11 +9,6 @@ cd www
 hugo new site ./ --force
 ```
 
-Create [theme from scratch](https://retrolog.io/blog/creating-a-hugo-theme-from-scratch/)
-```bash
-hugo new theme ts
-```
-
 **TODO** Use watcher, build script, and Caddy static server instead, how to set `baseURL` in `config.toml`?
 Start built-in live server
 ```bash
@@ -28,5 +23,10 @@ hugo
 Build static site for prod
 ```bash
 hugo --config config.prod.toml
+```
+
+Create [theme from scratch](https://retrolog.io/blog/creating-a-hugo-theme-from-scratch/). Note tutorial link is just for reference, didn't follow the steps exactly
+```bash
+hugo new theme ts
 ```
 

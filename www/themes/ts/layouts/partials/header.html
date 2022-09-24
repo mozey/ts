@@ -1,0 +1,14 @@
+<!-- https://bulma.io/documentation/components/menu/ -->
+    <aside class="menu">
+        <p class="menu-label">
+            TODO
+        </p>
+        <ul class="menu-list">
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">
+            {{ $text := print .Name | safeHTML }}
+            {{ $text }}
+            </a></li>
+            {{ end }}
+        </ul>
+    </aside>

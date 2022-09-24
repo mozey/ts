@@ -19,8 +19,6 @@
 # vendor/
 
 /www/public
+/www/static/dist
 /www/.hugo_build.lock
 /.env
-
-# TODO Remove?
-/www/dist
