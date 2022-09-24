@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/images/favicon_io/favicon.ico">
-  <link rel="apple-touch-icon" href="/images/favicon_io/apple-touch-icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mozey/ts</title>
-  <link rel="stylesheet" href="./dist/app.css">
-</head>
-
-<body>
+{{ define "main" }}
+  <!-- TODO This must not be part of the theme,
+    define links in config.toml instead? -->
   <section x-data class="section">
     <div class="container">
       <h1 class="title" x-text="$store.data.header">&nbsp;</h1>
@@ -48,8 +38,4 @@
       </div>
     </div>
   </section>
-
-  <script src="./dist/app.js"></script>
-</body>
-
-</html>
+{{ end }}

@@ -5,7 +5,5 @@ bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 APP_DIR="${APP_DIR}"
 
 echo "Building static site..."
-
-# TODO
-echo "TODO Setup hugo"
-# hugo --config "${APP_DIR}"/www/config.yaml
+cd "${APP_DIR}"/www # TODO Use flag to specify root?
+hugo --config "${APP_DIR}"/www/config.toml --themesDir "${APP_DIR}"/www/themes

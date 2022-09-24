@@ -23,7 +23,7 @@ esbuild --version >/dev/null 2>&1 ||
     exit 1
   }
 esbuild "${APP_DIR}"/src/app.ts --sourcemap --bundle \
-    --outfile="${APP_DIR}"/www/dist/app.js \
+    --outfile="${APP_DIR}"/www/static/dist/app.js \
     --minify
 
 echo ""

@@ -10,10 +10,10 @@ if [ ! -f "${APP_DIR}"/.env ]; then
   exit 1
 fi
 
+# Build app (must be done first, creates artifacts used by static site)
+"${APP_DIR}"/scripts/build-app.sh
 # Build static site
 "${APP_DIR}"/scripts/build-site.sh
-# Build app
-"${APP_DIR}"/scripts/build-app.sh
 
 # Watch for page changes and re-build static site... 
 # ...if watcher is installed, see https://github.com/mozey/watcher.
@@ -51,8 +51,9 @@ caddy version >/dev/null 2>&1 ||
   }
 # TODO Print logs with `-access-log` flag and pipe to jq?
 # https://caddy.community/t/making-caddy-logs-more-readable/7565
-# TODO Change root to /www/public
 caddy file-server \
   -listen localhost:"${APP_PORT}" \
-  -root "${APP_DIR}/www" \
+  -root "${APP_DIR}/www/public" \
   -browse
+
+# TODO Starting caddy causes static site to rebuild, why?

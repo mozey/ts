@@ -20,5 +20,5 @@
 
 /www/public
 /www/static/dist
-/www/.hugo_build.lock
+.hugo_build.lock
 /.env
