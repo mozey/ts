@@ -1,4 +1,5 @@
 import Alpine from "alpinejs"
+import { Bulma } from "./bulma"
 // import luxon from "luxon";
 import { $p as pure } from "pure";
 import { index as datepickerIndexNS } from "./datepicker/index";
@@ -15,6 +16,12 @@ export namespace app {
       datepicker: datepickerIndexNS,
       http: httpIndexNS,
       template: templateIndexNS,
+  }
+
+  // Init on DOMContentLoaded, 
+  // see www/themes/ts/layouts/partials/script.html
+  export function init() {
+    Bulma.init()
   }
 }
 

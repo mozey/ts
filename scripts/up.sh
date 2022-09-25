@@ -10,6 +10,10 @@ if [ ! -f "${APP_DIR}"/.env ]; then
   exit 1
 fi
 
+# Clear build artifacts used by `hugo server` and deploy.sh,
+# otherwise static site might not use the latest app build.
+# Default build location for app is /www/public/dist
+rm -f "${APP_DIR}"/www/static/dist/*
 # Build app (must be done first, creates artifacts used by static site)
 "${APP_DIR}"/scripts/build-app.sh
 # Build static site
