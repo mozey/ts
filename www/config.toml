@@ -2,6 +2,7 @@ baseURL = "http://localhost:9999/"
 languageCode = "en-us"
 title = "mozey/ts"
 theme = "ts"
+copyright = "© <b>Christiaan B van Zyl</b> 2022 | Licenses <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>CC BY (Content)</a> and <a rel='license' href='https://github.com/mozey/ts/blob/main/LICENSE'>MIT (Code Snippets)</a>"
 [menu]
   [[menu.main]]
     name = "Home"
