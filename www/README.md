@@ -2,6 +2,16 @@ This is the [root dir for Hugo](https://gohugo.io/getting-started/directory-stru
 
 Only the files in `www/public` are made available on the internet.
 
+## Quick start
+
+Create a new example
+```bash
+hugo new content/examples/foo.html
+```
+
+
+## Setup
+
 The directory structure was generated like this
 ```bash
 cd www

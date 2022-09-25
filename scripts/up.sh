@@ -14,6 +14,8 @@ fi
 # otherwise static site might not use the latest app build.
 # Default build location for app is /www/public/dist
 rm -f "${APP_DIR}"/www/static/dist/*
+# Also clear static site public dir
+rm -rf "${APP_DIR}"/www/public
 # Build app (must be done first, creates artifacts used by static site)
 "${APP_DIR}"/scripts/build-app.sh
 # Build static site

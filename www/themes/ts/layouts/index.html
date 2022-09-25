@@ -1,6 +1,6 @@
 {{ define "main" }}
 <!-- TODO This must not be part of the theme,
-    define links in config.toml instead? -->
+    moving it to www/content causes www/content/examples to not render, why? -->
 <section x-data class="section">
   <div class="container">
     <h1 class="title" x-text="$store.data.header">&nbsp;</h1>
@@ -15,25 +15,25 @@
 
     <div class="block">
       <ul>
-        <li><a href="./examples/http/index.html">HTTP Client</a></li>
+        <li><a href="./examples/http/">HTTP Client</a></li>
       </ul>
       <ul>
-        <li><a href="./examples/templates/index.html">Templates</a></li>
+        <li><a href="./examples/templates/">Templates</a></li>
       </ul>
       <ul>
-        <li><a href="./examples/templates/web-components.html">
+        <li><a href="./examples/web-components/">
             Web Components</a></li>
       </ul>
       <ul>
-        <li><a href="./examples/vuejs/weather-component.html">
+        <li><a href="./examples/vuejs/">
             VueJS Component</a></li>
       </ul>
       <ul>
-        <li><a href="./examples/svelte/demo-component.html">
+        <li><a href="./examples/svelte/">
             Svelte Component</a></li>
       </ul>
       <ul>
-        <li><a href="./examples/datepicker/index.html">Date picker</a></li>
+        <li><a href="./examples/datepicker/">Date picker</a></li>
       </ul>
     </div>
   </div>

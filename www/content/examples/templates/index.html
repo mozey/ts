@@ -1,62 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+title: "Template"
+date: 2022-09-25T17:50:12+02:00
+draft: false
+---
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/images/favicon_io/favicon.ico">
-  <link rel="apple-touch-icon" href="/images/favicon_io/apple-touch-icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>templates</title>
-  <link rel="stylesheet" href="../../dist/app.css">
-</head>
+<section x-data class="section">
+  <div id="root" class="container">
+    <p class="subtitle">
+      Click the links below to render templates
+    </p>
+    <p class="subtitle">
+      Also see <a href="../web-components/">web-components</a>
+    </p>
 
-<body>
-  <section x-data class="section">
-    <div id="root" class="container">
-      <h1 class="title">
-        <a href="https://github.com/mozey/ts/tree/main/src/template#readme">
-          Template Examples</a>
-      </h1>
-
-      <p>&nbsp;</p>
-
-      <p class="subtitle">
-        Click the links below to render templates
-      </p>
-      <p class="subtitle">
-        Also see <a href="./web-components.html">web-components</a>
-      </p>
-
-      <div class="block">
-        <ul>
-          <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
-              Template</a></li>
-          <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
-              Load template from file</a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <template id="my-paragraph-template">
-    <!-- A style tag here (when not using Shadow DOM)
-        affect elements in the rest of the page too -->
-    <style>
-      p.subtitle, p, div.box {
-        color: Tan;
-        background-color: DarkSlateGray;
-      }
-    </style>
     <div class="block">
-      <div class="box">
-        <p class="subtitle">
-          Template style tags affect the rest of the page
-        </p>
-      </div>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.template.appendFromPage()">
+            Template</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.template.appendFromFile()">
+            Load template from file</a></li>
+      </ul>
     </div>
-  </template>
+  </div>
+</section>
 
-  <script src="../../dist/app.js"></script>
-</body>
-
-</html>
+<template id="my-paragraph-template">
+  <!-- A style tag here (when not using Shadow DOM)
+        affect elements in the rest of the page too -->
+  <style>
+    p.subtitle,
+    p,
+    div.box {
+      color: Tan;
+      background-color: DarkSlateGray;
+    }
+  </style>
+  <div class="block">
+    <div class="box">
+      <p class="subtitle">
+        Template style tags affect the rest of the page
+      </p>
+    </div>
+  </div>
+</template>
