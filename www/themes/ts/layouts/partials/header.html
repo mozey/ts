@@ -2,14 +2,7 @@
   Interactivity defined in src/bulma.ts -->
 <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="{{ .Site.BaseURL }}">{{.Site.Title}}</a>
-
-    <a class="navbar-item" href="https://github.com/mozey/ts" target="_blank">
-      <span class="icon" style="color: var(--github);">
-        <i class="fab fa-lg fa-github-alt"></i>
-      </span>
-    </a>
-
+    <a class="navbar-item" href="{{ .Site.BaseURL }}">examples</a>
     <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -18,9 +11,16 @@
   </div>
 
   <div class="navbar-menu" id="navMenu">
-    <!-- TODO List examples here? See links in 
-      www/themes/ts/layouts/index.html -->
+    <div class="navbar-end">
+      <a class="navbar-item" href="https://github.com/mozey/ts" target="_blank" title="github">
+        github&nbsp;
+        <span class="icon">
+          <i class="fab fa-lg fa-github-alt"></i>
+        </span>
+      </a>
+    </div>
   </div>
 </nav>
+
 <!-- TODO Better way to add some space? -->
 <p>&nbsp;</p>
