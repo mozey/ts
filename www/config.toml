@@ -1,4 +1,3 @@
-# TODO Pass --baseURL flag for "https://www.mozey.co/demo/ts/"
 baseURL = "http://localhost:9999/"
 languageCode = "en-us"
 title = "mozey/ts"

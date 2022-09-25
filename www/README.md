@@ -9,20 +9,15 @@ cd www
 hugo new site ./ --force
 ```
 
-**TODO** Use watcher, build script, and Caddy static server instead, how to set `baseURL` in `config.toml`?
-Start built-in live server
+Start built-in live server. Note that (the TypeScript) app builds to `www/public/dist` by default. This is done to avoid a rebuild loops, since there are separate watchers for app and the static site. First build app to `www/static/dist`, then start the live server. This approach can be used instead of `scripts/up.sh` when working on the hugo site or theme only
 ```bash
+../scripts/build-app.sh static
 hugo server
 ```
 
-Build static site for dev
+Build static site for dev. Also see `scripts/deploy.sh`
 ```bash
 hugo
-```
-
-Build static site for prod
-```bash
-hugo --config config.prod.toml
 ```
 
 Create [theme from scratch](https://retrolog.io/blog/creating-a-hugo-theme-from-scratch/). Note tutorial link is just for reference, didn't follow the steps exactly

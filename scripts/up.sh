@@ -22,11 +22,11 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
   # Watcher runs in background sub-shell
   # https://unix.stackexchange.com/a/302804/309572
   (
+    # TODO Something still triggering a rebuild loop...
     cd "${APP_DIR}"
-    # TODO Move static site files to /www/public
     "${GOPATH}"/bin/watcher -d 1500 -r \
       -dir "./www/" \
-      -excludeDir "./www/dist/" \
+      -exclude "./www/.hugo_build.lock" \
       -excludeDir "./www/public/" |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
   ) &
@@ -34,8 +34,6 @@ fi
 
 # Watch for src changes and re-build app...
 if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
-  # Watcher runs in background sub-shell
-  # https://unix.stackexchange.com/a/302804/309572
   (
     cd "${APP_DIR}"
     "${GOPATH}"/bin/watcher -d 1500 -r -dir "./src/" |
@@ -55,5 +53,3 @@ caddy file-server \
   -listen localhost:"${APP_PORT}" \
   -root "${APP_DIR}/www/public" \
   -browse
-
-# TODO Starting caddy causes static site to rebuild, why?
