@@ -22,12 +22,12 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
   # Watcher runs in background sub-shell
   # https://unix.stackexchange.com/a/302804/309572
   (
-    # TODO Something still triggering a rebuild loop...
     cd "${APP_DIR}"
+    # APP_DEBUG=true "${GOPATH}"/bin/watcher -d 1500 -r \
     "${GOPATH}"/bin/watcher -d 1500 -r \
-      -dir "./www/" \
-      -exclude "./www/.hugo_build.lock" \
-      -excludeDir "./www/public/" |
+      -dir www \
+      -exclude ".*\/.hugo_build.lock$" \
+      -excludeDir ".*public.*" \ |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
   ) &
 fi
@@ -36,7 +36,7 @@ fi
 if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
   (
     cd "${APP_DIR}"
-    "${GOPATH}"/bin/watcher -d 1500 -r -dir "./src/" |
+    "${GOPATH}"/bin/watcher -d 1500 -r -dir src |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-app.sh"
   ) &
 fi
