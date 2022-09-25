@@ -1,41 +1,41 @@
 {{ define "main" }}
-  <!-- TODO This must not be part of the theme,
+<!-- TODO This must not be part of the theme,
     define links in config.toml instead? -->
-  <section x-data class="section">
-    <div class="container">
-      <h1 class="title" x-text="$store.data.header">&nbsp;</h1>
-  
-      <p>&nbsp;</p>
+<section x-data class="section">
+  <div class="container">
+    <h1 class="title" x-text="$store.data.header">&nbsp;</h1>
 
-      <p class="subtitle">
-        Click the links below for examples,
-        and remember to view logs in the
-        <a href="https://www.w3schools.com/js/js_debugging.asp">Dev Console</a>
-      </p>
-  
-      <div class="block">
-        <ul>
-          <li><a href="./examples/http/index.html">HTTP Client</a></li>
-        </ul>
-        <ul>
-          <li><a href="./examples/templates/index.html">Templates</a></li>
-        </ul>
-        <ul>
-          <li><a href="./examples/templates/web-components.html">
+    <p>&nbsp;</p>
+
+    <p class="subtitle">
+      Click the links below for examples,
+      and remember to view logs in the
+      <a href="https://www.w3schools.com/js/js_debugging.asp">Dev Console</a>
+    </p>
+
+    <div class="block">
+      <ul>
+        <li><a href="./examples/http/index.html">HTTP Client</a></li>
+      </ul>
+      <ul>
+        <li><a href="./examples/templates/index.html">Templates</a></li>
+      </ul>
+      <ul>
+        <li><a href="./examples/templates/web-components.html">
             Web Components</a></li>
-        </ul>
-        <ul>
-          <li><a href="./examples/vuejs/weather-component.html">
+      </ul>
+      <ul>
+        <li><a href="./examples/vuejs/weather-component.html">
             VueJS Component</a></li>
-        </ul>
-        <ul>
-          <li><a href="./examples/svelte/demo-component.html">
+      </ul>
+      <ul>
+        <li><a href="./examples/svelte/demo-component.html">
             Svelte Component</a></li>
-        </ul>
-        <ul>
-          <li><a href="./examples/datepicker/index.html">Date picker</a></li>
-        </ul>
-      </div>
+      </ul>
+      <ul>
+        <li><a href="./examples/datepicker/index.html">Date picker</a></li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 {{ end }}

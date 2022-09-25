@@ -23,5 +23,4 @@ hugo
 Create [theme from scratch](https://retrolog.io/blog/creating-a-hugo-theme-from-scratch/). Note tutorial link is just for reference, didn't follow the steps exactly
 ```bash
 hugo new theme ts
-```
-
+``
