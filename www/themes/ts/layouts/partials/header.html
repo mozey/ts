@@ -1,14 +1,18 @@
-<!-- https://bulma.io/documentation/components/menu/ -->
-<aside class="menu">
-  <p class="menu-label">
-    TODO
-  </p>
-  <ul class="menu-list">
-    {{ range .Site.Menus.main }}
-    <li><a href="{{ .URL }}">
-        {{ $text := print .Name | safeHTML }}
-        {{ $text }}
-      </a></li>
-    {{ end }}
-  </ul>
-</aside>
+<!-- https://bulma.io/documentation/components/navbar 
+  also see Javascript in www/themes/ts/layouts/partials/bulma.html -->
+<nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ .Site.BaseURL }}">Menu</a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu" id="navMenu">
+    <!-- TODO List examples here? See links in 
+      www/themes/ts/layouts/index.html -->
+  </div>
+</nav>
