@@ -12,9 +12,10 @@ APP_DIR=${APP_DIR}
 AWS_PROFILE=${AWS_PROFILE}
 
 # Remove hidden files
-rm -f "${APP_DIR}"/www/.DS_Store
+# https://unix.stackexchange.com/a/167824/309572
+find "${APP_DIR}"/www/public -name .DS_Store -type f -delete
 
-# TODO Review build commands
+# Build statis site
 "${APP_DIR}"/scripts/build-app.sh static
 cd "${APP_DIR}"/www
 hugo --baseURL "${APP_BASE_URL}"

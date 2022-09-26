@@ -30,7 +30,7 @@ export namespace index {
         options.selector = "#root"
         options.variables = variables
         let template = new Template(options)
-        template.load(Template.getBaseURL(), "data/my-paragraph.html");
+        template.load(Template.getBaseURL(), "../data/my-paragraph.html");
         appendFromFileCounter++
     }
 
@@ -63,7 +63,7 @@ export namespace index {
 
         Template.fetch(
             Template.getBaseURL(),
-            "data/my-paragraph.html",
+            "../data/my-paragraph.html",
             variables).then(template => {
                 Component.defineFromString({
                     name: customElementName,
@@ -90,7 +90,7 @@ export namespace index {
             options.selector = "#root"
             options.variables = variables
             let t = new Template(options)
-            t.load(Template.getBaseURL(), "data/element-details.html");
+            t.load(Template.getBaseURL(), "../data/element-details.html");
             namedSlotsCounter++
         }
         let defineComponent = (template: string) => {
@@ -102,7 +102,7 @@ export namespace index {
         }
         Template.fetch(
             Template.getBaseURL(),
-            "data/element-details-template.html").then(
+            "../data/element-details-template.html").then(
                 defineComponent)
     }
 }

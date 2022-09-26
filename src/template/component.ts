@@ -46,7 +46,7 @@ export class Component {
                             // That can be avoided by inlining app.css in a 
                             // style tag as part of the build process
                             let appStyle = document.getElementById(
-                                "app-stylesheet") as HTMLElement
+                                "app-css") as HTMLElement
                             shadowRoot.appendChild(appStyle.cloneNode(true))
                         }
                         shadowRoot.appendChild(clone)
