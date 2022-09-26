@@ -8,33 +8,42 @@ export namespace index {
     let namedSlotsCounter = 1
 
     export function appendFromPage() {
-        let template =
-            document.getElementById('my-paragraph') as HTMLTemplateElement
-        let templateContent = template.content.cloneNode(true);
-        document.body.appendChild(templateContent);
+        let id = "my-paragraph"
+        let template = document.getElementById(sprintf("%s-template", id)) as 
+            HTMLTemplateElement
+        let templateContent = template.content.cloneNode(true) as HTMLElement
+        let wrapper = templateContent.querySelector("div") as HTMLElement
+        wrapper.id = id
+        let root = document.querySelector("#root") as HTMLElement
+        root.appendChild(templateContent)
     }
 
     // Note that this method does not create a new template element on the page
     export function appendFromFile() {
         let options = new TemplateOptions()
         let variables: TemplateVariable[] = [
-            new TemplateVariable("Counter", sprintf("%i", appendFromFileCounter)),
+            new TemplateVariable(
+                "Counter", sprintf("%i", appendFromFileCounter)),
             new TemplateVariable(
                 "Append", (appendFromFileCounter > 1) ? "times" : "time"),
         ]
+        options.selector = "#root"
         options.variables = variables
         let template = new Template(options)
-        template.load(Template.getBaseURL(), "data/my-paragraph.html");
+        template.load(Template.getBaseURL(), "../data/my-paragraph.html");
         appendFromFileCounter++
     }
 
     export function appendCustomElementFromPage() {
-        let customElementName = "my-paragraph"
+        let id = "my-paragraph"
         // Note the error that is logged if the customer element already exists.
         // Also note that app.css is not applied by default inside Shadow Root
-        Component.define(customElementName, "my-paragraph")
+        Component.define({
+            name: id,
+            templateID: id
+        })
         // Definition errors are caught, so append will always succeed
-        Component.append("body", customElementName)
+        Component.append({selector: "#root", name: id})
     }
 
     // Note that this method creates a new template element on the page,
@@ -54,11 +63,14 @@ export namespace index {
 
         Template.fetch(
             Template.getBaseURL(),
-            "data/my-paragraph.html",
+            "../data/my-paragraph.html",
             variables).then(template => {
-                Component.defineFromString(
-                    customElementName, customElementName, template, true)
-                Component.append("body", customElementName)
+                Component.defineFromString({
+                    name: customElementName,
+                    templateID: customElementName,
+                    injectAppStyle: true
+                }, template)
+                Component.append({selector: "#root", name: customElementName})
                 appendCustomElementFromFileCounter++
             })
     }
@@ -75,19 +87,22 @@ export namespace index {
                 new TemplateVariable("ElementDetails", customElementName),
             ]
             let options = new TemplateOptions()
+            options.selector = "#root"
             options.variables = variables
             let t = new Template(options)
-            t.load(Template.getBaseURL(), "data/element-details.html");
+            t.load(Template.getBaseURL(), "../data/element-details.html");
             namedSlotsCounter++
         }
         let defineComponent = (template: string) => {
-            Component.defineFromString(
-                customElementName, customElementName, template)
+            Component.defineFromString({
+                name: customElementName,
+                templateID: customElementName
+            }, template)
             appendSnippet()
         }
         Template.fetch(
             Template.getBaseURL(),
-            "data/element-details-template.html").then(
+            "../data/element-details-template.html").then(
                 defineComponent)
     }
 }

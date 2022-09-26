@@ -1,0 +1,68 @@
+---
+title: "HTTP Client"
+date: 2022-09-25T17:50:12+02:00
+draft: false
+---
+
+<section class="section" x-data>
+  <div id="loader" style="display: none">&nbsp;</div>
+
+  <div class="container">
+    <p class="subtitle">
+      Makes use of the Fetch API.
+      Click the links below to make HTTP Requests
+    </p>
+    <div class="block">
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.http.post()">
+            Post</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.http.timeout()">
+            Timeout</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.http.interceptor()">
+            Intercept requests</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.http.progress()">
+            Progress indicator</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.http.simultaneous()">
+            Simultaneous requests</a></li>
+        <li><a href="javascript:" x-on:click="app.examples.http.requestInterface()">
+            Request interface</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+
+  <div id="results" class="container">&nbsp;</div>
+</section>
+
+<!-- https://www.w3schools.com/tags/tag_template.asp -->
+<template id="results-template">
+  <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
+  <div class="block">
+    <div class="box">
+      <div class="buttons is-right">
+        <span x-on:click="$el.closest('div.block').remove()" class="button is-danger">&times;</span>
+      </div>
+      <h3>Request</h3>
+      <h3>
+        <form id="url" action="" method="" target="_blank">
+          url => <a href="javascript:" onclick="this.parentElement.submit()">&nbsp;</a>
+        </form>
+      </h3>
+      <p>
+      <pre id="req">&nbsp;</pre>
+      </p>
+      <h3>Response</h3>
+      <p>
+      <pre id="resp">&nbsp;</pre>
+      </p>
+    </div>
+  </div>
+</template>
+
+<template id="results-template-2">
+  <div class="container">
+    <progress id="progress" class="progress" value="0" max="100"></progress>
+    <img id="img" src="">
+  </div>
+</template>

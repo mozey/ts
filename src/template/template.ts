@@ -1,11 +1,6 @@
 import { sprintf } from "sprintf-js"
 import { config } from "../config/config"
 
-export class TemplateWrapper {
-    // Default wrapper tag
-    tagName: string = "div"
-}
-
 export class TemplateVariable {
     // key to replace, e.g. "{{.Key}}"
     key: string = ""
@@ -19,8 +14,6 @@ export class TemplateVariable {
 }
 
 export class TemplateOptions {
-    // wrapper element for templates, for custom elements see component.ts
-    wrapper: TemplateWrapper = new TemplateWrapper()
     // selector for parent element where template will be appended
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
     selector: string = "body"
@@ -72,16 +65,13 @@ export class Template {
     /** 
      * Append HTML template
      */ 
-    append(container: Element, template: string): HTMLElement {
-        // Create the wrapper
-        let e = document.createElement(this.options.wrapper.tagName) as 
-            HTMLElement
-
+    static append(container: Element, template: string) {
         // Append the template
-        e.innerHTML = template;
-        container.appendChild(e)
-
-        return e
+        // https://stackoverflow.com/a/7327125/639133
+        // Using insertAdjacentHTML preserves event handlers on the container,
+        // as opposed to using innerHTML and appendChild with a wrapper element
+        // https://stackoverflow.com/a/41022696/639133
+        container.insertAdjacentHTML("beforeend", template)
     }
 
     /**
@@ -121,22 +111,16 @@ export class Template {
         }
     }
 
-    // TODO Define interface for complete func?
     /**
      * Load a template that is not defined in a tag on the page
      * @param path Path to the template file, or template cache key
-     * @param complete This function is called after the template is inserted,
-     *  with template root element as param
      */
-    async load(url: URL, path: string, complete?: (root: HTMLElement) => void) {
+    async load(url: URL, path: string) {
         let template = await Template.fetch(url, path, this.options.variables)
         let container = document.querySelector(this.options.selector) as 
             HTMLElement
         if (container) {
-            let wrapper = this.append(container, template)
-            if (complete) {
-                complete(wrapper)
-            }
+            Template.append(container, template)
         } else {
             console.error(
                 sprintf("selector not found %s", this.options.selector))

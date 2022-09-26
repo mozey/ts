@@ -23,6 +23,9 @@ npm install
 Build
 ```bash
 npm run build
+ls ../../../www/content/examples/svelte/demo
+# index.js  
+# index.mjs
 ```
 
 

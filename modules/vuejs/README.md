@@ -26,7 +26,7 @@ open http://localhost:8080
 For **prod**, "...create a build that is optimized for deployment and does not include the core Vue library. The rationale is that there can typically be multiple web components on a website and packaging the Vue library with every instance would be a waste of resources.", update `package.json` to `--target wc` then
 ```bash
 npm run build
-ls ../../../www/examples/vuejs/weather
+ls ../../../www/content/examples/vuejs/weather
 # vuejs-weather.js
 # vuejs-weather.js.map
 ```

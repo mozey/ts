@@ -1,39 +1,58 @@
 import { sprintf } from "sprintf-js"
 import { ShadowMode } from "./utils"
 
+export class DefineComponentOptions {
+    // Unique tag name of the custom element
+    name!: string;
+    // ID of the template to use
+    templateID!: string
+    // Inject app.css into shadow root
+    injectAppStyle?: boolean = false
+}
+
+export class AppendComponentOptions {
+    // Selector for the container where the element is appended
+    selector!: string
+    // Unique name for the custom element
+    name!: string
+    // Unique ID for the custom element
+    tagID?: string
+    // Wrapper elements can be used for structural styles
+    wrapper?: HTMLElement
+}
+
 export class Component {
     /**
      * Define a custom HTML element, i.e. "Web Component",
      * using a template tag that is already defined on the page
-     * @param name Name of the custom element
-     * @param templateID ID of the template tag to use
-     * @param injectAppStyle Inject app.css into shadow root
+     * @param options
      */
-    static define(name: string, templateID: string, injectAppStyle?: boolean) {
+    static define(options: DefineComponentOptions) {
         try {
-            customElements.define(name,
+            customElements.define(options.name,
                 class extends HTMLElement {
                     constructor() {
                         super();
                         const shadowRoot = this.attachShadow({ 
                             mode: ShadowMode.open 
-                        }) as ShadowRoot;
-                        let template = document.getElementById(templateID) as 
-                            HTMLTemplateElement;
+                        }) as ShadowRoot
+                        let template = 
+                            document.getElementById(options.templateID) as 
+                            HTMLTemplateElement
                         let clone = template.content.cloneNode(true)
-                        if (injectAppStyle) {
-                            // If app styles are included with a link tag,
+                        if (options.injectAppStyle) {
+                            // TODO If app styles are included with a link tag,
                             // injecting it will make another network request.
                             // That can be avoided by inlining app.css in a 
                             // style tag as part of the build process
                             let appStyle = document.getElementById(
-                                "app-stylesheet") as HTMLElement
+                                "app-css") as HTMLElement
                             shadowRoot.appendChild(appStyle.cloneNode(true))
                         }
-                        shadowRoot.appendChild(clone);
+                        shadowRoot.appendChild(clone)
                     }
                 }
-            );
+            )
         } catch (err) {
             // Defining the custom element more than once throws an exception
             console.error(err)
@@ -45,38 +64,38 @@ export class Component {
      * A template element (with ID as specified) is first appended to the page.
      * For templates that already exist on the page, 
      * use the Component.define method instead
-     * @param name Name of the custom element
-     * @param templateID ID of the template tag to create
+     * @param options
      * @param template Template HTML
-     * @param injectAppStyle Inject app.css into shadow root
      */
-    static defineFromString(
-        name: string, templateID: string, template: string, injectAppStyle?: boolean) {
+    static defineFromString(options: DefineComponentOptions, template: string) {
         // Append template
-        let templateElement = document.createElement("template");
-        templateElement.id = templateID;
-        templateElement.innerHTML = template;
+        let templateElement = document.createElement("template")
+        templateElement.id = options.templateID
+        templateElement.innerHTML = template
         document.body.appendChild(templateElement)
         // Define custom element
-        this.define(name, templateID, injectAppStyle)
+        this.define(options)
     }
 
     /**
      * Append custom element to a container
-     * @param selector Selector for the container
-     * @param name Name of the custom element
-     * @param tagID ID of the custom element to append
+     * @param options
      */
-    static append(selector: string, name: string, tagID?: string) {
-        let container = document.querySelector(selector) as HTMLElement
+    static append(options: AppendComponentOptions) {
+        let container = document.querySelector(options.selector) as HTMLElement
         if (container) {
-            let e = document.createElement(name) as HTMLElement
-            if (tagID) {
-                e.id = tagID
+            let e = document.createElement(options.name) as HTMLElement
+            if (options.tagID) {
+                e.id = options.tagID
             }
-            container.appendChild(e)
+            if (options.wrapper) {
+                options.wrapper.appendChild(e)
+                container.appendChild(options.wrapper)
+            } else {
+                container.appendChild(e)
+            }
         } else {
-            console.error(sprintf("selector not found %s", selector))
+            console.error(sprintf("selector not found %s", options.selector))
         }
     }
 }

@@ -10,19 +10,40 @@ if [ ! -f "${APP_DIR}"/.env ]; then
   exit 1
 fi
 
-# Build app
-"${APP_DIR}"/scripts/build.sh
+# Clear build artifacts used by `hugo server` and deploy.sh,
+# otherwise static site might not use the latest app build.
+# Default build location for app is /www/public/dist
+rm -f "${APP_DIR}"/www/static/dist/*
+# Also clear static site public dir
+rm -rf "${APP_DIR}"/www/public
+# Build app (must be done first, creates artifacts used by static site)
+"${APP_DIR}"/scripts/build-app.sh
+# Build static site
+"${APP_DIR}"/scripts/build-site.sh
 
-# Watch for changes and re-build if watcher is installed,
-# see https://github.com/mozey/watcher.
+# Watch for page changes and re-build static site... 
+# ...if watcher is installed, see https://github.com/mozey/watcher.
 # You still have to manually refresh the browser window
 if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
   # Watcher runs in background sub-shell
   # https://unix.stackexchange.com/a/302804/309572
   (
     cd "${APP_DIR}"
-    "${GOPATH}"/bin/watcher -d 1500 -r -dir "./src/" |
-      xargs -n1 bash -c "${APP_DIR}/scripts/build.sh"
+    # APP_DEBUG=true "${GOPATH}"/bin/watcher -d 1500 -r \
+    "${GOPATH}"/bin/watcher -d 1500 -r \
+      -dir www \
+      -exclude ".*\/.hugo_build.lock$" \
+      -excludeDir ".*public.*" \ |
+      xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
+  ) &
+fi
+
+# Watch for src changes and re-build app...
+if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
+  (
+    cd "${APP_DIR}"
+    "${GOPATH}"/bin/watcher -d 1500 -r -dir src |
+      xargs -n1 bash -c "${APP_DIR}/scripts/build-app.sh"
   ) &
 fi
 
@@ -36,5 +57,5 @@ caddy version >/dev/null 2>&1 ||
 # https://caddy.community/t/making-caddy-logs-more-readable/7565
 caddy file-server \
   -listen localhost:"${APP_PORT}" \
-  -root "${APP_DIR}/www" \
+  -root "${APP_DIR}/www/public" \
   -browse

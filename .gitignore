@@ -1,3 +1,4 @@
+/_excluded
 .idea
 .DS_Store
 
@@ -17,58 +18,7 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-/_excluded
-/www/dist
+/www/public
+/www/static/dist
+.hugo_build.lock
 /.env
-
-# TODO Remove lines below after refactoring.....................................
-
-/http/build
-/http/build.index.html
-/http/node_modules
-/http/package-lock.json
-
-/template/build
-/template/build.index.html
-/template/lib
-/template/node_modules
-/template/package-lock.json
-/template/http.ts
-
-/datepicker/build
-/datepicker/build.index.html
-/datepicker/lib
-/datepicker/node_modules
-/datepicker/package-lock.json
-/datepicker/http.ts
-/datepicker/pure.d.ts
-
-/loader/build
-/loader/build.index.html
-/loader/lib
-/loader/node_modules
-/loader/package-lock.json
-/loader/http.ts
-/loader/model
-
-/webcomponent/build
-/webcomponent/build.index.html
-/webcomponent/build.port
-/webcomponent/lib
-/webcomponent/node_modules
-/webcomponent/package-lock.json
-/webcomponent/http.ts
-/webcomponent/pure.d.ts
-/webcomponent/template.ts
-
-/store/index.html
-/store/static/build
-/store/static/build.port
-/store/static/lib
-/store/node_modules
-/store/package-lock.json
-/store/openport.sh
-/store/vuecart/public/index.html
-/store/vuecart/public/static
-/store/vuex
-
