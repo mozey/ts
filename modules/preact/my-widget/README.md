@@ -6,7 +6,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve demo with hot reload at localhost:8080
 npm run dev
 
 # build npm ready bundles to be consumed by other Preact web apps
