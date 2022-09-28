@@ -1,1 +1,1 @@
-{"version":1,"ops":[{"type":3,"author":{"id":"981c97f6fbf4ae87998651925ac2d8fa2cb349e3"},"timestamp":1664347878,"message":"[b48c88a](/bug/b48c88a)","files":null}]}
+{"version":1,"ops":[{"type":3,"author":{"id":"981c97f6fbf4ae87998651925ac2d8fa2cb349e3"},"timestamp":1664348008,"message":"As per [web components guide](https://preactjs.com/guide/v10/web-components/#app) *\"Preact's tiny size and standards-first approach make it a great choice for building web components.\"*","files":null}]}
