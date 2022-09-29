@@ -18,12 +18,12 @@ Build *"your component as a Preact component library"*. Do this if you want to u
 Build *"your widget to be consumed by other <s>Preact</s> web applications"*. Do this to include the component on any page
 ```bash
 npm run build:widget
-# UMD doesn't give errors, but it's not rendering the component either?
-cp dist/index.umd.js ../../../www/content/examples/preact/index.js
-cp dist/index.umd.js.map ../../../www/content/examples/preact/
+cp dist/index.umd.js ../../../www/content/examples/preact/dist/index.js
 ```
 
-TODO Which JS file to use?
+See [what are UMD modules?](https://jameshfisher.com/2020/10/04/what-are-umd-modules/)
+
+TODO Use ES Module?
 
 
 ## Setup
