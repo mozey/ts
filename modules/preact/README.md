@@ -10,12 +10,20 @@ npm install
 npm run dev
 ```
 
-Build
+Build *"your component as a Preact component library"*. Do this if you want to use the component in a Preact web application
 ```bash
-# TODO
+# npm run build:lib
 ```
 
-TODO Register custom tag https://preactjs.com/guide/v10/web-components/#app
+Build *"your widget to be consumed by other <s>Preact</s> web applications"*. Do this to include the component on any page
+```bash
+npm run build:widget
+# UMD doesn't give errors, but it's not rendering the component either?
+cp dist/index.umd.js ../../../www/content/examples/preact/index.js
+cp dist/index.umd.js.map ../../../www/content/examples/preact/
+```
+
+TODO Which JS file to use?
 
 
 ## Setup
@@ -28,3 +36,6 @@ cd my-widget
 npm install
 npm run dev
 ```
+
+Confusingly, the `habitat` module used by the widget-typescript template, is not mentioned in the docs? See [PreactJS web component](https://preactjs.com/guide/v10/web-components)  
+
