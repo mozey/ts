@@ -1,4 +1,4 @@
-# Svelte
+# svelte
 
 Svelte examples
 

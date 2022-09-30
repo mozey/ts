@@ -17,6 +17,8 @@ TODO Source map for `tinygo.wasm`?
 
 TODO Create Go dev server as per TinyGo guide for better DX
 
+TODO Convert `index.js` to TypeScript and move to `src/wasm`
+
 
 ## Setup
 

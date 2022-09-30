@@ -1,4 +1,4 @@
-# PreactJS
+# preact
 
 ## Quick start 
 
