@@ -9,9 +9,15 @@ draft: false
 
 <section class="section">
   <div class="container">
+    <p class="subtitle">WASM component with function calls both ways</p>
     <pre id="logs"></pre>
   </div>
 </section>
 
-<script src="./index.js"></script>
-<script src="./wasm_exec.js"></script>
+<!-- 
+  Add the "ts" query param to avoid browser caching the ".wasm" file,
+  this can be done using a shortcode
+  https://gohugo.io/content-management/shortcodes/
+ -->
+<script src='./dist/index.js?ts={{% timestamp %}}'></script>
+<script src="./dist/wasm_exec.js?ts={{% timestamp %}}"></script>

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const go = new Go(); // Defined in wasm_exec.js
-  const WASM_URL = "tinygo.wasm";
+  const WASM_URL = "dist/tinygo.wasm";
 
   var wasm;
 
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // This part goes after "const go = new Go();" declaration.
     go.importObject.env = {
       'main.add': function (x, y) {
-        msg = "adding two numbers:"
+        msg = "Javascript called from Go: main.add =>"
         result = x + y;
         log = document.createElement("p")
         log.textContent = msg + " " + String(result)
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function start() {
     // Calling Go from Javascript:
-    msg = "multiplied two numbers:"
+    msg = "Go called from Javascript: wasm.exports.multiply =>"
     result = wasm.exports.multiply(5, 3)
     log = document.createElement("p")
     log.textContent = msg + " " + result
