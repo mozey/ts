@@ -1,7 +1,8 @@
 {{ define "main" }}
 <section class="section">
   <div class="container">
-    <h1 class="title">{{ .Title }}</h1>
+    <h1 class="title"><a href="{{ .Params.Link }}" title="View Source Code">
+      {{ .Title }}</a></h1>
   </div>
 </section>
 <!-- {{ partial "metadata.html" . }} -->

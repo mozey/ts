@@ -26,8 +26,7 @@ export namespace app {
 }
 
 Alpine.store("data", {
-  // TODO Example of using store data
-  // header: "Mostly TypeScript Examples"
+  header: "Mostly TypeScript Examples"
 })
 
 // "Extensions must have been registered IN BETWEEN when the Alpine
