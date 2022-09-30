@@ -15,6 +15,7 @@ func add(x int, y int) int
 
 // This function is exported to JavaScript, so can be called using
 // exports.multiply() in JavaScript.
+//lint:ignore U1000 Called from Javascript
 //export multiply
 func multiply(x, y int) int {
 	return x * y
