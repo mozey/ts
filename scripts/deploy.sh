@@ -20,6 +20,9 @@ find "${APP_DIR}"/www/public -name .DS_Store -type f -delete
 cd "${APP_DIR}"/www
 hugo --baseURL "${APP_BASE_URL}"
 
+# TODO Version issues.md with this repo,
+# see https://github.com/mozey/ts-issues
+
 # Deploy to S3
 aws --profile "${AWS_PROFILE}" \
     s3 sync "${APP_DIR}"/www/public s3://"${APP_AWS_WEBSITE_BUCKET}" \
