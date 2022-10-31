@@ -11,7 +11,7 @@ if [[ $# -lt ${EXPECTED_ARGS} ]]; then
   echo "Execute the specified func"
   echo ""
   echo "Examples:"
-  echo "  $(basename "$0") depends go"
+  echo "  $(basename "$0") depends sass"
   exit 1
 fi
 

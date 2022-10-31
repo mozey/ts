@@ -22,3 +22,4 @@
 /www/static/dist
 .hugo_build.lock
 /.env
+/sass/MaterialDesign-SVG
