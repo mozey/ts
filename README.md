@@ -56,7 +56,9 @@ Using [bulma](https://bulma.io/documentation/) and [material design icons](https
 Only the SVG icons that are used are versioned in this repo. Copy icons to the [static dir](https://gohugo.io/content-management/static-files/) to version them
 ```bash
 # The clone path is ignored
-git clone https://github.com/mozey/MaterialDesign-SVG sass/MaterialDesign-SVG
+git clone https://github.com/mozey/MaterialDesign-SVG \
+  www/themes/ts/static/icons/MaterialDesign-SVG
 # Version the github icon
-cp sass/MaterialDesign-SVG/svg/github.svg www/themes/ts/static/icons
+cp www/themes/ts/static/icons/MaterialDesign-SVG/svg/github.svg \
+  www/themes/ts/static/icons
 ```

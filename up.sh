@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -eu                   # exit on error or undefined variable
 bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
+# Terminate all processes on Ctrl+C
+# https://stackoverflow.com/a/8366378/639133
+trap "kill 0" SIGINT
 
 APP_DIR="${APP_DIR}"
 
@@ -24,7 +27,7 @@ rm -rf "${APP_DIR}"/www/public
 # Build app
 "${APP_DIR}"/scripts/build-app.sh
 # Build SASS
-"${APP_DIR}"/make.sh build-sass
+# "${APP_DIR}"/make.sh build-sass
 
 # Watch for page changes and re-build, if watcher is installed,
 # see https://github.com/mozey/watcher.
@@ -34,17 +37,20 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
   # https://unix.stackexchange.com/a/302804/309572
   # Static site
   (
+    trap "kill 0" SIGINT
     cd "${APP_DIR}"
     # APP_DEBUG=true "${GOPATH}"/bin/watcher -d 1500 -r \
     "${GOPATH}"/bin/watcher -d 1500 -r \
       -dir www \
       -exclude ".*\/.hugo_build.lock$" \
-      -excludeDir ".*public.*" \  |
+      -excludeDir ".*public.*" \
+      -excludeDir ".*static\/icons\/MaterialDesign-SVG.*" \ |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
   ) &
 
   # App
   (
+    trap "kill 0" SIGINT
     cd "${APP_DIR}"
     "${GOPATH}"/bin/watcher -d 1500 -r -dir src |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-app.sh"
@@ -52,6 +58,7 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
 
   # SASS
   (
+    trap "kill 0" SIGINT
     cd "${APP_DIR}"
     "${GOPATH}"/bin/watcher -d 1500 -r -dir sass |
       xargs -n1 bash -c "${APP_DIR}/scripts/build-sass.sh"
