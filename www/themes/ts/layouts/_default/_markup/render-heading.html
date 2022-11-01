@@ -1,0 +1,14 @@
+<!-- 
+TODO This only works when rendering markdown?
+"My initial requirement was to put 
+# before h1 headings, ## before h2 heading, etc.
+As others have mentioned, this can be achieved with render hooks"
+https://discourse.gohugo.io/t/adding-anchor-next-to-headers/1726/23
+https://gohugo.io/getting-started/configuration-markup#markdown-render-hooks
+ -->
+ <h{{ .Level }} id="{{ .Anchor | safeURL }}">
+  <a class="heading-anchor no-underline" href="#{{ .Anchor | safeURL }}">
+      &#128279;
+  </a>
+  {{ .Text | safeHTML }}
+</h{{ .Level }}>

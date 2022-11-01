@@ -1,0 +1,89 @@
+@charset "utf-8"
+  
+// TODO Only include what is used?
+@import "../node_modules/bulma/bulma.sass"
+
+$title-color: #137752
+$menu-color: #363636
+$background-color: #fffceb
+$link-color: #3e84f4
+$link-color-visited: #9f3df5
+
+html, body
+  height: 100%
+  background-color: $background-color
+
+body
+  display: flex
+  flex-direction: column
+
+.content
+  word-break: break-word
+
+.posts
+  margin-top: 10px
+  .post
+    margin-bottom: 15px
+    a
+      &:hover
+        text-decoration-line: underline
+        text-decoration-style: solid
+        text-decoration-color: $menu-color
+
+.content
+  a
+    color: $link-color
+    &:hover
+      text-decoration-line: underline
+      text-decoration-style: solid
+      text-decoration-color: $link-color
+    &:visited
+      color: $link-color-visited
+      text-decoration-color: $link-color-visited
+    &.heading-anchor
+      text-decoration-line: none
+
+
+.tags-list
+  margin-bottom: 15px
+
+.navbar
+  background-color: $background-color
+  a.navbar-item.x-logo
+    h1.title
+      color: $title-color
+      font-weight: bold
+    &:hover
+      text-decoration-line: none
+  .navbar-menu
+    background-color: $background-color
+  a.navbar-item.x-menu
+    h1.title
+      color: $menu-color
+      font-weight: bold
+    &:hover
+      text-decoration-line: underline
+      text-decoration-style: solid
+      text-decoration-color: $menu-color
+
+.navbar-brand
+  .navbar-item
+    figure
+      img, span
+        width: inherit
+
+// Make code a bit smaller on mobile.
++touch
+  pre
+    font-size: $size-small
+
+.is-medium
+  pre
+    font-size: $size-normal
+
+.no-margin
+  margin-left: 0
+  margin-right: 0
+
+.footer
+  background-color: $background-color

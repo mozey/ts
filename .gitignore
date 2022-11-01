@@ -23,3 +23,6 @@
 /www/public
 /www/static/dist
 .hugo_build.lock
+
+# See docs about vendoring icons that are used
+/icons
