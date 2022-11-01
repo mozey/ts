@@ -10,7 +10,7 @@ rm -rf www/public
 
 # Build static site.
 # Do this first, other artifacts are created directely in www/public
-"${APP_DIR}"/make.sh build-site
+"${APP_DIR}"/make.sh build-site prod
 
 # Build app
 "${APP_DIR}"/make.sh build-app

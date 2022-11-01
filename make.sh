@@ -117,8 +117,9 @@ build-sass() {
 }
 
 build-site() {
+  ENV="${1:-dev}"
   depends hugo
-  "$APP_DIR"/scripts/build-site.sh
+  "$APP_DIR"/scripts/build-site.sh "$ENV"
 }
 
 # ..............................................................................
