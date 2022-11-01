@@ -73,3 +73,9 @@ git clone https://github.com/mozey/MaterialDesign-SVG icons
 # Version the github icon
 cp icons/svg/github.svg www/themes/ts/static/icons
 ```
+
+
+## TODO
+
+Version exported `issues.md` in this repo, see private repo [ts-issues](https://github.com/mozey/ts-issues)
+
