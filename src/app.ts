@@ -6,8 +6,10 @@ import { index as datepickerIndexNS } from "./datepicker/index";
 import { index as httpIndexNS } from "./http/index";
 import { index as templateIndexNS } from "./template/index";
 
+// TODO Rather keep CSS out of this file, make separate build script for SASS?
 // Files to include in the build
-import "bulma/css/bulma.css";
+// import "bulma/css/bulma.css";
+// import "./app.sass"
 
 // app is a singleton
 // https://stackoverflow.com/a/30174360/639133

@@ -1,3 +1,5 @@
+**TODO** Use similar theme to https://www.mozey.co/
+
 # ts
 
 Misc TypeScript examples and libs 
@@ -23,7 +25,7 @@ Use native Javascript methods wherever possible, see for example [You Don't Need
 
 ## [Demo](https://mozey.co/demo/ts)
 
-### Run it yourself
+### Dev
 
 Clone the repo
 ```bash
@@ -41,7 +43,39 @@ export $(grep -v '^#' .env | xargs)
 
 Build src and start Caddy static file server
 ```bash
-APP_DIR=$(pwd) ./scripts/up.sh
+APP_DIR=$(pwd) ./up.sh
 ```
 
 Open the index page in your browser and browse the examples
+
+
+## Deploy
+
+Deploy static site to S3. Using [mozey/config](https://github.com/mozey/config) to set env variables, but it's not required, the method described above also works
+```bash
+conf
+./script/deploy.sh
+```
+
+
+## Theme
+
+Using [bulma](https://bulma.io/documentation/) 
+
+### Icons
+
+Using [material design icons](https://materialdesignicons.com/)
+
+Only the SVG icons that are used are versioned in this repo. Copy icons to the [static dir](https://gohugo.io/content-management/static-files/) to version them
+```bash
+# The clone path is ignored
+git clone https://github.com/mozey/MaterialDesign-SVG icons
+# Version the github icon
+cp icons/svg/github.svg www/themes/ts/static/icons
+```
+
+
+## TODO
+
+Version exported `issues.md` in this repo, see private repo [ts-issues](https://github.com/mozey/ts-issues)
+
