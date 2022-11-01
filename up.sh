@@ -22,12 +22,12 @@ rm -rf "${APP_DIR}"/www/public
 
 # Build static site.
 # Do this first, other artifacts are created directely in www/public
-"${APP_DIR}"/scripts/build-site.sh
+"${APP_DIR}"/make.sh build-site
 
 # Build app
-"${APP_DIR}"/scripts/build-app.sh
+"${APP_DIR}"/make.sh build-app
 # Build SASS
-# "${APP_DIR}"/make.sh build-sass
+"${APP_DIR}"/make.sh build-sass
 
 # Watch for page changes and re-build, if watcher is installed,
 # see https://github.com/mozey/watcher.
@@ -45,7 +45,7 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
       -exclude ".*\/.hugo_build.lock$" \
       -excludeDir ".*public.*" \
       -excludeDir ".*static\/icons\/MaterialDesign-SVG.*" \ |
-      xargs -n1 bash -c "${APP_DIR}/scripts/build-site.sh"
+      xargs -n1 bash -c "${APP_DIR}/make.sh build-site"
   ) &
 
   # App
@@ -53,7 +53,7 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
     trap "kill 0" SIGINT
     cd "${APP_DIR}"
     "${GOPATH}"/bin/watcher -d 1500 -r -dir src |
-      xargs -n1 bash -c "${APP_DIR}/scripts/build-app.sh"
+      xargs -n1 bash -c "${APP_DIR}/make.sh build-app"
   ) &
 
   # SASS
@@ -61,16 +61,12 @@ if "${GOPATH}"/bin/watcher -version >/dev/null 2>&1; then
     trap "kill 0" SIGINT
     cd "${APP_DIR}"
     "${GOPATH}"/bin/watcher -d 1500 -r -dir sass |
-      xargs -n1 bash -c "${APP_DIR}/scripts/build-sass.sh"
+      xargs -n1 bash -c "${APP_DIR}/make.sh build-sass"
   ) &
 fi
 
 # Static file server
-caddy version >/dev/null 2>&1 ||
-  {
-    echo "Install caddy https://formulae.brew.sh/formula/caddy"
-    exit 1
-  }
+./make.sh depends caddy
 # TODO Print logs with `-access-log` flag and pipe to jq?
 # https://caddy.community/t/making-caddy-logs-more-readable/7565
 caddy file-server \

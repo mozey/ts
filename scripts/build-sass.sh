@@ -19,3 +19,6 @@ sass "${APP_DIR}"/sass/app.sass "${APP_DIR}"/www/public/dist/app.css
 # selectors used in your files with the one in your content files. 
 # It removes unused selectors from your css, resulting in smaller css files"
 # https://github.com/FullHuman/purgecss
+
+echo "-- Done $(basename "$0")"
+echo ""

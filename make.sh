@@ -20,16 +20,51 @@ FUNC=${1}
 # depends checks for programs this script depends on
 depends() {
   OS=$(detect_os)
-  BREW_INSTALL=""
   if [[ ${OS} == "linux" ]] || [[ ${OS} == "windows" ]]; then
-    # Do not brew install on linux and windows
-    BREW_INSTALL="echo"
+    echo "Default instruction are for users on macOS,"
+    echo "using Homebrew https://brew.sh/"
+    echo ""
+    echo "It is possible to use Homebrew on Linux or Windows,"
+    echo "see this https://docs.brew.sh/Homebrew-on-Linux"
+    echo ""
+    echo "Alternatively use https://chocolatey.org/ for Windows,"
+    echo "or your Linux distro's package manager"
+    echo ""
   fi
-  if [[ ${1} == "sass" ]]; then
+
+  if [[ ${1} == "caddy" ]]; then
+    caddy version >/dev/null 2>&1 ||
+      {
+        echo "Install caddy https://formulae.brew.sh/formula/caddy"
+        exit 0
+      }
+
+  elif [[ ${1} == "esbuild" ]]; then
+    esbuild --version >/dev/null 2>&1 ||
+      {
+        echo "Install esbuild https://formulae.brew.sh/formula/esbuild"
+        exit 0
+      }
+
+  elif [[ ${1} == "hugo" ]]; then
+    hugo version >/dev/null 2>&1 ||
+      {
+        echo "Install Hugo https://formulae.brew.sh/formula/hugo"
+        exit 0
+      }
+
+  elif [[ ${1} == "tsc" ]]; then
+    tsc --version >/dev/null 2>&1 ||
+      {
+        echo "Install TypeScript https://formulae.brew.sh/formula/typescript"
+        exit 0
+      }
+
+  elif [[ ${1} == "sass" ]]; then
     sass --version >/dev/null 2>&1 ||
       {
-        echo "Install https://sass-lang.com/install"
-        ${BREW_INSTALL} brew install sass/sass/sass
+        echo "Install SASS https://github.com/sass/homebrew-sass"
+        exit 0
       }
 
   else
@@ -70,10 +105,21 @@ detect_os() {
   esac
 }
 
+build-app() {
+  depends tsc
+  depends esbuild
+  "${APP_DIR}"/scripts/build-app.sh
+}
+
 build-sass() {
   depends sass
   "$APP_DIR"/scripts/build-sass.sh
-} 
+}
+
+build-site() {
+  depends hugo
+  "$APP_DIR"/scripts/build-site.sh
+}
 
 # ..............................................................................
 
