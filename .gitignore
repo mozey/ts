@@ -24,4 +24,4 @@
 /.env
 
 # See docs about vendoring icons that are used
-/www/themes/ts/static/icons/MaterialDesign-SVG
+icons
