@@ -18,11 +18,11 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-/.env
-
 /www/public
 /www/static/dist
 .hugo_build.lock
+/.env
+/prod.env
 
 # See docs about vendoring icons that are used
 /icons

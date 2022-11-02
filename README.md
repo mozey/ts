@@ -33,9 +33,9 @@ git clone https://github.com/mozey/ts.git
 cd ts
 ```
 
-Configure environment variables
+Configure environment variables for dev
 ```bash
-# Copy `sample.env` to `.env` and tweak values as required
+# Create env file for dev config, tweak values as required
 cp sample.env .env
 # Export environment variables
 export $(grep -v '^#' .env | xargs)
@@ -51,10 +51,14 @@ Open the index page in your browser and browse the examples
 
 ## Deploy
 
-Deploy static site to S3. Using [mozey/config](https://github.com/mozey/config) to set env variables, but it's not required, the method described above also works
+Create env file for prod config from sample
 ```bash
-conf
-./script/deploy.sh
+cp sample.prod.env prod.env
+```
+
+Deploy static site to S3. Using [mozey/config](https://github.com/mozey/config) to set env variables, it's not required, the method described above also works
+```bash
+conf prod && ./script/deploy.sh
 ```
 
 
