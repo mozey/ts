@@ -1,0 +1,6 @@
+$APP_LISTEN:$APP_PORT {
+	file_server {
+		root $APP_DIR/www/public
+		browse
+	}
+}

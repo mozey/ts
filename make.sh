@@ -122,6 +122,20 @@ build-site() {
   "$APP_DIR"/scripts/build-site.sh "$ENV"
 }
 
+gen_caddyfile() {
+  SAMPLE="${APP_DIR}/sample.Caddyfile"
+  CADDYFILE="${APP_DIR}/Caddyfile"
+  cp "${SAMPLE}" "${CADDYFILE}"
+  # Set variables in sample template from env
+  (
+    OUTPUT=$(APP_DIR="$APP_DIR" \
+      APP_LISTEN="$APP_LISTEN" \
+      APP_PORT="$APP_PORT" \
+      envsubst < "$CADDYFILE")
+    echo "$OUTPUT" > "$CADDYFILE"
+  )
+}
+
 # ..............................................................................
 
 APP_DIR="$APP_DIR"
