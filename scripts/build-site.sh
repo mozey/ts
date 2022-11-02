@@ -15,15 +15,10 @@ then
   exit 0
 fi
 
-APP_DIR="${APP_DIR}"
 ENV="${1:-dev}"
-APP_BASE_URL=""
-if [[ $ENV == "prod" ]]; then
-  # TODO Just this one var for now,
-  # if there are more differences between dev and prod,
-  # then create a sample.prod.env file
-  APP_BASE_URL="${APP_BASE_URL}"
-fi
+
+APP_DIR="${APP_DIR}"
+APP_BASE_URL="${APP_BASE_URL}"
 
 echo "Building static site..."
 cd "${APP_DIR}"/www # TODO Pass CLI arg to specify root?

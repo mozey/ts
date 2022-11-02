@@ -22,6 +22,7 @@
 /www/static/dist
 .hugo_build.lock
 /.env
+/prod.env
 
 # See docs about vendoring icons that are used
 /icons
