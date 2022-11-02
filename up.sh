@@ -5,6 +5,19 @@ bash -c 'set -o pipefail' # return code of first cmd to fail in a pipeline
 # https://stackoverflow.com/a/8366378/639133
 trap "kill 0" SIGINT
 
+if [[ ${1:-} = "help" ]]
+then
+  echo ""
+  echo "USAGE:"
+  echo "  $(basename "$0")"
+  echo ""
+  echo "EXAMPLES:"
+  echo "  $(basename "$0")"
+  echo "  $(basename "$0")"
+  echo ""
+  exit 0
+fi
+
 APP_DIR="${APP_DIR}"
 
 # Check if .env file exists
@@ -67,9 +80,7 @@ fi
 
 # Static file server
 ./make.sh depends caddy
+./make.sh gen_caddyfile
 # TODO Print logs with `-access-log` flag and pipe to jq?
 # https://caddy.community/t/making-caddy-logs-more-readable/7565
-caddy file-server \
-  -listen localhost:"${APP_PORT}" \
-  -root "${APP_DIR}/www/public" \
-  -browse
+caddy run
