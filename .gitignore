@@ -24,6 +24,3 @@
 /.env
 /prod.env
 /Caddyfile
-
-# See docs about vendoring icons that are used
-/icons

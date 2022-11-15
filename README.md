@@ -73,9 +73,9 @@ Using [material design icons](https://materialdesignicons.com/)
 Only the SVG icons that are used are versioned in this repo. Copy icons to the [static dir](https://gohugo.io/content-management/static-files/) to version them
 ```bash
 # The clone path is ignored
-git clone https://github.com/mozey/MaterialDesign-SVG icons
+git clone https://github.com/mozey/MaterialDesign-SVG ~/MaterialDesign-SVG
 # Version the github icon
-cp icons/svg/github.svg www/themes/ts/static/icons
+cp ~/MaterialDesign-SVG/svg/github.svg www/themes/ts/static/icons
 ```
 
 
