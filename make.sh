@@ -108,18 +108,17 @@ detect_os() {
 build-app() {
   depends tsc
   depends esbuild
-  "${APP_DIR}"/scripts/build-app.sh
+  "${APP_DIR}"/scripts/build/app.sh
 }
 
 build-sass() {
   depends sass
-  "$APP_DIR"/scripts/build-sass.sh
+  "$APP_DIR"/scripts/build/sass.sh
 }
 
 build-site() {
-  ENV="${1:-dev}"
   depends hugo
-  "$APP_DIR"/scripts/build-site.sh "$ENV"
+  "$APP_DIR"/scripts/build/site.sh
 }
 
 gen_caddyfile() {

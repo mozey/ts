@@ -21,7 +21,7 @@ hugo new site ./ --force
 
 Start built-in live server. Note that (the TypeScript) app builds to `www/public/dist` by default. This is done to avoid a rebuild loops, since there are separate watchers for app and the static site. First build app to `www/static/dist`, then start the live server. This approach can be used instead of `scripts/up.sh` when working on the hugo site or theme only
 ```bash
-../scripts/build-app.sh static
+../scripts/build/app.sh static
 hugo server
 ```
 
