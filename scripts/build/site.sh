@@ -6,16 +6,10 @@ if [[ ${1:-} = "help" ]]
 then
   echo ""
   echo "USAGE:"
-  echo "  $(basename "$0") [ENV]"
-  echo ""
-  echo "EXAMPLES:"
-  echo "  $(basename "$0") # Build for dev by default"
-  echo "  $(basename "$0") prod # Build for specified env"
+  echo "  $(basename "$0")"
   echo ""
   exit 0
 fi
-
-ENV="${1:-dev}"
 
 APP_DIR="${APP_DIR}"
 APP_BASE_URL="${APP_BASE_URL}"
