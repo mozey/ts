@@ -58,7 +58,12 @@ cp sample.prod.env prod.env
 
 Deploy static site to S3. Using [mozey/config](https://github.com/mozey/config) to set env variables, it's not required, the method described above also works
 ```bash
-conf prod && ./script/deploy.sh
+# Config
+conf prod
+# Stop dev server if it's running
+./down
+# Deploy
+./scripts/deploy.sh
 ```
 
 
