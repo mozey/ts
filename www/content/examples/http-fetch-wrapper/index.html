@@ -18,6 +18,18 @@ draft: false
         <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.read()">
             Read</a></li>
       </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.create()">
+            Create</a></li>
+      </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.update()">
+            Update</a></li>
+      </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.list()">
+            List</a></li>
+      </ul>
     </div>
   </div>
 
@@ -34,7 +46,7 @@ draft: false
       <div class="buttons is-right">
         <span x-on:click="$el.closest('div.block').remove()" class="button is-danger">&times;</span>
       </div>
-      <h3 id="header">Response</h3>
+      <h3 id="header">&nbsp;</h3>
       <p>
       <pre id="resp">&nbsp;</pre>
       </p>
