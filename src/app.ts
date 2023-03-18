@@ -5,6 +5,7 @@ import { $p as pure } from "pure";
 import { index as datepickerIndexNS } from "./datepicker/index";
 import { index as httpIndexNS } from "./http/index";
 import { index as templateIndexNS } from "./template/index";
+import { index as httpFetchWrapperNS } from "./http-fetch-wrapper/index";
 
 // TODO Rather keep CSS out of this file, make separate build script for SASS?
 // Files to include in the build
@@ -17,6 +18,7 @@ export namespace app {
   export let examples = {
       datepicker: datepickerIndexNS,
       http: httpIndexNS,
+      httpFetchWrapper: httpFetchWrapperNS,
       template: templateIndexNS,
   }
 

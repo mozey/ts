@@ -46,7 +46,7 @@ Build src and start Caddy static file server
 APP_DIR=$(pwd) ./up.sh
 ```
 
-Open the index page in your browser and browse the examples
+Open the index page in your browser to see the examples
 
 
 ## Deploy
