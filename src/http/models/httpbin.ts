@@ -21,7 +21,7 @@ export interface HttpbinResp {
     files?: any
     form?: any
     headers?: Headers
-    json?: any[]
+    json?: any
     origin?: string
     url: string
 }

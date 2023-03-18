@@ -1,0 +1,56 @@
+---
+title: "HTTP Fetch Wrapper"
+link: "https://github.com/mozey/ts/tree/main/src/http-fetch-wrapper"
+date: 2023-03-18T16:18:00+01:00
+draft: false
+---
+
+<section class="section" x-data>
+  <div id="loader" style="display: none">&nbsp;</div>
+
+  <div class="container">
+    <p class="subtitle">
+      Data API client that wraps the Fetch API. 
+      The client (SDK) makes available methods for interacting with a JSON API.
+      Users can call methods on the SDK without knowledge of API endpoints etc
+    </p>
+    <div class="block">
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.read()">
+            Read</a></li>
+      </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.create()">
+            Create</a></li>
+      </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.update()">
+            Update</a></li>
+      </ul>
+      <ul>
+        <li><a href="javascript:" x-on:click="app.examples.httpFetchWrapper.list()">
+            List</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+
+  <div id="results" class="container">&nbsp;</div>
+</section>
+
+<!-- https://www.w3schools.com/tags/tag_template.asp -->
+<template id="results-template">
+  <!-- https://www.w3schools.com/w3css/w3css_alerts.asp -->
+  <div class="block">
+    <div class="box">
+      <div class="buttons is-right">
+        <span x-on:click="$el.closest('div.block').remove()" class="button is-danger">&times;</span>
+      </div>
+      <h3 id="header">&nbsp;</h3>
+      <p>
+      <pre id="resp">&nbsp;</pre>
+      </p>
+    </div>
+  </div>
+</template>

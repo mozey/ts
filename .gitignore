@@ -24,3 +24,4 @@
 /.env
 /prod.env
 /Caddyfile
+/modules/http-fetch-wrapper/vendor/
